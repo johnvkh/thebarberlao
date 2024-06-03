@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../Header.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -17,20 +19,15 @@ class _HomePageState extends State<HomePage> {
           controller: _scrollController,
           child: Column(
             children: [
-              const BannerSlider(),
-              SizedBox(height: 15),
-              MainMenu(),
-              Container(
-                margin: EdgeInsets.only(top: 10),
-                height: 1500,
-                width: double.infinity,
-                color: Colors.red,
-                child: Text("xxxxxxxxxxx"),
-              ),
+              Image.asset("assets/images/hero3.jpg"),
+              // const BannerSlider(),
+              // SizedBox(height: 15),
+              // MainMenu(),
+
             ],
           ),
         ),
-        HeaderWidget(scrollController: _scrollController),
+        Header(scrollController: _scrollController),
       ]),
     );
   }
