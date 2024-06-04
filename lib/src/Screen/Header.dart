@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_builder/responsive_builder.dart';
+import 'package:thebarberlao/src/ComponentsUtils/IconButtonWidget.dart';
 
 class Header extends StatefulWidget {
   const Header({super.key, required this.scrollController});
@@ -10,7 +12,6 @@ class Header extends StatefulWidget {
 }
 
 class _HeaderState extends State<Header> {
-
   Color? _backgroundColor;
   Color? _backgroundColorSearch;
   Color? _colorIcon;
@@ -32,16 +33,38 @@ class _HeaderState extends State<Header> {
 
   @override
   Widget build(BuildContext context) {
+    var deviceType = getDeviceType(MediaQuery.of(context).size);
+    var size = MediaQuery.of(context).size;
     return Container(
       color: _backgroundColor,
       child: SafeArea(
         bottom: false,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              Image.asset("assets/images/LOGO01.png",width: 150,height: 50,),
-            ],
+        child: Container(
+          width: size.width,
+          height: 50,
+          color: const Color.fromRGBO(44, 44, 44, 1),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              children: [
+                const Text(
+                  "The barber lao",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontFamily: 'mountain',
+                    color: Colors.white,
+                  ),
+                ),
+                const Expanded(child: SizedBox()),
+                IconButtonWidget(
+                  press: () {},
+                  width: 35,
+                  height: 35,
+                  widgetIcon: const Icon(Icons.menu),
+                  color: Colors.white,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -77,5 +100,4 @@ class _HeaderState extends State<Header> {
       _backgroundColor = Colors.white.withOpacity(_opacity!);
     });
   }
-
 }

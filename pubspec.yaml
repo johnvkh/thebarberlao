@@ -107,6 +107,9 @@ flutter:
     - family: roboto
       fonts:
         - asset: assets/fonts/NotoSerifLao.ttf
+    - family: mountain
+      fonts:
+        - asset: assets/fonts/Beauty.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

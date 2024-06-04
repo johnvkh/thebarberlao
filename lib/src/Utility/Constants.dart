@@ -13,6 +13,8 @@ const boxColors = Color.fromRGBO(253, 77, 45, 1);
 const defaultPadding = 16.0;
 const maxPage = 10;
 const Color colorTextTable = Color(0xFF385FE2);
+const holderColor = Color.fromRGBO(199, 158, 86, 1);
+
 
 const greenColors = Color.fromRGBO(10, 187, 135, 1);
 
