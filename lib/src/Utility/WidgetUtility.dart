@@ -18,7 +18,7 @@ Widget TextWidget(
       fontFamily: 'roboto',
     ),
     textAlign: textAlign,
-    maxLines: 2,
+    maxLines: 3,
     overflow: TextOverflow.ellipsis,
   );
 }

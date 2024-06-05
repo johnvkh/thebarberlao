@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:thebarberlao/src/Utility/WidgetUtility.dart';
@@ -25,7 +27,7 @@ class Footer extends StatelessWidget {
                     FontWeight.normal,
                     TextAlign.center,
                   ),
-                  Expanded(child: SizedBox()),
+                  const Expanded(child: SizedBox()),
                   TextWidget(
                     "All Rights Reserved 2024",
                     Colors.grey,
@@ -48,7 +50,7 @@ class Footer extends StatelessWidget {
                       FontWeight.normal,
                       TextAlign.center,
                     ),
-                    SizedBox(height: 5),
+                    const SizedBox(height: 5),
                     TextWidget(
                       "All Rights Reserved 2024",
                       Colors.grey,

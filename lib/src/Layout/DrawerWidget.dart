@@ -50,15 +50,15 @@ class _DrawerWidgetState extends State<DrawerWidget> {
         color: Colors.grey,
       ),
       selectedIconTheme: const IconThemeData(color: kPrimaryColor, opacity: 1),
-      destinations: [
+      destinations: const [
         NavigationRailDestination(
-          icon: const Icon(Icons.description),
+          icon: Icon(Icons.description),
           label: Text(
             "ຈັດການໝວດໝູ່ບໍລິການ",
-            style: const TextStyle(fontFamily: 'roboto',fontSize: 16),
+            style: TextStyle(fontFamily: 'roboto',fontSize: 16),
           ),
         ),
-        const NavigationRailDestination(
+        NavigationRailDestination(
           icon: Icon(Icons.folder_copy),
           label: Text(
             "ຈັດການຂໍ້ມູນຊ່າງ",

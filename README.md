@@ -1,6 +1,6 @@
 # thebarberlao
 
-The Barber Lao
+the barber lao
 
 ## Getting Started
 
