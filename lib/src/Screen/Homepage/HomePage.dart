@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               const SizedBox(height: 50),
-              Image.asset("assets/images/hero3.jpg",height: size.height*0.4,),
+              Image.asset("assets/images/hero3.jpg",),
               Container(
                 width: size.width,
                 color: const Color.fromRGBO(240, 243, 245, 1),
