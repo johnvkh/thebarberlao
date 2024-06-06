@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:thebarberlao/src/Screen/SplashScreen.dart';
 import 'Layout/MyCustomScrollBehavior.dart';
 import 'Localization/AppLocalization.dart';
 import 'Localization/LanguageConstants.dart';
@@ -8,10 +9,11 @@ import 'Screen/Homepage/HomePage.dart';
 import 'Utility/Utils.dart';
 
 final Map<String, WidgetBuilder> map = {
+  '/splash': (BuildContext context) => const SplashScreen(),
   '/home': (BuildContext context) => const HomePage(),
 };
 
-String initialRoute = '/home';
+String initialRoute = '/splash';
 bool isFirstLaunch = true;
 
 class MyApp extends StatefulWidget {
