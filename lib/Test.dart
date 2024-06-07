@@ -1,61 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:video_player/video_player.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+// import 'package:google_maps_flutter_web/google_maps_flutter_web.dart';
 
-void main() => runApp(const VideoApp());
-
-/// Stateful widget to fetch and then display video content.
-class VideoApp extends StatefulWidget {
-  const VideoApp({super.key});
-
-  @override
-  _VideoAppState createState() => _VideoAppState();
+void main() {
+  // Register the web plugin
+  //GoogleMapsFlutterWeb.registerWith(Registrar());
+  runApp(MyApp());
 }
 
-class _VideoAppState extends State<VideoApp> {
-  late VideoPlayerController _controller;
-
+class MyApp extends StatelessWidget {
   @override
-  void initState() {
-    super.initState();
-    _controller = VideoPlayerController.asset("assets/images/Onlylove.mp4")
-      ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {});
-      });
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Google Maps in Flutter Web',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MapScreen(),
+    );
+  }
+}
+
+class MapScreen extends StatefulWidget {
+  @override
+  _MapScreenState createState() => _MapScreenState();
+}
+
+class _MapScreenState extends State<MapScreen> {
+  late GoogleMapController mapController;
+  final LatLng _center = const LatLng(17.96950402052254, -102.62520696770324); // Example coordinates (San Francisco)
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Video Demo',
-      home: Scaffold(
-        body: Center(
-          child: _controller.value.isInitialized
-              ? AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller),
-                )
-              : Container(),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              _controller.value.isPlaying
-                  ? _controller.pause()
-                  : _controller.play();
-            });
-          },
-          child: Icon(
-            _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Google Maps in Flutter Web'),
+      ),
+      body: GoogleMap(
+        onMapCreated: _onMapCreated,
+        initialCameraPosition: CameraPosition(
+          target: _center,
+          zoom: 11.0,
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
   }
 }

@@ -6,6 +6,7 @@ import 'package:thebarberlao/src/ComponentsUtils/IconButtonWidget.dart';
 import 'package:thebarberlao/src/Screen/Footer.dart';
 import 'package:thebarberlao/src/Screen/FooterMenu.dart';
 import 'package:thebarberlao/src/Screen/Homepage/BannerSliderWidget.dart';
+import 'package:thebarberlao/src/Screen/Homepage/LocationWidget.dart';
 import 'package:thebarberlao/src/Screen/Homepage/MenuService.dart';
 import 'package:thebarberlao/src/Utility/Constants.dart';
 import 'package:video_player/video_player.dart';
@@ -83,6 +84,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const MenuService(),
+                LocationWidget(),
                 const FooterMenu(),
                 const Footer(),
               ],

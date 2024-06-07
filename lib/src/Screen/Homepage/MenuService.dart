@@ -40,7 +40,7 @@ class _MenuServiceState extends State<MenuService> {
     var size = MediaQuery.of(context).size;
     return Container(
       width: size.width,
-      color: const Color.fromRGBO(44, 44, 44, 1),
+      color: const Color.fromRGBO(54, 52, 53, 1),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
@@ -49,10 +49,10 @@ class _MenuServiceState extends State<MenuService> {
               padding: const EdgeInsets.all(8),
               child: Container(
                 width: 280,
-                height: 130,
+                height: 80,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/images/LOGO01.png'),
+                    image: AssetImage('assets/images/LOGO03.png'),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -82,27 +82,36 @@ class _MenuServiceState extends State<MenuService> {
                   itemCount: listService.length,
                   itemBuilder: (context, index) {
                     PriceModel prceModel = listService[index];
-                    return Row(children: [
-                      TextWidget(
-                        prceModel.serviceName.toString(),
-                        Colors.white,
-                        16,
-                        FontWeight.bold,
-                        TextAlign.center,
-                      ),
-                      Spacer(),
-                      TextWidget(
-                        prceModel.price.toString(),
-                        Colors.white,
-                        16,
-                        FontWeight.bold,
-                        TextAlign.center,
-                      ),
-                    ],);
+                    return Row(
+                      children: [
+                        TextWidget(
+                          prceModel.serviceName.toString(),
+                          Colors.white,
+                          14,
+                          FontWeight.bold,
+                          TextAlign.center,
+                        ),
+                        Spacer(),
+                        TextWidget(
+                          prceModel.price.toString(),
+                          Colors.white,
+                          14,
+                          FontWeight.bold,
+                          TextAlign.center,
+                        ),
+                      ],
+                    );
                   },
                 ),
               ),
-            )
+            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     Image.asset("assets/images/barber/barber_shop02.png",width: 100,height: 100,),
+            //     Image.asset("assets/images/barber/barber_shop03.png",width: 100,height: 100,),
+            //   ],
+            // ),
           ],
         ),
       ),
