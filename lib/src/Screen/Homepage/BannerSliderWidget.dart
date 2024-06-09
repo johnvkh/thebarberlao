@@ -47,7 +47,7 @@ class _BannerSectionState extends State<BannerSection> {
   }
 
   Widget _buildBanner() {
-    return Container(
+    return SizedBox(
       // margin: EdgeInsets.only(bottom: 10),
       width: double.infinity,
       child: CarouselSlider(

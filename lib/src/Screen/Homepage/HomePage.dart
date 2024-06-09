@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
     );
 
     _initializeVideoPlayerFuture = _controller.initialize();
-    _controller.play();
+    //_controller.play();
     super.initState();
   }
 

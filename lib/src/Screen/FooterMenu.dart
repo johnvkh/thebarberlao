@@ -286,7 +286,7 @@ class _FooterMenuState extends State<FooterMenu> {
                               ),
                             ],
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

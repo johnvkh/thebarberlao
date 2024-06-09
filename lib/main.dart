@@ -1,8 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:thebarberlao/src/myApp.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:google_maps_flutter_web/google_maps_flutter_web.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();

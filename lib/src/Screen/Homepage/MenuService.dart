@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-
 import '../../Model/PriceModel.dart';
 import '../../Utility/WidgetUtility.dart';
 
@@ -39,8 +38,14 @@ class _MenuServiceState extends State<MenuService> {
     var deviceType = getDeviceType(MediaQuery.of(context).size);
     var size = MediaQuery.of(context).size;
     return Container(
+      //assets/images/barber/listBG.png
       width: size.width,
-      color: const Color.fromRGBO(54, 52, 53, 1),
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/barber/listBG.png"),
+          fit: BoxFit.cover,
+        ),
+      ),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
