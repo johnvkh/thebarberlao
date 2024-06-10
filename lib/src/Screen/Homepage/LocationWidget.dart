@@ -108,13 +108,17 @@ class _LocationWidgetState extends State<LocationWidget> {
                           horizontal: 10,
                           vertical: 10,
                         ),
-                        child: Hero(
-                          tag: "Test1",
-                          child: Image.asset(
-                            "assets/images/hero3.jpg",
-                            width: 150,
-                            height: 150,
-                            fit: BoxFit.fill,
+                        child: SizedBox(
+                          width: 150,
+                          height: 150,
+                          child: GoogleMap(
+                            markers: myMarker(),
+                            onMapCreated: _onMapCreated,
+                            initialCameraPosition: const CameraPosition(
+                              target: LatLng(
+                                  17.964569127655977, 102.60421459482328),
+                              zoom: 14.0,
+                            ),
                           ),
                         ),
                       ),
@@ -222,13 +226,17 @@ class _LocationWidgetState extends State<LocationWidget> {
                           horizontal: 10,
                           vertical: 10,
                         ),
-                        child: Hero(
-                          tag: "Test2",
-                          child: Image.asset(
-                            "assets/images/hero3.jpg",
-                            width: 150,
-                            height: 150,
-                            fit: BoxFit.fill,
+                        child: SizedBox(
+                          width: 150,
+                          height: 150,
+                          child: GoogleMap(
+                            markers: myMarker(),
+                            onMapCreated: _onMapCreated,
+                            initialCameraPosition: const CameraPosition(
+                              target: LatLng(
+                                  17.964569127655977, 102.60421459482328),
+                              zoom: 14.0,
+                            ),
                           ),
                         ),
                       ),
@@ -336,13 +344,17 @@ class _LocationWidgetState extends State<LocationWidget> {
                           horizontal: 10,
                           vertical: 10,
                         ),
-                        child: Hero(
-                          tag: "Test3",
-                          child: Image.asset(
-                            "assets/images/hero3.jpg",
-                            width: 150,
-                            height: 150,
-                            fit: BoxFit.fill,
+                        child: SizedBox(
+                          width: 150,
+                          height: 150,
+                          child: GoogleMap(
+                            markers: myMarker(),
+                            onMapCreated: _onMapCreated,
+                            initialCameraPosition: const CameraPosition(
+                              target: LatLng(
+                                  17.964569127655977, 102.60421459482328),
+                              zoom: 14.0,
+                            ),
                           ),
                         ),
                       ),

@@ -81,7 +81,7 @@ class _MenuServiceState extends State<MenuService> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: SizedBox(
-                height: 400,
+                height: 450,
                 child: ListView.builder(
                   itemCount: listService.length,
                   itemBuilder: (context, index) {
