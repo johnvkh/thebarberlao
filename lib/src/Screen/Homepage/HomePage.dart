@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:thebarberlao/src/ComponentsUtils/IconButtonWidget.dart';
 import 'package:thebarberlao/src/Screen/Footer.dart';
@@ -76,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                           child: VideoPlayer(_controller),
                         );
                       } else {
-                        return Center(
+                        return const Center(
                           child: CircularProgressIndicator(),
                         );
                       }
@@ -84,7 +85,355 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const MenuService(),
-                LocationWidget(),
+                const LocationWidget(),
+                Container(
+                  height: 590,
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () async {},
+                        child: Card(
+                          elevation: 3,
+                          // color: Colors.red,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 10,
+                                ),
+                                child: Hero(
+                                  tag: "Test1",
+                                  child: Image.asset(
+                                    "assets/images/hero3.jpg",
+                                    width: 150,
+                                    height: 150,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  width: double.infinity,
+                                  margin: const EdgeInsets.only(
+                                      left: 15, bottom: 10, right: 10),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      TextWidget(
+                                        "The Barber Lao ສາຂາ ດົງໂດກ",
+                                        Colors.black,
+                                        18,
+                                        FontWeight.bold,
+                                        TextAlign.start,
+                                      ),
+                                      SizedBox(height: 5),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            FontAwesomeIcons.locationDot,
+                                            color: kSecondaryColor
+                                                .withOpacity(0.5),
+                                            size: 18,
+                                          ),
+                                          const SizedBox(width: 10),
+                                          TextWidget(
+                                            "ບ້ານ ດົງໂດກ, ເມືອງ ໄຊເສດຖາ, ນະຄອນ\nຫຼວງວຽງຈັນ",
+                                            Colors.black,
+                                            14,
+                                            FontWeight.normal,
+                                            TextAlign.start,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            FontAwesomeIcons.phone,
+                                            color: kSecondaryColor
+                                                .withOpacity(0.5),
+                                            size: 18,
+                                          ),
+                                          const SizedBox(width: 10),
+                                          TextWidget(
+                                            "020 90 845 155",
+                                            Colors.black,
+                                            14,
+                                            FontWeight.normal,
+                                            TextAlign.start,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5),
+                                      GestureDetector(
+                                        onTap: () async {},
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              FontAwesomeIcons.map,
+                                              color: kSecondaryColor
+                                                  .withOpacity(1),
+                                              size: 18,
+                                            ),
+                                            const SizedBox(width: 10),
+                                            TextWidget(
+                                              "open map",
+                                              Colors.black,
+                                              14,
+                                              FontWeight.bold,
+                                              TextAlign.start,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      GestureDetector(
+                        onTap: () async {},
+                        child: Card(
+                          elevation: 3,
+                          // color: Colors.red,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 10,
+                                ),
+                                child: Hero(
+                                  tag: "Test2",
+                                  child: Image.asset(
+                                    "assets/images/hero3.jpg",
+                                    width: 150,
+                                    height: 150,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  width: double.infinity,
+                                  margin: const EdgeInsets.only(
+                                      left: 15, bottom: 10, right: 10),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      TextWidget(
+                                        "The Barber Lao ສາຂາ ສະພານທອງ",
+                                        Colors.black,
+                                        18,
+                                        FontWeight.bold,
+                                        TextAlign.start,
+                                      ),
+                                      SizedBox(height: 5),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            FontAwesomeIcons.locationDot,
+                                            color: kSecondaryColor
+                                                .withOpacity(0.5),
+                                            size: 18,
+                                          ),
+                                          const SizedBox(width: 10),
+                                          TextWidget(
+                                            "ບ້ານ ສະພານທອງ, ເມືອງ ໄຊເສດຖາ, ນະຄອນ\nຫຼວງວຽງຈັນ",
+                                            Colors.black,
+                                            14,
+                                            FontWeight.normal,
+                                            TextAlign.start,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            FontAwesomeIcons.phone,
+                                            color: kSecondaryColor
+                                                .withOpacity(0.5),
+                                            size: 18,
+                                          ),
+                                          const SizedBox(width: 10),
+                                          TextWidget(
+                                            "020 90 845 155",
+                                            Colors.black,
+                                            14,
+                                            FontWeight.normal,
+                                            TextAlign.start,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5),
+                                      GestureDetector(
+                                        onTap: () async {},
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              FontAwesomeIcons.map,
+                                              color: kSecondaryColor
+                                                  .withOpacity(1),
+                                              size: 18,
+                                            ),
+                                            const SizedBox(width: 10),
+                                            TextWidget(
+                                              "open map",
+                                              Colors.black,
+                                              14,
+                                              FontWeight.bold,
+                                              TextAlign.start,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      GestureDetector(
+                        onTap: () async {},
+                        child: Card(
+                          elevation: 3,
+                          // color: Colors.red,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 10,
+                                ),
+                                child: Hero(
+                                  tag: "Test3",
+                                  child: Image.asset(
+                                    "assets/images/hero3.jpg",
+                                    width: 150,
+                                    height: 150,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Container(
+                                  alignment: Alignment.centerLeft,
+                                  width: double.infinity,
+                                  margin: const EdgeInsets.only(
+                                    left: 15,
+                                    bottom: 10,
+                                    right: 10,
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      TextWidget(
+                                        "The Barber Lao ສາຂາແຄມຂອງ",
+                                        Colors.black,
+                                        18,
+                                        FontWeight.bold,
+                                        TextAlign.start,
+                                      ),
+                                      SizedBox(height: 5),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            FontAwesomeIcons.locationDot,
+                                            color: kSecondaryColor
+                                                .withOpacity(0.5),
+                                            size: 18,
+                                          ),
+                                          const SizedBox(width: 10),
+                                          TextWidget(
+                                            "ບ້ານ ສະພານທອງ, ເມືອງ ໄຊເສດຖາ, ນະຄອນ\nຫຼວງວຽງຈັນ",
+                                            Colors.black,
+                                            14,
+                                            FontWeight.normal,
+                                            TextAlign.start,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5),
+                                      Row(
+                                        children: [
+                                          Icon(
+                                            FontAwesomeIcons.phone,
+                                            color: kSecondaryColor
+                                                .withOpacity(0.5),
+                                            size: 18,
+                                          ),
+                                          const SizedBox(width: 10),
+                                          TextWidget(
+                                            "020 90 845 155",
+                                            Colors.black,
+                                            14,
+                                            FontWeight.normal,
+                                            TextAlign.start,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 5),
+                                      GestureDetector(
+                                        onTap: () async {},
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              FontAwesomeIcons.map,
+                                              color: kSecondaryColor
+                                                  .withOpacity(1),
+                                              size: 18,
+                                            ),
+                                            const SizedBox(width: 10),
+                                            TextWidget(
+                                              "open map",
+                                              Colors.black,
+                                              14,
+                                              FontWeight.bold,
+                                              TextAlign.start,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
                 const FooterMenu(),
                 const Footer(),
               ],

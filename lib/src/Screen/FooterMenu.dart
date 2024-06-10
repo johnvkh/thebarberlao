@@ -223,7 +223,7 @@ class _FooterMenuState extends State<FooterMenu> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: TextWidget(
-                      "ປະຈຸບັນຮ້ານເຮົາມີ 3 ສາຂາຄື: ສາຂາດົງໂດກ, ສາຂາສະພານທອງ ແລະ ສາຂາແຄມຂອງ, Vientiane, Laos",
+                      "ປະຈຸບັນຮ້ານເຮົາມີ 3 ສາຂາຄື: ສາຂາດົງໂດກ, ສາຂາສະພານທອງ ແລະ ສາຂາແຄມຂອງ, ນະຄອນຫຼວງວຽງຈັນ, ສ.ປ.ປ ລາວ",
                       Colors.black,
                       16,
                       FontWeight.normal,

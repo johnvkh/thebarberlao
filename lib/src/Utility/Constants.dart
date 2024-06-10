@@ -23,3 +23,6 @@ const greenColors = Color.fromRGBO(10, 187, 135, 1);
 const textFieldColors = Color.fromRGBO(146, 98, 87, 0.5);
 const double normalFontSize = 16;
 const double titleFontSize = 18;
+
+const kAvatarColor = Color(0xffffdbc9);
+const kSecondaryColor = Color(0xFF29303D);

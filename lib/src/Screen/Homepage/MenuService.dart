@@ -38,11 +38,10 @@ class _MenuServiceState extends State<MenuService> {
     var deviceType = getDeviceType(MediaQuery.of(context).size);
     var size = MediaQuery.of(context).size;
     return Container(
-      //assets/images/barber/listBG.png
       width: size.width,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage("assets/images/barber/listBG.png"),
+          image: AssetImage("assets/images/bg222.jpg"),
           fit: BoxFit.cover,
         ),
       ),
@@ -69,7 +68,7 @@ class _MenuServiceState extends State<MenuService> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextWidget(
-                    "ລາຍການລາຄາ ແລະ ຂໍ້ສະເຫນີພິເສດ",
+                    "ລາຍການລາຄາ ແລະ ຂໍ້ສະເໜີພິເສດ",
                     Colors.white,
                     18,
                     FontWeight.bold,
@@ -80,9 +79,9 @@ class _MenuServiceState extends State<MenuService> {
             ),
             SizedBox(height: 10),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 30),
               child: SizedBox(
-                height: 500,
+                height: 400,
                 child: ListView.builder(
                   itemCount: listService.length,
                   itemBuilder: (context, index) {
@@ -92,7 +91,7 @@ class _MenuServiceState extends State<MenuService> {
                         TextWidget(
                           prceModel.serviceName.toString(),
                           Colors.white,
-                          14,
+                          16,
                           FontWeight.bold,
                           TextAlign.center,
                         ),
@@ -100,7 +99,7 @@ class _MenuServiceState extends State<MenuService> {
                         TextWidget(
                           prceModel.price.toString(),
                           Colors.white,
-                          14,
+                          16,
                           FontWeight.bold,
                           TextAlign.center,
                         ),
@@ -110,13 +109,6 @@ class _MenuServiceState extends State<MenuService> {
                 ),
               ),
             ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     Image.asset("assets/images/barber/barber_shop02.png",width: 100,height: 100,),
-            //     Image.asset("assets/images/barber/barber_shop03.png",width: 100,height: 100,),
-            //   ],
-            // ),
           ],
         ),
       ),
