@@ -3,6 +3,15 @@ class Assets {
   Assets._();
 
   static const String assetsIconsWarning = 'assets/icons/warning.png';
+  static const String barberBarberShop = 'assets/images/barber/barber-shop.png';
+  static const String barberBarberShop02 = 'assets/images/barber/barber_shop02.png';
+  static const String barberBarberShop03 = 'assets/images/barber/barber_shop03.png';
+  static const String barberBarberShop04 = 'assets/images/barber/barber_shop04.png';
+  static const String barberBarberShop05 = 'assets/images/barber/barber_shop05.png';
+  static const String barberBarberShop06 = 'assets/images/barber/barber_shop06.png';
+  static const String barberBarberShop07 = 'assets/images/barber/barber_shop07.png';
+  static const String barberBarberShop08 = 'assets/images/barber/barber_shop08.png';
+  static const String barberListBG = 'assets/images/barber/listBG.png';
   static const String fontsAmilya = 'assets/fonts/Amilya.ttf';
   static const String fontsBeauty = 'assets/fonts/Beauty.ttf';
   static const String fontsLaoSansPro = 'assets/fonts/LaoSansPro.ttf';
@@ -42,8 +51,14 @@ class Assets {
   static const String iconsXdFile = 'assets/icons/xd_file.svg';
   static const String imagesAgent = 'assets/images/agent.png';
   static const String imagesAppointment = 'assets/images/appointment.jpg';
+  static const String imagesBackground = 'assets/images/background.jpg';
+  static const String imagesBg222 = 'assets/images/bg222.jpg';
   static const String imagesDo = 'assets/images/do.jpg';
+  static const String imagesEnglish = 'assets/images/english.png';
   static const String imagesFacebook = 'assets/images/facebook.png';
+  static const String imagesFlaticonScissors = 'assets/images/flaticon-scissors.png';
+  static const String imagesGentlemen = 'assets/images/gentlemen.png';
+  static const String imagesHair = 'assets/images/hair.png';
   static const String imagesHero3 = 'assets/images/hero3.jpg';
   static const String imagesImg = 'assets/images/img.png';
   static const String imagesImg2 = 'assets/images/img2.png';
@@ -53,10 +68,11 @@ class Assets {
   static const String imagesKoung = 'assets/images/koung.jpg';
   static const String imagesLOGO01 = 'assets/images/LOGO01.png';
   static const String imagesLOGO02 = 'assets/images/LOGO02.png';
+  static const String imagesLOGO03 = 'assets/images/LOGO03.png';
+  static const String imagesLaos = 'assets/images/laos.png';
   static const String imagesLit = 'assets/images/lit.jpg';
   static const String imagesLoading = 'assets/images/loading.gif';
   static const String imagesLoadingbot = 'assets/images/loadingbot.gif';
-  static const String imagesLogo2 = 'assets/images/logo2.jpeg';
   static const String imagesMick = 'assets/images/mick.jpg';
   static const String imagesMissBee = 'assets/images/miss-bee.jpg';
   static const String imagesMissToun = 'assets/images/miss-toun.jpg';
@@ -88,6 +104,7 @@ class Assets {
   static const String imagesThon02 = 'assets/images/thon02.jpg';
   static const String imagesUser = 'assets/images/user.png';
   static const String imagesWhatsapp = 'assets/images/whatsapp.png';
+  static const String imagesWhiteBg = 'assets/images/white_bg.jpg';
   static const String imagesYoutube = 'assets/images/youtube.png';
   static const String imagesYuan = 'assets/images/yuan.jpg';
   static const String languageEn = 'lib/src/Language/en.json';
