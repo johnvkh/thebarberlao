@@ -9,18 +9,19 @@ class VideoWidget extends StatefulWidget {
 }
 
 class _VideoWidgetState extends State<VideoWidget> {
-
   late VideoPlayerController _controller;
   late Future<void> _initializeVideoPlayerFuture;
 
   @override
   void initState() {
     _controller = VideoPlayerController.asset(
-      'assets/images/Onlylove.mp4',
+      'assets/images/thebarberlao.mp4',
     );
 
     _initializeVideoPlayerFuture = _controller.initialize();
-    //_controller.play();
+    _controller.setLooping(true);
+    _controller.setVolume(0);
+    _controller.play();
     super.initState();
   }
 
@@ -29,9 +30,10 @@ class _VideoWidgetState extends State<VideoWidget> {
     _controller.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    return                 GestureDetector(
+    return GestureDetector(
       onTap: () {
         setState(() {
           if (_controller.value.isPlaying) {

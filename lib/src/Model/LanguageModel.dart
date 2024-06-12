@@ -1,16 +1,17 @@
 // ignore_for_file: file_names
 
-class Language {
+class LanguageModel {
   int? id;
   String? name;
   String? languageCode;
+  String? image;
 
-  Language(this.id, this.name, this.languageCode);
+  LanguageModel(this.id, this.name, this.languageCode,this.image);
 
-  static List<Language> languageList() {
-    return <Language>[
-      Language(1, "ພາສາລາວ", "lo"),
-      Language(2, "English", "en"),
+  static List<LanguageModel> languageList() {
+    return <LanguageModel>[
+      LanguageModel(1, "ພາສາລາວ", "lo","assets/images/laos.png"),
+      LanguageModel(2, "English", "en","assets/images/english.png"),
     ];
   }
 }

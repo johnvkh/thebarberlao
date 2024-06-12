@@ -95,7 +95,7 @@ flutter:
   fonts:
     - family: roboto
       fonts:
-        - asset: assets/fonts/NotoSerifLao.ttf
+        - asset: assets/fonts/Lao_SomVang.ttf
     - family: mountain
       fonts:
         - asset: assets/fonts/Beauty.ttf

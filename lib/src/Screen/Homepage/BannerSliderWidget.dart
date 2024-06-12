@@ -57,7 +57,6 @@ class _BannerSectionState extends State<BannerSection> {
           viewportFraction: 1.0,
           autoPlay: true,
           onPageChanged: (index, reason) {
-            print("$index");
             setState(() {
               _current = index;
             });

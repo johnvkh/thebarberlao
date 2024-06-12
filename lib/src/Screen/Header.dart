@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:thebarberlao/src/ComponentsUtils/ChooseLanguageWidget.dart';
 import 'package:thebarberlao/src/ComponentsUtils/IconButtonWidget.dart';
 
 class Header extends StatefulWidget {
@@ -58,13 +59,14 @@ class _HeaderState extends State<Header> {
                   ),
                 ),
                 const Expanded(child: SizedBox()),
-                IconButtonWidget(
-                  press: () {},
-                  width: 35,
-                  height: 35,
-                  widgetIcon: const Icon(Icons.menu),
-                  color: Colors.white,
-                ),
+                ChooseLanguageWidget(color: Colors.white),
+                // IconButtonWidget(
+                //   press: () {},
+                //   width: 35,
+                //   height: 35,
+                //   widgetIcon: const Icon(Icons.menu),
+                //   color: Colors.white,
+                // ),
               ],
             ),
           ),

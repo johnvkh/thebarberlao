@@ -36,16 +36,109 @@ class _HomePageState extends State<HomePage> {
         body: Stack(children: [
           SingleChildScrollView(
             controller: _scrollController,
-            child: const Column(
+            child: Column(
               children: [
-                SizedBox(height: 50),
-                BannerSlider(),
-                VideoWidget(),
-                MenuService(),
-                LocationWidget(),
-                BarberWidget(),
-                FooterMenu(),
-                Footer(),
+                const SizedBox(height: 50),
+                const BannerSlider(),
+                const VideoWidget(),
+                const MenuService(),
+                const LocationWidget(),
+                const BarberWidget(),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: TextWidget(
+                          "ບໍລິການຂອງ The Barber Lao",
+                          Colors.black,
+                          18,
+                          FontWeight.bold,
+                          TextAlign.center,
+                        ),
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Spacer(),
+                          GestureDetector(
+                            onTap: () async {},
+                            child: Card(
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.symmetric(
+                                      horizontal: 10,
+                                      vertical: 10,
+                                    ),
+                                    child: Image.asset(
+                                      "assets/images/man_service.png",
+                                      width: 140,
+                                      height: 120,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                  Center(
+                                    child: TextWidget(
+                                      "ບໍລິການຊ່າງຊາຍ",
+                                      Colors.black,
+                                      16,
+                                      FontWeight.bold,
+                                      TextAlign.start,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                          GestureDetector(
+                            onTap: () async {},
+                            child: Card(
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.symmetric(
+                                      horizontal: 10,
+                                      vertical: 10,
+                                    ),
+                                    child: Image.asset(
+                                      "assets/images/woman_service.png",
+                                      width: 140,
+                                      height: 120,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                  Center(
+                                    child: TextWidget(
+                                      "ບໍລິການຊ່າງຍິງ",
+                                      Colors.black,
+                                      16,
+                                      FontWeight.bold,
+                                      TextAlign.start,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          const Spacer(),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                const FooterMenu(),
+                const Footer(),
               ],
             ),
           ),
