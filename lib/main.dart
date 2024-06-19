@@ -16,6 +16,5 @@ void main() async{
         measurementId: "G-P224QQ6KDV"
     ),
   );
-  //GoogleMapsFlutterWeb.registerWith(Registrar());
   runApp(const MyApp());
 }

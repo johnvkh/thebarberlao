@@ -13,8 +13,10 @@ class Assets {
   static const String barberBarberShop08 = 'assets/images/barber/barber_shop08.png';
   static const String barberListBG = 'assets/images/barber/listBG.png';
   static const String fontsAmilya = 'assets/fonts/Amilya.ttf';
+  static const String fontsAnton = 'assets/fonts/Anton.ttf';
   static const String fontsBeauty = 'assets/fonts/Beauty.ttf';
   static const String fontsLaoSansPro = 'assets/fonts/LaoSansPro.ttf';
+  static const String fontsLaoSomVang = 'assets/fonts/Lao_SomVang.ttf';
   static const String fontsNotoSerifLao = 'assets/fonts/NotoSerifLao.ttf';
   static const String fontsRoboto = 'assets/fonts/roboto.ttf';
   static const String iconsAgent = 'assets/icons/agent.svg';
@@ -60,8 +62,6 @@ class Assets {
   static const String imagesGentlemen = 'assets/images/gentlemen.png';
   static const String imagesHair = 'assets/images/hair.png';
   static const String imagesHero3 = 'assets/images/hero3.jpg';
-  static const String imagesImg = 'assets/images/img.png';
-  static const String imagesImg2 = 'assets/images/img2.png';
   static const String imagesJaem = 'assets/images/jaem.jpg';
   static const String imagesKaiy = 'assets/images/kaiy.jpg';
   static const String imagesKaiy02 = 'assets/images/kaiy02.jpg';
@@ -73,6 +73,7 @@ class Assets {
   static const String imagesLit = 'assets/images/lit.jpg';
   static const String imagesLoading = 'assets/images/loading.gif';
   static const String imagesLoadingbot = 'assets/images/loadingbot.gif';
+  static const String imagesManService = 'assets/images/man_service.png';
   static const String imagesMick = 'assets/images/mick.jpg';
   static const String imagesMissBee = 'assets/images/miss-bee.jpg';
   static const String imagesMissToun = 'assets/images/miss-toun.jpg';
@@ -82,14 +83,9 @@ class Assets {
   static const String imagesNewyo = 'assets/images/newyo.jpg';
   static const String imagesNick = 'assets/images/nick.jpg';
   static const String imagesNumkhong = 'assets/images/numkhong.jpg';
-  static const String imagesOnlylove = 'assets/images/Onlylove.mp4';
-  static const String imagesOtp = 'assets/images/otp.png';
   static const String imagesPhoto = 'assets/images/photo.png';
   static const String imagesPorng = 'assets/images/porng.jpg';
   static const String imagesRightArrow = 'assets/images/right_arrow.png';
-  static const String imagesSafeLogo1 = 'assets/images/safe-logo1.png';
-  static const String imagesSafeLogo2 = 'assets/images/safe-logo2.png';
-  static const String imagesSafeLogo3 = 'assets/images/safe-logo3.png';
   static const String imagesSlider1 = 'assets/images/slider1.png';
   static const String imagesSlider2 = 'assets/images/slider2.png';
   static const String imagesSlider3 = 'assets/images/slider3.png';
@@ -100,11 +96,12 @@ class Assets {
   static const String imagesTeam4 = 'assets/images/team4.jpg';
   static const String imagesTer = 'assets/images/Ter.jpg';
   static const String imagesTer2 = 'assets/images/ter2.jpg';
+  static const String imagesThebarberlao = 'assets/images/thebarberlao.mp4';
   static const String imagesThon = 'assets/images/thon.jpg';
   static const String imagesThon02 = 'assets/images/thon02.jpg';
-  static const String imagesUser = 'assets/images/user.png';
   static const String imagesWhatsapp = 'assets/images/whatsapp.png';
   static const String imagesWhiteBg = 'assets/images/white_bg.jpg';
+  static const String imagesWomanService = 'assets/images/woman_service.png';
   static const String imagesYoutube = 'assets/images/youtube.png';
   static const String imagesYuan = 'assets/images/yuan.jpg';
   static const String languageEn = 'lib/src/Language/en.json';

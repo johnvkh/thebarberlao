@@ -95,10 +95,13 @@ flutter:
   fonts:
     - family: roboto
       fonts:
-        - asset: assets/fonts/Lao_SomVang.ttf
+        - asset: assets/fonts/NotoSansLao.ttf
     - family: mountain
       fonts:
         - asset: assets/fonts/Beauty.ttf
+    - family: Anton
+      fonts:
+        - asset: assets/fonts/Anton.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

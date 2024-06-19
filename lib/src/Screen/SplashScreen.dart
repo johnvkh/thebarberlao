@@ -35,15 +35,27 @@ class _SplashScreenState extends State<SplashScreen> {
               Padding(
                 padding: const EdgeInsets.all(8),
                 child: Container(
-                  width: 280,
-                  height: 130,
+                  width: 250,
+                  height: 70,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/images/LOGO01.png'),
+                      image: AssetImage('assets/images/LOGO03.png'),
                       fit: BoxFit.fill,
                     ),
                   ),
                 ),
+              ),
+              const Text(
+                "THE BAR-BER LAO",
+                style: TextStyle(
+                  fontSize: 45,
+                  color: Colors.black,
+                  fontWeight: FontWeight.normal,
+                  fontFamily: 'Anton',
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
               ),
             ],
           ),

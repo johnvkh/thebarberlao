@@ -46,19 +46,23 @@ class _HeaderState extends State<Header> {
           width: size.width,
           height: 50,
           color: const Color.fromRGBO(44, 44, 44, 1),
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               children: [
-                const Text(
-                  "The barber lao",
+                Text(
+                  "THE BAR-BER LAO",
                   style: TextStyle(
-                    fontSize: 24,
-                    fontFamily: 'mountain',
+                    fontSize: 25,
                     color: Colors.white,
+                    fontWeight: FontWeight.normal,
+                    fontFamily: 'Anton',
                   ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                const Expanded(child: SizedBox()),
+                Expanded(child: SizedBox()),
                 ChooseLanguageWidget(color: Colors.white),
                 // IconButtonWidget(
                 //   press: () {},

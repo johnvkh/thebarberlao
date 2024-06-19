@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 // import 'package:google_maps_flutter_web/google_maps_flutter_web.dart';
@@ -5,10 +7,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 void main() {
   // Register the web plugin
   //GoogleMapsFlutterWeb.registerWith(Registrar());
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,13 +21,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MapScreen(),
+      home: const MapScreen(),
     );
   }
 }
 
 class MapScreen extends StatefulWidget {
+  const MapScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _MapScreenState createState() => _MapScreenState();
 }
 
@@ -39,7 +46,7 @@ class _MapScreenState extends State<MapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Google Maps in Flutter Web'),
+        title: const Text('Google Maps in Flutter Web'),
       ),
       body: GoogleMap(
         onMapCreated: _onMapCreated,
