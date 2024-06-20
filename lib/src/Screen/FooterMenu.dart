@@ -6,6 +6,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:thebarberlao/src/ComponentsUtils/TextHoverWidget.dart';
 import 'package:thebarberlao/src/Utility/WidgetUtility.dart';
 
+import '../Localization/LanguageConstants.dart';
 import '../Utility/Constants.dart';
 
 class FooterMenu extends StatefulWidget {
@@ -38,7 +39,7 @@ class _FooterMenuState extends State<FooterMenu> {
                         height: 80,
                       ),
                       TextWidget(
-                        "The Barber Lao ໃຫ້ທ່ານຫລາຍກວ່າຄຳວ່າ 'ຕັດຜົມ'",
+                        getTranslated(context, 'SLOGAN')!,
                         Colors.black,
                         14,
                         FontWeight.normal,
@@ -46,7 +47,7 @@ class _FooterMenuState extends State<FooterMenu> {
                       ),
                       const SizedBox(height: 10),
                       TextWidget(
-                        "ປະຈຸບັນຮ້ານເຮົາມີ 3 ສາຂາຄື: ສາຂາດົງໂດກ, ສາຂາສະພານທອງ \nແລະ ສາຂາແຄມຂອງ, Vientiane, Laos",
+                        getTranslated(context, 'ADDRESS_VALUE')!,
                         Colors.black,
                         16,
                         FontWeight.normal,
@@ -55,74 +56,74 @@ class _FooterMenuState extends State<FooterMenu> {
                     ],
                   ),
                   const Expanded(child: SizedBox()),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          TextWidget(
-                            "The Barber Lao",
-                            Colors.black,
-                            18,
-                            FontWeight.bold,
-                            TextAlign.center,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: TextHoverWidget(
-                          content: "ໜ້າຫຼັກ",
-                          color1: Colors.black,
-                          color2: holderColor,
-                          fontSize: fontSize,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: TextHoverWidget(
-                          content: "ບໍລິການ",
-                          color1: Colors.black,
-                          color2: holderColor,
-                          fontSize: fontSize,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: TextHoverWidget(
-                          content: "ຊ່າງຕັດຜົມ",
-                          color1: Colors.black,
-                          color2: holderColor,
-                          fontSize: fontSize,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: TextHoverWidget(
-                          content: "ຮູບພາບ",
-                          color1: Colors.black,
-                          color2: holderColor,
-                          fontSize: fontSize,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: TextHoverWidget(
-                          content: "ກ່ຽວກັບເຮົາ",
-                          color1: Colors.black,
-                          color2: holderColor,
-                          fontSize: fontSize,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Column(
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: [
+                  //     Row(
+                  //       mainAxisAlignment: MainAxisAlignment.start,
+                  //       children: [
+                  //         TextWidget(
+                  //           "The Barber Lao",
+                  //           Colors.black,
+                  //           18,
+                  //           FontWeight.bold,
+                  //           TextAlign.center,
+                  //         ),
+                  //       ],
+                  //     ),
+                  //     const SizedBox(height: 10),
+                  //     Padding(
+                  //       padding: const EdgeInsets.all(3.0),
+                  //       child: TextHoverWidget(
+                  //         content: "ໜ້າຫຼັກ",
+                  //         color1: Colors.black,
+                  //         color2: holderColor,
+                  //         fontSize: fontSize,
+                  //         fontWeight: FontWeight.bold,
+                  //       ),
+                  //     ),
+                  //     Padding(
+                  //       padding: const EdgeInsets.all(3.0),
+                  //       child: TextHoverWidget(
+                  //         content: "ບໍລິການ",
+                  //         color1: Colors.black,
+                  //         color2: holderColor,
+                  //         fontSize: fontSize,
+                  //         fontWeight: FontWeight.bold,
+                  //       ),
+                  //     ),
+                  //     Padding(
+                  //       padding: const EdgeInsets.all(3.0),
+                  //       child: TextHoverWidget(
+                  //         content: "ຊ່າງຕັດຜົມ",
+                  //         color1: Colors.black,
+                  //         color2: holderColor,
+                  //         fontSize: fontSize,
+                  //         fontWeight: FontWeight.bold,
+                  //       ),
+                  //     ),
+                  //     Padding(
+                  //       padding: const EdgeInsets.all(3.0),
+                  //       child: TextHoverWidget(
+                  //         content: "ຮູບພາບ",
+                  //         color1: Colors.black,
+                  //         color2: holderColor,
+                  //         fontSize: fontSize,
+                  //         fontWeight: FontWeight.bold,
+                  //       ),
+                  //     ),
+                  //     Padding(
+                  //       padding: const EdgeInsets.all(3.0),
+                  //       child: TextHoverWidget(
+                  //         content: "ກ່ຽວກັບເຮົາ",
+                  //         color1: Colors.black,
+                  //         color2: holderColor,
+                  //         fontSize: fontSize,
+                  //         fontWeight: FontWeight.bold,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   const Expanded(child: SizedBox()),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -211,7 +212,7 @@ class _FooterMenuState extends State<FooterMenu> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       TextWidget(
-                        "ສະຖານທີ່",
+                        getTranslated(context, 'ADDRESS')!,
                         Colors.black,
                         18,
                         FontWeight.bold,
@@ -223,7 +224,7 @@ class _FooterMenuState extends State<FooterMenu> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: TextWidget(
-                      "ປະຈຸບັນຮ້ານເຮົາມີ 3 ສາຂາຄື: ສາຂາດົງໂດກ, ສາຂາສະພານທອງ ແລະ ສາຂາແຄມຂອງ, ນະຄອນຫຼວງວຽງຈັນ, ສ.ປ.ປ ລາວ",
+                      getTranslated(context, 'ADDRESS_VALUE')!,
                       Colors.black,
                       16,
                       FontWeight.normal,
@@ -231,116 +232,116 @@ class _FooterMenuState extends State<FooterMenu> {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          TextWidget(
-                            "ເມນູ",
-                            Colors.black,
-                            18,
-                            FontWeight.bold,
-                            TextAlign.center,
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                child: TextHoverWidget(
-                                  content: "ໜ້າຫຼັກ",
-                                  color1: Colors.black,
-                                  color2: holderColor,
-                                  fontSize: fontSize,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
-                                child: TextHoverWidget(
-                                  content: "ບໍລິການຊ່າງຊາຍ",
-                                  color1: Colors.black,
-                                  color2: holderColor,
-                                  fontSize: fontSize,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 10, vertical: 3),
-                                child: TextHoverWidget(
-                                  content: "ບໍລິການຊ່າງຍິງ",
-                                  color1: Colors.black,
-                                  color2: holderColor,
-                                  fontSize: fontSize,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Spacer(),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                  vertical: 3,
-                                ),
-                                child: TextHoverWidget(
-                                  content: "ຂໍ້ມູນຊ່າງ",
-                                  color1: Colors.black,
-                                  color2: holderColor,
-                                  fontSize: fontSize,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                  vertical: 3,
-                                ),
-                                child: TextHoverWidget(
-                                  content: "ຮູບພາບ",
-                                  color1: Colors.black,
-                                  color2: holderColor,
-                                  fontSize: fontSize,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                  vertical: 3,
-                                ),
-                                child: TextHoverWidget(
-                                  content: "ກ່ຽວກັບເຮົາ",
-                                  color1: Colors.black,
-                                  color2: holderColor,
-                                  fontSize: fontSize,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                  // Column(
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: [
+                  //     Row(
+                  //       mainAxisAlignment: MainAxisAlignment.start,
+                  //       children: [
+                  //         TextWidget(
+                  //           "ເມນູ",
+                  //           Colors.black,
+                  //           18,
+                  //           FontWeight.bold,
+                  //           TextAlign.center,
+                  //         ),
+                  //       ],
+                  //     ),
+                  //     Row(
+                  //       children: [
+                  //         Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.start,
+                  //           children: [
+                  //             Padding(
+                  //               padding:
+                  //                   const EdgeInsets.symmetric(horizontal: 10),
+                  //               child: TextHoverWidget(
+                  //                 content: "ໜ້າຫຼັກ",
+                  //                 color1: Colors.black,
+                  //                 color2: holderColor,
+                  //                 fontSize: fontSize,
+                  //                 fontWeight: FontWeight.normal,
+                  //               ),
+                  //             ),
+                  //             Padding(
+                  //               padding: const EdgeInsets.symmetric(
+                  //                   horizontal: 10, vertical: 3),
+                  //               child: TextHoverWidget(
+                  //                 content: "ບໍລິການຊ່າງຊາຍ",
+                  //                 color1: Colors.black,
+                  //                 color2: holderColor,
+                  //                 fontSize: fontSize,
+                  //                 fontWeight: FontWeight.normal,
+                  //               ),
+                  //             ),
+                  //             Padding(
+                  //               padding: const EdgeInsets.symmetric(
+                  //                   horizontal: 10, vertical: 3),
+                  //               child: TextHoverWidget(
+                  //                 content: "ບໍລິການຊ່າງຍິງ",
+                  //                 color1: Colors.black,
+                  //                 color2: holderColor,
+                  //                 fontSize: fontSize,
+                  //                 fontWeight: FontWeight.normal,
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //         const Spacer(),
+                  //         Column(
+                  //           crossAxisAlignment: CrossAxisAlignment.start,
+                  //           children: [
+                  //             Padding(
+                  //               padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 10,
+                  //                 vertical: 3,
+                  //               ),
+                  //               child: TextHoverWidget(
+                  //                 content: "ຂໍ້ມູນຊ່າງ",
+                  //                 color1: Colors.black,
+                  //                 color2: holderColor,
+                  //                 fontSize: fontSize,
+                  //                 fontWeight: FontWeight.normal,
+                  //               ),
+                  //             ),
+                  //             Padding(
+                  //               padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 10,
+                  //                 vertical: 3,
+                  //               ),
+                  //               child: TextHoverWidget(
+                  //                 content: "ຮູບພາບ",
+                  //                 color1: Colors.black,
+                  //                 color2: holderColor,
+                  //                 fontSize: fontSize,
+                  //                 fontWeight: FontWeight.normal,
+                  //               ),
+                  //             ),
+                  //             Padding(
+                  //               padding: const EdgeInsets.symmetric(
+                  //                 horizontal: 10,
+                  //                 vertical: 3,
+                  //               ),
+                  //               child: TextHoverWidget(
+                  //                 content: "ກ່ຽວກັບເຮົາ",
+                  //                 color1: Colors.black,
+                  //                 color2: holderColor,
+                  //                 fontSize: fontSize,
+                  //                 fontWeight: FontWeight.normal,
+                  //               ),
+                  //             ),
+                  //           ],
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ],
+                  // ),
                   const SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       TextWidget(
-                        "ຂໍ້ມູນຕິດຕໍ່",
+                        getTranslated(context, 'CONTACT')!,
                         Colors.black,
                         18,
                         FontWeight.bold,

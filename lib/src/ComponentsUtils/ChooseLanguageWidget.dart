@@ -1,7 +1,8 @@
 // ignore_for_file: file_names, use_build_context_synchronously, camel_case_types
 
 import 'package:flutter/material.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:universal_html/html.dart' as html;
 import '../Localization/LanguageConstants.dart';
 import '../Model/LanguageModel.dart';
 import '../myApp.dart';
@@ -21,6 +22,9 @@ class _ChooseLanguageWidgetState extends State<ChooseLanguageWidget> {
   void _changeLanguage(LanguageModel language) async {
     Locale locale = await setLocale(language.languageCode!);
     MyApp.setLocale(context, locale);
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.setString('languageCode',language.languageCode!);
+    html.window.location.reload();
   }
 
   @override

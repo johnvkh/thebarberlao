@@ -3,14 +3,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../Model/SliderModel.dart';
 
-class SliderController {
+class SliderPromotionController {
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   Future<List<SliderModel>> getAllSlider() async {
     List<SliderModel> listSlider = [];
     QuerySnapshot<Map<String, dynamic>> snapshot =
-        await firebaseFirestore.collection("Slider").orderBy("sort", descending: false).get();
+        await firebaseFirestore.collection("SliderPromotion").orderBy("sort", descending: false).get();
     for (int i = 0; i < snapshot.docs.length; i++) {
       DocumentSnapshot documentSnapshot = snapshot.docs[i];
       SliderModel sliderModel = SliderModel.getModelFromJson(

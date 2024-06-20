@@ -1,8 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../ComponentsUtils/DialogPopupWidget.dart';
 import '../../Controller/PriceServiceController.dart';
+import '../../Localization/LanguageConstants.dart';
 import '../../Model/PriceServiceModel.dart';
 import '../../Utility/WidgetUtility.dart';
 
@@ -40,6 +42,7 @@ class _MenuServiceState extends State<MenuService> {
   List<PriceServiceModel> listPriceService = [];
   bool loadProcessBar = false;
   bool isNotfound = false;
+  String languageCode = "";
 
   @override
   void initState() {
@@ -49,6 +52,9 @@ class _MenuServiceState extends State<MenuService> {
   }
 
   Future loadPriceServerInfo() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    languageCode = sharedPreferences.getString('languageCode').toString();
+
     try {
       listPriceService = await PriceServiceController().getAllPriceService();
       if (listPriceService.isNotEmpty) {
@@ -76,81 +82,90 @@ class _MenuServiceState extends State<MenuService> {
   Widget build(BuildContext context) {
     var deviceType = getDeviceType(MediaQuery.of(context).size);
     var size = MediaQuery.of(context).size;
-    return loadProcessBar ? Container(
-      width: size.width,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/bg222.jpg"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            // Padding(
-            //   padding: const EdgeInsets.all(8),
-            //   child: Container(
-            //     width: 280,
-            //     height: 80,
-            //     decoration: const BoxDecoration(
-            //       image: DecorationImage(
-            //         image: AssetImage('assets/images/LOGO03.png'),
-            //         fit: BoxFit.fill,
-            //       ),
-            //     ),
-            //   ),
-            // ),
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextWidget(
-                    "ລາຍການລາຄາ ແລະ ຂໍ້ສະເໜີພິເສດ",
-                    Colors.white,
-                    18,
-                    FontWeight.bold,
-                    TextAlign.center,
-                  ),
-                ],
+    return loadProcessBar
+        ? Container(
+            width: size.width,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/bg222.jpg"),
+                fit: BoxFit.cover,
               ),
             ),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: SizedBox(
-                height: 460,
-                child: ListView.builder(
-                  itemCount: listPriceService.length,
-                  itemBuilder: (context, index) {
-                    PriceServiceModel priceServiceModel = listPriceService[index];
-                    return Row(
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                children: [
+                  // Padding(
+                  //   padding: const EdgeInsets.all(8),
+                  //   child: Container(
+                  //     width: 280,
+                  //     height: 80,
+                  //     decoration: const BoxDecoration(
+                  //       image: DecorationImage(
+                  //         image: AssetImage('assets/images/LOGO03.png'),
+                  //         fit: BoxFit.fill,
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         TextWidget(
-                          priceServiceModel.priceServiceNameLA.toString(),
+                          getTranslated(context, 'PRICE_LIST')!,
                           Colors.white,
-                          16,
-                          FontWeight.bold,
-                          TextAlign.center,
-                        ),
-                        const Spacer(),
-                        TextWidget(
-                          priceServiceModel.priceLA.toString(),
-                          Colors.white,
-                          16,
+                          18,
                           FontWeight.bold,
                           TextAlign.center,
                         ),
                       ],
-                    );
-                  },
-                ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: SizedBox(
+                      height: 460,
+                      child: ListView.builder(
+                        itemCount: listPriceService.length,
+                        itemBuilder: (context, index) {
+                          PriceServiceModel priceServiceModel =
+                              listPriceService[index];
+                          return Row(
+                            children: [
+                              TextWidget(
+                                languageCode == "lo"
+                                    ? priceServiceModel.priceServiceNameLA
+                                        .toString()
+                                    : priceServiceModel.priceServiceNameEN
+                                        .toString(),
+                                Colors.white,
+                                16,
+                                FontWeight.bold,
+                                TextAlign.center,
+                              ),
+                              const Spacer(),
+                              TextWidget(
+                                languageCode == "lo"
+                                    ? priceServiceModel.priceLA.toString()
+                                    : priceServiceModel.priceEN.toString(),
+                                Colors.white,
+                                16,
+                                FontWeight.bold,
+                                TextAlign.center,
+                              ),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
-    ):LoadDialog(context);
+          )
+        : LoadDialog(context);
   }
 }
