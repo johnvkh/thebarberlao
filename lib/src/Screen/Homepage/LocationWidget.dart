@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -24,6 +26,7 @@ class _LocationWidgetState extends State<LocationWidget> {
   List<BranchModel> listBranch = [];
   bool loadProcessBar = false;
   bool isNotfound = false;
+  Locale? _locale;
 
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
@@ -60,8 +63,13 @@ class _LocationWidgetState extends State<LocationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var deviceType = getDeviceType(MediaQuery.of(context).size);
+    getDeviceType(MediaQuery.of(context).size);
     var size = MediaQuery.of(context).size;
+    getLocale().then((locale) {
+      setState(() {
+        _locale = locale;
+      });
+    });
     return loadProcessBar
         ? Padding(
             padding: const EdgeInsets.all(10.0),
@@ -82,161 +90,175 @@ class _LocationWidgetState extends State<LocationWidget> {
                       TextAlign.start,
                     ),
                     SizedBox(
-                        width: size.width,
-                        height: 390,
-                        child: ListView.builder(
-                          itemCount: listBranch.length,
-                          itemBuilder: (context, index) {
-                            BranchModel branchModel = listBranch[index];
-                            double latitude =
-                                double.parse(branchModel.latitude.toString());
-                            double longitude =
-                                double.parse(branchModel.longitude.toString());
-                            double zoom =
-                                double.parse(branchModel.zoom.toString());
-                            return GestureDetector(
-                              onTap: () async {
-                                await launchUrl(
-                                  Uri.parse(branchModel.googleMapURL.toString()),
-                                );
-                              },
-                              child: Card(
-                                elevation: 3,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      margin: const EdgeInsets.symmetric(
-                                        horizontal: 10,
-                                        vertical: 10,
-                                      ),
-                                      child: SizedBox(
-                                        width: 100,
-                                        height: 100,
-                                        child: GoogleMap(
-                                          markers: myMarker(
-                                            mapURL: branchModel.googleMapURL
-                                                .toString(),
-                                            latitude: latitude,
-                                            longitude: longitude,
+                      width: size.width,
+                      height: 390,
+                      child: ListView.builder(
+                        itemCount: listBranch.length,
+                        itemBuilder: (context, index) {
+                          BranchModel branchModel = listBranch[index];
+                          double latitude =
+                              double.parse(branchModel.latitude.toString());
+                          double longitude =
+                              double.parse(branchModel.longitude.toString());
+                          double zoom =
+                              double.parse(branchModel.zoom.toString());
+                          return GestureDetector(
+                            onTap: () async {
+                              await launchUrl(
+                                Uri.parse(branchModel.googleMapURL.toString()),
+                              );
+                            },
+                            child: Card(
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    margin: const EdgeInsets.symmetric(
+                                      horizontal: 5,
+                                      vertical: 5,
+                                    ),
+                                    child: SizedBox(
+                                      width: 90,
+                                      height: 90,
+                                      child: GoogleMap(
+                                        markers: myMarker(
+                                          mapURL: branchModel.googleMapURL
+                                              .toString(),
+                                          latitude: latitude,
+                                          longitude: longitude,
+                                        ),
+                                        onMapCreated: _onMapCreated,
+                                        initialCameraPosition: CameraPosition(
+                                          target: LatLng(
+                                            latitude,
+                                            longitude,
                                           ),
-                                          onMapCreated: _onMapCreated,
-                                          initialCameraPosition: CameraPosition(
-                                            target: LatLng(
-                                              latitude,
-                                              longitude,
-                                            ),
-                                            zoom: zoom,
-                                          ),
+                                          zoom: zoom,
                                         ),
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Container(
-                                        alignment: Alignment.centerLeft,
-                                        width: double.infinity,
-                                        margin: const EdgeInsets.only(
-                                          left: 15,
-                                          bottom: 10,
-                                          right: 10,
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            TextWidget(
-                                              branchModel.branchName.toString(),
-                                              Colors.black,
-                                              16,
-                                              FontWeight.bold,
-                                              TextAlign.start,
-                                            ),
-                                            const SizedBox(height: 5),
-                                            Row(
-                                              children: [
-                                                Icon(
-                                                  FontAwesomeIcons.locationDot,
-                                                  color: kSecondaryColor
-                                                      .withOpacity(0.5),
-                                                  size: 18,
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      alignment: Alignment.centerLeft,
+                                      width: double.infinity,
+                                      margin: const EdgeInsets.only(
+                                        left: 5,
+                                        bottom: 10,
+                                        right: 5,
+                                        top: 5
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          TextWidget(
+                                            _locale?.languageCode.toString() ==
+                                                    "lo"
+                                                ? branchModel.branchNameLA
+                                                    .toString()
+                                                    .toString()
+                                                : branchModel.branchNameEN
+                                                    .toString(),
+                                            Colors.black,
+                                            16,
+                                            FontWeight.bold,
+                                            TextAlign.start,
+                                          ),
+                                          const SizedBox(height: 5),
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                FontAwesomeIcons.locationDot,
+                                                color: kSecondaryColor
+                                                    .withOpacity(0.5),
+                                                size: 18,
+                                              ),
+                                              const SizedBox(width: 10),
+                                              Text(
+                                                _locale?.languageCode
+                                                            .toString() ==
+                                                        "lo"
+                                                    ? branchModel.addressLA
+                                                        .toString()
+                                                    : branchModel.addressEN
+                                                        .toString(),
+                                                style: const TextStyle(
+                                                  fontSize: 13,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.normal,
+                                                  fontFamily: 'roboto',
                                                 ),
-                                                const SizedBox(width: 10),
-                                                Text(
-                                                  branchModel.address.toString(),
-                                                  style: const TextStyle(
-                                                    fontSize: 12,
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.normal,
-                                                    fontFamily: 'roboto',
-                                                  ),
-                                                  textAlign: TextAlign.start,
-                                                  maxLines: 1,
-                                                  overflow: TextOverflow.ellipsis,
+                                                textAlign: TextAlign.start,
+                                                maxLines: 2,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(height: 5),
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                FontAwesomeIcons.phone,
+                                                color: kSecondaryColor
+                                                    .withOpacity(0.5),
+                                                size: 18,
+                                              ),
+                                              const SizedBox(width: 10),
+                                              TextWidget(
+                                                branchModel.phoneNumber
+                                                    .toString(),
+                                                Colors.black,
+                                                13,
+                                                FontWeight.normal,
+                                                TextAlign.start,
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(height: 5),
+                                          GestureDetector(
+                                            onTap: () async {
+                                              await launchUrl(
+                                                Uri.parse(
+                                                  branchModel.googleMapURL
+                                                      .toString(),
                                                 ),
-                                              ],
-                                            ),
-                                            const SizedBox(height: 5),
-                                            Row(
+                                              );
+                                            },
+                                            child: Row(
                                               children: [
-                                                Icon(
-                                                  FontAwesomeIcons.phone,
-                                                  color: kSecondaryColor
-                                                      .withOpacity(0.5),
+                                                const Icon(
+                                                  FontAwesomeIcons.map,
+                                                  color: Colors.blueAccent,
                                                   size: 18,
                                                 ),
                                                 const SizedBox(width: 10),
                                                 TextWidget(
-                                                  branchModel.phoneNumber
-                                                      .toString(),
-                                                  Colors.black,
-                                                  13,
-                                                  FontWeight.normal,
+                                                  "open map",
+                                                  Colors.blueAccent,
+                                                  14,
+                                                  FontWeight.bold,
                                                   TextAlign.start,
                                                 ),
                                               ],
                                             ),
-                                            const SizedBox(height: 5),
-                                            GestureDetector(
-                                              onTap: () async {
-                                                await launchUrl(
-                                                  Uri.parse(branchModel
-                                                      .googleMapURL
-                                                      .toString()),
-                                                );
-                                              },
-                                              child: Row(
-                                                children: [
-                                                  Icon(
-                                                    FontAwesomeIcons.map,
-                                                    color: kSecondaryColor
-                                                        .withOpacity(1),
-                                                    size: 18,
-                                                  ),
-                                                  const SizedBox(width: 10),
-                                                  TextWidget(
-                                                    "open map",
-                                                    Colors.black,
-                                                    14,
-                                                    FontWeight.bold,
-                                                    TextAlign.start,
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
-                                    )
-                                  ],
-                                ),
+                                    ),
+                                  )
+                                ],
                               ),
-                            );
-                          },
-                        )),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),

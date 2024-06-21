@@ -1,7 +1,8 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../ComponentsUtils/DialogPopupWidget.dart';
 import '../../Controller/PriceServiceController.dart';
 import '../../Localization/LanguageConstants.dart';
@@ -43,7 +44,7 @@ class _MenuServiceState extends State<MenuService> {
   bool loadProcessBar = false;
   bool isNotfound = false;
   String languageCode = "";
-
+  Locale? _locale;
   @override
   void initState() {
     // TODO: implement initState
@@ -52,9 +53,6 @@ class _MenuServiceState extends State<MenuService> {
   }
 
   Future loadPriceServerInfo() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    languageCode = sharedPreferences.getString('languageCode').toString();
-
     try {
       listPriceService = await PriceServiceController().getAllPriceService();
       if (listPriceService.isNotEmpty) {
@@ -82,6 +80,11 @@ class _MenuServiceState extends State<MenuService> {
   Widget build(BuildContext context) {
     var deviceType = getDeviceType(MediaQuery.of(context).size);
     var size = MediaQuery.of(context).size;
+    getLocale().then((locale) {
+      setState(() {
+        _locale = locale;
+      });
+    });
     return loadProcessBar
         ? Container(
             width: size.width,
@@ -125,7 +128,7 @@ class _MenuServiceState extends State<MenuService> {
                   ),
                   const SizedBox(height: 10),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: SizedBox(
                       height: 460,
                       child: ListView.builder(
@@ -136,23 +139,23 @@ class _MenuServiceState extends State<MenuService> {
                           return Row(
                             children: [
                               TextWidget(
-                                languageCode == "lo"
+                                _locale?.languageCode.toString() == "lo"
                                     ? priceServiceModel.priceServiceNameLA
                                         .toString()
                                     : priceServiceModel.priceServiceNameEN
                                         .toString(),
                                 Colors.white,
-                                16,
+                                15,
                                 FontWeight.bold,
                                 TextAlign.center,
                               ),
                               const Spacer(),
                               TextWidget(
-                                languageCode == "lo"
+                                _locale?.languageCode.toString() == "lo"
                                     ? priceServiceModel.priceLA.toString()
                                     : priceServiceModel.priceEN.toString(),
                                 Colors.white,
-                                16,
+                                15,
                                 FontWeight.bold,
                                 TextAlign.center,
                               ),

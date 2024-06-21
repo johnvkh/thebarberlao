@@ -2,6 +2,8 @@
   "//A": "",
   "ADDRESS":"Address",
   "ADDRESS_VALUE":"Currently, our shop has 3 branches: Dongdok Branch, SaPhanThong Branch\nand Mekhong branch in Vientiane, Laos",
+  "ADDITIONAL_SERVICE": "Extra Service",
+
   "//B": "",
   "BARBER_LIST": "Barber List of The Barber Lao",
   "BRANCH_LIST": "Branch List The Barber Lao",
@@ -9,8 +11,8 @@
   "CONTACT": "Contact",
   "//S": "",
   "SERVICE_TBL": "Services of The Barber Lao",
-  "SERVICE_MAN": "Service Male",
-  "SERVICE_WOMAN": "Service Female",
+  "SERVICE_MAN": "Male Service",
+  "SERVICE_WOMAN": "Female Service",
   "SLOGAN": "The Barber Lao gives you more than the word 'haircut'",
 
   "//P": "",

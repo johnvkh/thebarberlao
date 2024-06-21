@@ -2,9 +2,7 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-
 import '../../ComponentsUtils/DialogPopupWidget.dart';
-import '../../Controller/SliderController.dart';
 import '../../Controller/SliderPromotionController.dart';
 import '../../Model/SliderModel.dart';
 
@@ -37,13 +35,11 @@ class _SliderPromotionWidgetState extends State<SliderPromotionWidget> {
     try {
       listSlider = await SliderPromotionController().getAllSlider();
       if (listSlider.isNotEmpty) {
-        print("Found");
         setState(() {
           listSlider;
           loadProcessBar = true;
         });
       } else {
-        print("Not Found");
         setState(() {
           listSlider = _imageList;
           loadProcessBar = true;
@@ -55,7 +51,6 @@ class _SliderPromotionWidgetState extends State<SliderPromotionWidget> {
         loadProcessBar = true;
         isNotfound = true;
       });
-      print("Error loadSliderInfo:${error.toString()} ");
     }
   }
 

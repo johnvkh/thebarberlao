@@ -77,8 +77,6 @@ flutter:
   assets:
     - assets/images/
     - assets/images/barber/
-    - assets/icons/
-    - assets/lottie/
     - lib/src/Language/en.json
     - lib/src/Language/lo.json
 

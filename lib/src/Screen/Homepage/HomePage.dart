@@ -7,6 +7,7 @@ import 'package:thebarberlao/src/ComponentsUtils/IconButtonWidget.dart';
 import 'package:thebarberlao/src/Screen/Footer.dart';
 import 'package:thebarberlao/src/Screen/FooterMenu.dart';
 import 'package:thebarberlao/src/Screen/Homepage/BannerSliderWidget.dart';
+import 'package:thebarberlao/src/Screen/Homepage/GroupService.dart';
 import 'package:thebarberlao/src/Screen/Homepage/LocationWidget.dart';
 import 'package:thebarberlao/src/Screen/Homepage/MenuService.dart';
 import 'package:thebarberlao/src/Screen/Homepage/SliderPromotionWidget.dart';
@@ -26,8 +27,16 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+     {
   final _scrollController = TrackingScrollController();
+
+
+
+  final _selectedColor = const Color(0xff1a73e8);
+  final _unselectedColor = const Color(0xff5f6368);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -38,110 +47,18 @@ class _HomePageState extends State<HomePage> {
         body: Stack(children: [
           SingleChildScrollView(
             controller: _scrollController,
-            child: Column(
+            child: const Column(
               children: [
-                const SizedBox(height: 50),
-                const BannerSlider(),
-                const VideoWidget(),
-                const SliderPromotionWidget(),
-                const MenuService(),
-                const LocationWidget(),
-                const BarberWidget(),
-                // Padding(
-                //   padding: const EdgeInsets.all(10.0),
-                //   child: Column(
-                //     children: [
-                //       Padding(
-                //         padding: const EdgeInsets.all(5.0),
-                //         child: TextWidget(
-                //           getTranslated(context, 'SERVICE_TBL')!,
-                //           Colors.black,
-                //           18,
-                //           FontWeight.bold,
-                //           TextAlign.center,
-                //         ),
-                //       ),
-                //       Row(
-                //         crossAxisAlignment: CrossAxisAlignment.center,
-                //         children: [
-                //           const Spacer(),
-                //           GestureDetector(
-                //             onTap: () async {},
-                //             child: Card(
-                //               elevation: 3,
-                //               shape: RoundedRectangleBorder(
-                //                 borderRadius: BorderRadius.circular(5),
-                //               ),
-                //               child: Column(
-                //                 children: [
-                //                   Container(
-                //                     margin: const EdgeInsets.symmetric(
-                //                       horizontal: 10,
-                //                       vertical: 10,
-                //                     ),
-                //                     child: Image.asset(
-                //                       "assets/images/man_service.png",
-                //                       width: 140,
-                //                       height: 120,
-                //                       fit: BoxFit.fill,
-                //                     ),
-                //                   ),
-                //                   Center(
-                //                     child: TextWidget(
-                //                       getTranslated(context, 'SERVICE_MAN')!,
-                //                       Colors.black,
-                //                       16,
-                //                       FontWeight.bold,
-                //                       TextAlign.start,
-                //                     ),
-                //                   )
-                //                 ],
-                //               ),
-                //             ),
-                //           ),
-                //           const Spacer(),
-                //           GestureDetector(
-                //             onTap: () async {},
-                //             child: Card(
-                //               elevation: 3,
-                //               shape: RoundedRectangleBorder(
-                //                 borderRadius: BorderRadius.circular(5),
-                //               ),
-                //               child: Column(
-                //                 children: [
-                //                   Container(
-                //                     margin: const EdgeInsets.symmetric(
-                //                       horizontal: 10,
-                //                       vertical: 10,
-                //                     ),
-                //                     child: Image.asset(
-                //                       "assets/images/woman_service.png",
-                //                       width: 140,
-                //                       height: 120,
-                //                       fit: BoxFit.fill,
-                //                     ),
-                //                   ),
-                //                   Center(
-                //                     child: TextWidget(
-                //                       getTranslated(context, 'SERVICE_WOMAN')!,
-                //                       Colors.black,
-                //                       16,
-                //                       FontWeight.bold,
-                //                       TextAlign.start,
-                //                     ),
-                //                   )
-                //                 ],
-                //               ),
-                //             ),
-                //           ),
-                //           const Spacer(),
-                //         ],
-                //       ),
-                //     ],
-                //   ),
-                // ),
-                const FooterMenu(),
-                const Footer(),
+                SizedBox(height: 50),
+                BannerSlider(),
+                VideoWidget(),
+                SliderPromotionWidget(),
+                GroupService(),
+                BarberWidget(),
+                MenuService(),
+                LocationWidget(),
+                FooterMenu(),
+                Footer(),
               ],
             ),
           ),

@@ -42,13 +42,11 @@ class _BannerSliderState extends State<BannerSlider> {
     try {
       listSlider = await SliderController().getAllSlider();
       if (listSlider.isNotEmpty) {
-        print("Found");
         setState(() {
           listSlider;
           loadProcessBar = true;
         });
       } else {
-        print("Not Found");
         setState(() {
           listSlider = _imageList;
           loadProcessBar = true;
@@ -60,7 +58,6 @@ class _BannerSliderState extends State<BannerSlider> {
         loadProcessBar = true;
         isNotfound = true;
       });
-      print("Error loadSliderInfo:${error.toString()} ");
     }
   }
 

@@ -3,34 +3,40 @@
 
 class BranchModel{
   String? branchId;
-  String? branchName;
+  String? branchNameLA;
+  String? branchNameEN;
   String? googleMapURL;
   String? latitude;
   String? longitude;
   String? zoom;
-  String? address;
+  String? addressLA;
+  String? addressEN;
   String? phoneNumber;
 
   BranchModel({
     this.branchId,
-    this.branchName,
+    this.branchNameLA,
+    this.branchNameEN,
     this.googleMapURL,
     this.latitude,
     this.longitude,
     this.zoom,
-    this.address,
+    this.addressLA,
+    this.addressEN,
     this.phoneNumber,
   });
 
   Map<String, dynamic> getJson() {
     return {
       'branchId': branchId,
-      'branchName': branchName,
+      'branchNameLA': branchNameLA,
+      'branchNameEN': branchNameEN,
       'googleMapURL': googleMapURL,
       'latitude': latitude,
       'longitude': longitude,
       'zoom': zoom,
-      'address': address,
+      'addressLA': addressLA,
+      'addressEN': addressEN,
       'phoneNumber': phoneNumber,
     };
   }
@@ -38,12 +44,14 @@ class BranchModel{
   factory BranchModel.getModelFromJson({required Map<String, dynamic> json}) {
     return BranchModel(
       branchId: json["branchId"],
-      branchName: json["branchName"],
+      branchNameLA: json["branchNameLA"],
+      branchNameEN: json["branchNameEN"],
       googleMapURL: json["googleMapURL"],
       latitude: json["latitude"],
       longitude: json["longitude"],
       zoom: json["zoom"],
-      address: json["address"],
+      addressLA: json["addressLA"],
+      addressEN: json["addressEN"],
       phoneNumber: json["phoneNumber"],
     );
   }
