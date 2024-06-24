@@ -1,25 +1,31 @@
 // ignore_for_file: file_names
 
-class BarberModel{
+class BarberModel {
   String? barberID;
   String? barberName;
-  String? urlImage;
+  String? imageURL;
   String? branchID;
+  String? position;
+  String? phoneNumber;
 
 
   BarberModel({
     this.barberID,
     this.barberName,
-    this.urlImage,
+    this.imageURL,
     this.branchID,
+    this.position,
+    this.phoneNumber,
   });
 
   Map<String, dynamic> getJson() {
     return {
       'barberID': barberID,
       'barberName': barberName,
-      'urlImage': urlImage,
+      'imageURL': imageURL,
       'branchID': branchID,
+      'position': position,
+      'phoneNumber': phoneNumber,
     };
   }
 
@@ -27,8 +33,10 @@ class BarberModel{
     return BarberModel(
       barberID: json["barberID"],
       barberName: json["barberName"],
-      urlImage: json["urlImage"],
+      imageURL: json["imageURL"],
       branchID: json["branchID"],
+      position: json["position"],
+      phoneNumber: json["phoneNumber"],
     );
   }
 }

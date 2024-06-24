@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:thebarberlao/src/ComponentsUtils/DialogPopupWidget.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoWidget extends StatefulWidget {
@@ -54,8 +55,8 @@ class _VideoWidgetState extends State<VideoWidget> {
               child: VideoPlayer(_controller),
             );
           } else {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Center(
+              child: LoadDialog(context),
             );
           }
         },

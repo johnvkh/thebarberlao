@@ -50,6 +50,8 @@ dependencies:
   flutter_automation: ^2.0.0
   url_launcher: ^6.3.0
   universal_html: ^2.2.4
+  responsive_grid:
+  pretty_qr_code: ^3.3.0
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +79,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/barber/
+    - assets/images/MaleService/
     - lib/src/Language/en.json
     - lib/src/Language/lo.json
 

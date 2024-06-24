@@ -1,7 +1,7 @@
 {
   "//A": "",
   "ADDRESS":"ສະຖານທີ່",
-  "ADDRESS_VALUE":"ປະຈຸບັນຮ້ານເຮົາມີ 3 ສາຂາຄື: ສາຂາດົງໂດກ, ສາຂາສະພານທອງ \nແລະ ສາຂາແຄມຂອງ, Vientiane, Laos",
+  "ADDRESS_VALUE":"ສາຂາ: ສາຂາດົງໂດກ, ສາຂາສະພານທອງ \nແລະ ສາຂາແຄມຂອງ, Vientiane, Laos",
   "ADDITIONAL_SERVICE": "ບໍລິການເສີມ",
   "//B": "",
   "BARBER_LIST": "ຂໍ້ມູນຊ່າງຂອງ The Barber Lao",
@@ -13,8 +13,8 @@
 
   "//S": "",
   "SERVICE_TBL": "ບໍລິການຂອງ The Barber Lao",
-  "SERVICE_MAN": "ບໍລິການຊ່າງຊາຍ",
-  "SERVICE_WOMAN": "ບໍລິການຊ່າງຍິງ",
+  "SERVICE_MAN": "ບໍລິການທ່ານຊາຍ",
+  "SERVICE_WOMAN": "ບໍລິການທ່ານຍິງ",
   "SLOGAN": "The Barber Lao ໃຫ້ທ່ານຫລາຍກວ່າຄຳວ່າ 'ຕັດຜົມ'"
 
 }

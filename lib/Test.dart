@@ -1,6 +1,9 @@
 // ignore_for_file: file_names
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:pretty_qr_code/pretty_qr_code.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,40 +25,20 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Flutter TabBar Example'),
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(50.0),
-            child: Container(
-              color: Colors.blue,
-              child: const Row(
-                children: [
-                  Expanded(
-                    child: TabBar(
-                      tabs: [
-                        Tab(text: 'Home'),
-                        Tab(text: 'Favorites'),
-                        Tab(text: 'Settings'),
-                      ],
-                      indicatorColor: Colors.white,
-                      labelColor: Colors.white,
-                      unselectedLabelColor: Colors.white70,
-                    ),
-                  ),
-                ],
+    return Scaffold(
+      body: Center(
+        child: Container(
+          width: MediaQuery.of(context).size.width * 0.5,
+          height: MediaQuery.of(context).size.height * 0.5,
+          child: PrettyQrView.data(
+            data: 'http://thebarberlao.com/',
+            decoration: const PrettyQrDecoration(
+              image: PrettyQrDecorationImage(
+                fit: BoxFit.fitWidth,
+                image: AssetImage('assets/images/LOGO01.png'),
               ),
             ),
           ),
-        ),
-        body: const TabBarView(
-          children: [
-            Center(child: Text('Home Tab Content')),
-            Center(child: Text('Favorites Tab Content')),
-            Center(child: Text('Settings Tab Content')),
-          ],
         ),
       ),
     );

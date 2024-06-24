@@ -78,7 +78,6 @@ class _MenuServiceState extends State<MenuService> {
 
   @override
   Widget build(BuildContext context) {
-    var deviceType = getDeviceType(MediaQuery.of(context).size);
     var size = MediaQuery.of(context).size;
     getLocale().then((locale) {
       setState(() {
@@ -98,19 +97,6 @@ class _MenuServiceState extends State<MenuService> {
               padding: const EdgeInsets.all(10.0),
               child: Column(
                 children: [
-                  // Padding(
-                  //   padding: const EdgeInsets.all(8),
-                  //   child: Container(
-                  //     width: 280,
-                  //     height: 80,
-                  //     decoration: const BoxDecoration(
-                  //       image: DecorationImage(
-                  //         image: AssetImage('assets/images/LOGO03.png'),
-                  //         fit: BoxFit.fill,
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Row(

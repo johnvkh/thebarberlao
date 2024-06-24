@@ -2,8 +2,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../Model/BranchModel.dart';
-import '../Utility/ResponseCode.dart';
-import '../Utility/Utils.dart';
 
 class BranchController {
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;

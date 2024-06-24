@@ -2,15 +2,11 @@
 class Assets {
   Assets._();
 
-  static const String barberBarberShop = 'assets/images/barber/barber-shop.png';
-  static const String barberBarberShop02 = 'assets/images/barber/barber_shop02.png';
-  static const String barberBarberShop03 = 'assets/images/barber/barber_shop03.png';
-  static const String barberBarberShop04 = 'assets/images/barber/barber_shop04.png';
-  static const String barberBarberShop05 = 'assets/images/barber/barber_shop05.png';
-  static const String barberBarberShop06 = 'assets/images/barber/barber_shop06.png';
-  static const String barberBarberShop07 = 'assets/images/barber/barber_shop07.png';
-  static const String barberBarberShop08 = 'assets/images/barber/barber_shop08.png';
-  static const String barberListBG = 'assets/images/barber/listBG.png';
+  static const String barber1 = 'assets/images/barber/1.jpeg';
+  static const String barber2 = 'assets/images/barber/2.jpeg';
+  static const String barber3 = 'assets/images/barber/3.jpeg';
+  static const String barber4 = 'assets/images/barber/4.jpeg';
+  static const String barber5 = 'assets/images/barber/5.jpeg';
   static const String fontsAmilya = 'assets/fonts/Amilya.ttf';
   static const String fontsAnton = 'assets/fonts/Anton.ttf';
   static const String fontsBeauty = 'assets/fonts/Beauty.ttf';
@@ -67,5 +63,11 @@ class Assets {
   static const String imagesYuan = 'assets/images/yuan.jpg';
   static const String languageEn = 'lib/src/Language/en.json';
   static const String languageLo = 'lib/src/Language/lo.json';
+  static const String maleServiceChildrenCutting = 'assets/images/MaleService/children_cutting.jpg';
+  static const String maleServiceColorHair = 'assets/images/MaleService/colorHair.jpeg';
+  static const String maleServiceCut = 'assets/images/MaleService/Cut.jpg';
+  static const String maleServiceCutStyling = 'assets/images/MaleService/CutStyling.jpg';
+  static const String maleServiceShave  = 'assets/images/MaleService/Shave .jpg';
+  static const String maleServiceWash = 'assets/images/MaleService/wash.jpg';
 
 }

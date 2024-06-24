@@ -3,12 +3,16 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:thebarberlao/src/ComponentsUtils/ChooseLanguageWidget.dart';
-import 'package:thebarberlao/src/ComponentsUtils/IconButtonWidget.dart';
 
 class Header extends StatefulWidget {
-  const Header({super.key, required this.scrollController});
+  const Header({
+    super.key,
+    required this.scrollController,
+    required this.isShow,
+  });
 
   final TrackingScrollController scrollController;
+  final bool isShow;
 
   @override
   State<Header> createState() => _HeaderState();
@@ -36,7 +40,6 @@ class _HeaderState extends State<Header> {
 
   @override
   Widget build(BuildContext context) {
-    var deviceType = getDeviceType(MediaQuery.of(context).size);
     var size = MediaQuery.of(context).size;
     return Container(
       color: _backgroundColor,
@@ -46,11 +49,25 @@ class _HeaderState extends State<Header> {
           width: size.width,
           height: 50,
           color: const Color.fromRGBO(44, 44, 44, 1),
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
               children: [
-                Text(
+                if (widget.isShow == true)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: IconButton(
+                      onPressed: () {
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, '/home', (route) => false);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_sharp,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                const Text(
                   "THE BAR-BER LAO",
                   style: TextStyle(
                     fontSize: 25,
@@ -62,15 +79,8 @@ class _HeaderState extends State<Header> {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
-                Expanded(child: SizedBox()),
-                ChooseLanguageWidget(color: Colors.white),
-                // IconButtonWidget(
-                //   press: () {},
-                //   width: 35,
-                //   height: 35,
-                //   widgetIcon: const Icon(Icons.menu),
-                //   color: Colors.white,
-                // ),
+                const Expanded(child: SizedBox()),
+                const ChooseLanguageWidget(color: Colors.white),
               ],
             ),
           ),
