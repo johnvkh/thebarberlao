@@ -2,8 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'package:responsive_grid/responsive_grid.dart';
 import 'package:thebarberlao/src/Utility/WidgetUtility.dart';
 
+import '../../ComponentsUtils/DialogPopupWidget.dart';
+import '../../Controller/CategorieController.dart';
+import '../../Localization/LanguageConstants.dart';
+import '../../Model/CategorieModel.dart';
 import '../Footer.dart';
 import '../FooterMenu.dart';
 import '../Header.dart';
@@ -17,11 +22,51 @@ class MaleServicePage extends StatefulWidget {
 
 class _MaleServicePageState extends State<MaleServicePage> {
   final _scrollController = TrackingScrollController();
+  CategorieModel categorieModel = CategorieModel();
+  List<CategorieModel> listCategorie = [];
+  bool loadProcessBar = false;
+  bool isNotfound = false;
+  String languageCode = "";
+  Locale? _locale;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    loadCategorie();
+  }
+
+  Future loadCategorie() async {
+    try {
+      listCategorie = await CategorieController().getCategorieByType(serviceType: "1");
+      if (listCategorie.isNotEmpty) {
+        setState(() {
+          listCategorie;
+          loadProcessBar = true;
+        });
+      } else {
+        setState(() {
+          loadProcessBar = true;
+          isNotfound = true;
+        });
+      }
+    } catch (error) {
+      setState(() {
+        loadProcessBar = true;
+        isNotfound = true;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     var deviceType = getDeviceType(MediaQuery.of(context).size);
     var size = MediaQuery.of(context).size;
+    getLocale().then((locale) {
+      setState(() {
+        _locale = locale;
+      });
+    });
     return SafeArea(
       child: Scaffold(
         body: DeviceScreenType.mobile == deviceType
@@ -33,74 +78,83 @@ class _MaleServicePageState extends State<MaleServicePage> {
                       const SizedBox(height: 50),
                       Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                        child: Container(
+                          color: Color.fromRGBO(255, 248, 246, 1),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Column(
                               children: [
-                                Container(
-                                  width: size.width * 0.4,
-                                  height: size.height * 0.3,
-                                  decoration: const BoxDecoration(
-                                    color: Color.fromRGBO(240, 243, 245, 1),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      Image.asset(
-                                        "assets/images/MaleService/Cut.jpg",
-                                        fit: BoxFit.cover,
-                                        width: size.width * 0.4,
-                                        height: size.height * 0.2,
-                                      ),
-                                      TextWidget(
-                                        "ຕັດຜົມ",
-                                        Colors.black,
-                                        14,
-                                        FontWeight.normal,
-                                        TextAlign.center,
-                                      ),
-                                      TextWidget(
-                                        "80.000 ກີບ",
-                                        Colors.black,
-                                        14,
-                                        FontWeight.normal,
-                                        TextAlign.center,
-                                      ),
-                                    ],
-                                  ),
+                                TextWidget(
+                                  getTranslated(context, 'SERVICE_MAN')!,
+                                  Colors.black87,
+                                  20,
+                                  FontWeight.bold,
+                                  TextAlign.start,
                                 ),
-                                const SizedBox(width: 20),
-                                Container(
-                                  width: size.width * 0.4,
-                                  height: size.height * 0.3,
-                                  child: Column(
-                                    children: [
-                                      Image.asset(
-                                        "assets/images/MaleService/CutStyling.jpg",
-                                        fit: BoxFit.cover,
-                                        width: size.width * 0.4,
-                                        height: size.height * 0.2,
-                                      ),
-                                      TextWidget(
-                                        "ຕັດ-ຈັດຊົງ",
-                                        Colors.black,
-                                        14,
-                                        FontWeight.normal,
-                                        TextAlign.center,
-                                      ),
-                                      TextWidget(
-                                        "80.000 ກີບ",
-                                        Colors.black,
-                                        14,
-                                        FontWeight.normal,
-                                        TextAlign.center,
-                                      ),
-                                    ],
+                                SizedBox(height: 10),
+                                ResponsiveStaggeredGridList(
+                                  desiredItemWidth: size.width * 0.4,
+                                  children: List.generate(
+                                    listCategorie.length,
+                                    (index) {
+                                      CategorieModel categorieModel = listCategorie[index];
+                                      return MouseRegion(
+                                        cursor: SystemMouseCursors.click,
+                                        child: GestureDetector(
+                                          onTap: () {},
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(bottom: 10),
+                                            child: Container(
+                                              width: size.width * 0.4,
+                                              height: size.height * 0.22,
+                                              decoration: BoxDecoration(
+                                                color: Color.fromRGBO(240, 243, 245, 1),
+                                                border: Border.all(
+                                                  color: Color.fromRGBO(44, 44, 44, 1),
+                                                ),
+                                                borderRadius: BorderRadius.all(
+                                                  Radius.circular(8),
+                                                ),
+                                              ),
+                                              child: Column(
+                                                children: [
+                                                  ClipRRect(
+                                                    borderRadius: BorderRadius.circular(8.0),
+                                                    child: Image.network(
+                                                      categorieModel.urlImage.toString(),
+                                                      fit: BoxFit.cover,
+                                                      width: size.width * 0.4,
+                                                      height: size.height * 0.15,
+                                                    ),
+                                                  ),
+                                                  const SizedBox(height: 5),
+                                                  TextWidget(
+                                                    _locale?.languageCode.toString() == "lo" ? categorieModel.categorieNameLA.toString() : categorieModel.categorieNameEN.toString(),
+                                                    Colors.black,
+                                                    14,
+                                                    FontWeight.normal,
+                                                    TextAlign.center,
+                                                  ),
+                                                  const SizedBox(height: 5),
+                                                  TextWidget(
+                                                    "${categorieModel.price} ${getTranslated(context, 'UNIT')!}",
+                                                    Colors.black,
+                                                    14,
+                                                    FontWeight.normal,
+                                                    TextAlign.center,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ),
                               ],
-                            )
-                          ],
+                            ),
+                          ),
                         ),
                       ),
                       const FooterMenu(),
@@ -110,7 +164,7 @@ class _MaleServicePageState extends State<MaleServicePage> {
                 ),
                 Header(
                   scrollController: _scrollController,
-                  isShow: false,
+                  isShow: true,
                 ),
               ])
             : Stack(children: [
@@ -122,90 +176,95 @@ class _MaleServicePageState extends State<MaleServicePage> {
                       Row(
                         children: [
                           SizedBox(width: size.width * 0.2),
-                          SizedBox(
-                            width: size.width * 0.6,
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Column(
-                                children: [
-                                  Row(
+                          loadProcessBar == true
+                              ? Container(
+                                  width: size.width * 0.6,
+                                  color: Color.fromRGBO(255, 248, 246, 1),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Column(
+                                      children: [
+                                        TextWidget(
+                                          getTranslated(context, 'SERVICE_MAN')!,
+                                          Colors.black87,
+                                          20,
+                                          FontWeight.bold,
+                                          TextAlign.start,
+                                        ),
+                                        SizedBox(height: 10),
+                                        ResponsiveStaggeredGridList(
+                                          desiredItemWidth: size.width * 0.18,
+                                          children: List.generate(
+                                            listCategorie.length,
+                                            (index) {
+                                              CategorieModel categorieModel = listCategorie[index];
+                                              return MouseRegion(
+                                                cursor: SystemMouseCursors.click,
+                                                child: GestureDetector(
+                                                  onTap: () {},
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.only(bottom: 10),
+                                                    child: Container(
+                                                      width: size.width * 0.18,
+                                                      height: size.height * 0.3,
+                                                      decoration: BoxDecoration(
+                                                        color: Color.fromRGBO(240, 243, 245, 1),
+                                                        border: Border.all(
+                                                          color: Color.fromRGBO(44, 44, 44, 1),
+                                                        ),
+                                                        borderRadius: BorderRadius.all(
+                                                          Radius.circular(8),
+                                                        ),
+                                                      ),
+                                                      child: Column(
+                                                        children: [
+                                                          ClipRRect(
+                                                            borderRadius: BorderRadius.circular(8.0),
+                                                            child: Image.network(
+                                                              categorieModel.urlImage.toString(),
+                                                              fit: BoxFit.cover,
+                                                              width: size.width * 0.18,
+                                                              height: size.height * 0.2,
+                                                            ),
+                                                          ),
+                                                          const SizedBox(height: 5),
+                                                          TextWidget(
+                                                            _locale?.languageCode.toString() == "lo" ? categorieModel.categorieNameLA.toString() : categorieModel.categorieNameEN.toString(),
+                                                            Colors.black,
+                                                            14,
+                                                            FontWeight.normal,
+                                                            TextAlign.center,
+                                                          ),
+                                                          const SizedBox(height: 5),
+                                                          TextWidget(
+                                                            "${categorieModel.price} ${getTranslated(context, 'UNIT')!}",
+                                                            Colors.black,
+                                                            14,
+                                                            FontWeight.normal,
+                                                            TextAlign.center,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              : Container(
+                                  width: size.width * 0.6,
+                                  child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Container(
-                                        width: size.width * 0.25,
-                                        height: size.height * 0.3,
-                                        decoration: const BoxDecoration(
-                                          color:
-                                              Color.fromRGBO(240, 243, 245, 1),
-                                        ),
-                                        child: Column(
-                                          children: [
-                                            Image.asset(
-                                              "assets/images/MaleService/Cut.jpg",
-                                              fit: BoxFit.cover,
-                                              width: size.width * 0.25,
-                                              height: size.height * 0.2,
-                                            ),
-                                            const SizedBox(height: 10),
-                                            TextWidget(
-                                              "ຕັດຜົມ",
-                                              Colors.black,
-                                              14,
-                                              FontWeight.normal,
-                                              TextAlign.center,
-                                            ),
-                                            const SizedBox(height: 10),
-                                            TextWidget(
-                                              "80.000 ກີບ",
-                                              Colors.black,
-                                              14,
-                                              FontWeight.normal,
-                                              TextAlign.center,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      const SizedBox(width: 20),
-                                      Container(
-                                        width: size.width * 0.25,
-                                        height: size.height * 0.3,
-                                        decoration: const BoxDecoration(
-                                          color:
-                                          Color.fromRGBO(240, 243, 245, 1),
-                                        ),
-                                        child: Column(
-                                          children: [
-                                            Image.asset(
-                                              "assets/images/MaleService/CutStyling.jpg",
-                                              fit: BoxFit.cover,
-                                              width: size.width * 0.25,
-                                              height: size.height * 0.2,
-                                            ),
-                                            const SizedBox(height: 10),
-                                            TextWidget(
-                                              "ຕັດ-ຈັດຊົງ",
-                                              Colors.black,
-                                              14,
-                                              FontWeight.normal,
-                                              TextAlign.center,
-                                            ),
-                                            const SizedBox(height: 10),
-                                            TextWidget(
-                                              "80.000 ກີບ",
-                                              Colors.black,
-                                              14,
-                                              FontWeight.normal,
-                                              TextAlign.center,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
+                                      LoadDialog(context),
                                     ],
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
+                                  ),
+                                ),
                           SizedBox(width: size.width * 0.2),
                         ],
                       ),
