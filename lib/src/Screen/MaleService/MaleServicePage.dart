@@ -79,7 +79,7 @@ class _MaleServicePageState extends State<MaleServicePage> {
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Container(
-                          color: Color.fromRGBO(255, 248, 246, 1),
+                          color: const Color.fromRGBO(255, 248, 246, 1),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Column(
@@ -91,7 +91,7 @@ class _MaleServicePageState extends State<MaleServicePage> {
                                   FontWeight.bold,
                                   TextAlign.start,
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 10),
                                 ResponsiveStaggeredGridList(
                                   desiredItemWidth: size.width * 0.4,
                                   children: List.generate(
@@ -106,13 +106,13 @@ class _MaleServicePageState extends State<MaleServicePage> {
                                             padding: const EdgeInsets.only(bottom: 10),
                                             child: Container(
                                               width: size.width * 0.4,
-                                              height: size.height * 0.22,
+                                              height: size.height * 0.23,
                                               decoration: BoxDecoration(
-                                                color: Color.fromRGBO(240, 243, 245, 1),
+                                                color: const Color.fromRGBO(240, 243, 245, 1),
                                                 border: Border.all(
-                                                  color: Color.fromRGBO(44, 44, 44, 1),
+                                                  color: const Color.fromRGBO(44, 44, 44, 1),
                                                 ),
-                                                borderRadius: BorderRadius.all(
+                                                borderRadius: const BorderRadius.all(
                                                   Radius.circular(8),
                                                 ),
                                               ),
@@ -127,7 +127,7 @@ class _MaleServicePageState extends State<MaleServicePage> {
                                                       height: size.height * 0.15,
                                                     ),
                                                   ),
-                                                  const SizedBox(height: 5),
+                                                  const SizedBox(height: 2),
                                                   TextWidget(
                                                     _locale?.languageCode.toString() == "lo" ? categorieModel.categorieNameLA.toString() : categorieModel.categorieNameEN.toString(),
                                                     Colors.black,
@@ -135,7 +135,7 @@ class _MaleServicePageState extends State<MaleServicePage> {
                                                     FontWeight.normal,
                                                     TextAlign.center,
                                                   ),
-                                                  const SizedBox(height: 5),
+                                                  const SizedBox(height: 2),
                                                   TextWidget(
                                                     "${categorieModel.price} ${getTranslated(context, 'UNIT')!}",
                                                     Colors.black,
@@ -179,7 +179,7 @@ class _MaleServicePageState extends State<MaleServicePage> {
                           loadProcessBar == true
                               ? Container(
                                   width: size.width * 0.6,
-                                  color: Color.fromRGBO(255, 248, 246, 1),
+                                  color: const Color.fromRGBO(255, 248, 246, 1),
                                   child: Padding(
                                     padding: const EdgeInsets.all(10.0),
                                     child: Column(
@@ -191,7 +191,7 @@ class _MaleServicePageState extends State<MaleServicePage> {
                                           FontWeight.bold,
                                           TextAlign.start,
                                         ),
-                                        SizedBox(height: 10),
+                                        const SizedBox(height: 10),
                                         ResponsiveStaggeredGridList(
                                           desiredItemWidth: size.width * 0.18,
                                           children: List.generate(
@@ -208,11 +208,11 @@ class _MaleServicePageState extends State<MaleServicePage> {
                                                       width: size.width * 0.18,
                                                       height: size.height * 0.3,
                                                       decoration: BoxDecoration(
-                                                        color: Color.fromRGBO(240, 243, 245, 1),
+                                                        color: const Color.fromRGBO(240, 243, 245, 1),
                                                         border: Border.all(
-                                                          color: Color.fromRGBO(44, 44, 44, 1),
+                                                          color: const Color.fromRGBO(44, 44, 44, 1),
                                                         ),
-                                                        borderRadius: BorderRadius.all(
+                                                        borderRadius: const BorderRadius.all(
                                                           Radius.circular(8),
                                                         ),
                                                       ),

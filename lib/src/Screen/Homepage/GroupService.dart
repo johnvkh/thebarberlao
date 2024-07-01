@@ -109,7 +109,7 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                         ),
                         child: Container(
                           height: 40,
-                          margin: const EdgeInsets.symmetric(horizontal: 5),
+                          margin: const EdgeInsets.symmetric(horizontal: 1),
                           decoration: BoxDecoration(
                             borderRadius: const BorderRadius.all(Radius.circular(5)),
                             color: Colors.green.shade50,
