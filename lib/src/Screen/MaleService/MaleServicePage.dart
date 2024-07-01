@@ -3,18 +3,22 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:responsive_grid/responsive_grid.dart';
+import 'package:thebarberlao/src/Screen/ImageManage/ImageServicePage.dart';
 import 'package:thebarberlao/src/Utility/WidgetUtility.dart';
 
 import '../../ComponentsUtils/DialogPopupWidget.dart';
 import '../../Controller/CategorieController.dart';
 import '../../Localization/LanguageConstants.dart';
 import '../../Model/CategorieModel.dart';
+import '../../Model/ImageServiceModel.dart';
 import '../Footer.dart';
 import '../FooterMenu.dart';
 import '../Header.dart';
 
 class MaleServicePage extends StatefulWidget {
-  const MaleServicePage({super.key});
+  const MaleServicePage({
+    super.key,
+  });
 
   @override
   State<MaleServicePage> createState() => _MaleServicePageState();
@@ -101,12 +105,20 @@ class _MaleServicePageState extends State<MaleServicePage> {
                                       return MouseRegion(
                                         cursor: SystemMouseCursors.click,
                                         child: GestureDetector(
-                                          onTap: () {},
+                                          onTap: () {
+                                            MaterialPageRoute route = MaterialPageRoute(
+                                              builder: (context) => ImageServicePage(
+                                                categorieName: categorieModel.categorieNameLA.toString(),
+                                                router: "/MaleServicePage",
+                                              ),
+                                            );
+                                            Navigator.pushAndRemoveUntil(context, route, (route) => false);
+                                          },
                                           child: Padding(
                                             padding: const EdgeInsets.only(bottom: 10),
                                             child: Container(
                                               width: size.width * 0.4,
-                                              height: size.height * 0.23,
+                                              height: size.height * 0.25,
                                               decoration: BoxDecoration(
                                                 color: const Color.fromRGBO(240, 243, 245, 1),
                                                 border: Border.all(
@@ -201,12 +213,20 @@ class _MaleServicePageState extends State<MaleServicePage> {
                                               return MouseRegion(
                                                 cursor: SystemMouseCursors.click,
                                                 child: GestureDetector(
-                                                  onTap: () {},
+                                                  onTap: () {
+                                                    MaterialPageRoute route = MaterialPageRoute(
+                                                      builder: (context) => ImageServicePage(
+                                                        categorieName: categorieModel.categorieNameLA.toString(),
+                                                        router: "/MaleServicePage",
+                                                      ),
+                                                    );
+                                                    Navigator.pushAndRemoveUntil(context, route, (route) => false);
+                                                  },
                                                   child: Padding(
                                                     padding: const EdgeInsets.only(bottom: 10),
                                                     child: Container(
                                                       width: size.width * 0.18,
-                                                      height: size.height * 0.3,
+                                                      height: size.height * 0.34,
                                                       decoration: BoxDecoration(
                                                         color: const Color.fromRGBO(240, 243, 245, 1),
                                                         border: Border.all(
@@ -224,7 +244,7 @@ class _MaleServicePageState extends State<MaleServicePage> {
                                                               categorieModel.urlImage.toString(),
                                                               fit: BoxFit.cover,
                                                               width: size.width * 0.18,
-                                                              height: size.height * 0.2,
+                                                              height: size.height * 0.25,
                                                             ),
                                                           ),
                                                           const SizedBox(height: 5),

@@ -12,6 +12,7 @@ import '../../Utility/WidgetUtility.dart';
 import '../Footer.dart';
 import '../FooterMenu.dart';
 import '../Header.dart';
+import '../ImageManage/ImageServicePage.dart';
 
 class ExtraServicePage extends StatefulWidget {
   const ExtraServicePage({super.key});
@@ -100,12 +101,20 @@ class _ExtraServicePageState extends State<ExtraServicePage> {
                                 return MouseRegion(
                                   cursor: SystemMouseCursors.click,
                                   child: GestureDetector(
-                                    onTap: () {},
+                                    onTap: () {
+                                      MaterialPageRoute route = MaterialPageRoute(
+                                        builder: (context) => ImageServicePage(
+                                          categorieName: categorieModel.categorieNameLA.toString(),
+                                          router: "/ExtraServicePage",
+                                        ),
+                                      );
+                                      Navigator.pushAndRemoveUntil(context, route, (route) => false);
+                                    },
                                     child: Padding(
                                       padding: const EdgeInsets.only(bottom: 10),
                                       child: Container(
-                                        width: size.width * 0.4,
-                                        height: size.height * 0.22,
+                                        width: size.width * 0.18,
+                                        height: size.height * 0.34,
                                         decoration: BoxDecoration(
                                           color: Color.fromRGBO(240, 243, 245, 1),
                                           border: Border.all(
@@ -122,8 +131,8 @@ class _ExtraServicePageState extends State<ExtraServicePage> {
                                               child: Image.network(
                                                 categorieModel.urlImage.toString(),
                                                 fit: BoxFit.cover,
-                                                width: size.width * 0.4,
-                                                height: size.height * 0.15,
+                                                width: size.width * 0.18,
+                                                height: size.height * 0.25,
                                               ),
                                             ),
                                             const SizedBox(height: 5),
@@ -200,12 +209,20 @@ class _ExtraServicePageState extends State<ExtraServicePage> {
                                   return MouseRegion(
                                     cursor: SystemMouseCursors.click,
                                     child: GestureDetector(
-                                      onTap: () {},
+                                      onTap: () {
+                                        MaterialPageRoute route = MaterialPageRoute(
+                                          builder: (context) => ImageServicePage(
+                                            categorieName: categorieModel.categorieNameLA.toString(),
+                                            router: "/ExtraServicePage",
+                                          ),
+                                        );
+                                        Navigator.pushAndRemoveUntil(context, route, (route) => false);
+                                      },
                                       child: Padding(
                                         padding: const EdgeInsets.only(bottom: 10),
                                         child: Container(
                                           width: size.width * 0.18,
-                                          height: size.height * 0.3,
+                                          height: size.height * 0.34,
                                           decoration: BoxDecoration(
                                             color: Color.fromRGBO(240, 243, 245, 1),
                                             border: Border.all(
@@ -223,7 +240,7 @@ class _ExtraServicePageState extends State<ExtraServicePage> {
                                                   categorieModel.urlImage.toString(),
                                                   fit: BoxFit.cover,
                                                   width: size.width * 0.18,
-                                                  height: size.height * 0.2,
+                                                  height: size.height * 0.25,
                                                 ),
                                               ),
                                               const SizedBox(height: 5),
