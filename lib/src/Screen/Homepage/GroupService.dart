@@ -43,7 +43,7 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
       children: [
         DeviceScreenType.mobile == deviceType
             ? Container(
-          color: Color.fromRGBO(255, 248, 246, 1),
+          color: const Color.fromRGBO(255, 248, 246, 1),
               child: PreferredSize(
                   preferredSize: const Size.fromHeight(50.0),
                   child: ClipRRect(
@@ -52,7 +52,6 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                     ),
                     child: Container(
                       height: 40,
-                      margin: const EdgeInsets.symmetric(horizontal: 5),
                       decoration: BoxDecoration(
                         borderRadius: const BorderRadius.all(Radius.circular(5)),
                         color: Colors.green.shade50,
@@ -100,7 +99,7 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                   SizedBox(width: size.width * 0.2),
                   Container(
                     width: size.width * 0.6,
-                    color: Color.fromRGBO(255, 248, 246, 1),
+                    color: const Color.fromRGBO(255, 248, 246, 1),
                     child: PreferredSize(
                       preferredSize: const Size.fromHeight(50.0),
                       child: ClipRRect(
@@ -109,7 +108,6 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                         ),
                         child: Container(
                           height: 40,
-                          margin: const EdgeInsets.symmetric(horizontal: 1),
                           decoration: BoxDecoration(
                             borderRadius: const BorderRadius.all(Radius.circular(5)),
                             color: Colors.green.shade50,
@@ -190,7 +188,7 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                               child: TextWidget(
-                                getTranslated(context, 'SLOGAN')!,
+                                getTranslated(context, 'MORE_DETAIL')!,
                                 Colors.black,
                                 13,
                                 FontWeight.bold,
@@ -225,7 +223,7 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                                 vertical: 5,
                               ),
                               child: TextWidget(
-                                getTranslated(context, 'SLOGAN')!,
+                                getTranslated(context, 'MORE_DETAIL')!,
                                 Colors.black,
                                 13,
                                 FontWeight.bold,
@@ -271,7 +269,7 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                               vertical: 5,
                             ),
                             child: TextWidget(
-                              getTranslated(context, 'SLOGAN')!,
+                              getTranslated(context, 'MORE_DETAIL')!,
                               Colors.black,
                               13,
                               FontWeight.bold,
@@ -319,7 +317,7 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                                 Padding(
                                   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                                   child: TextWidget(
-                                    getTranslated(context, 'SLOGAN')!,
+                                    getTranslated(context, 'MORE_DETAIL')!,
                                     Colors.black,
                                     13,
                                     FontWeight.bold,
@@ -354,7 +352,7 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                                     vertical: 5,
                                   ),
                                   child: TextWidget(
-                                    getTranslated(context, 'SLOGAN')!,
+                                    getTranslated(context, 'MORE_DETAIL')!,
                                     Colors.black,
                                     13,
                                     FontWeight.bold,
@@ -400,7 +398,7 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                                   vertical: 5,
                                 ),
                                 child: TextWidget(
-                                  getTranslated(context, 'SLOGAN')!,
+                                  getTranslated(context, 'MORE_DETAIL')!,
                                   Colors.black,
                                   13,
                                   FontWeight.bold,

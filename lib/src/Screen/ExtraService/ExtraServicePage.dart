@@ -105,7 +105,7 @@ class _ExtraServicePageState extends State<ExtraServicePage> {
                                       MaterialPageRoute route = MaterialPageRoute(
                                         builder: (context) => ImageServicePage(
                                           categorieName: categorieModel.categorieNameLA.toString(),
-                                          router: "/ExtraServicePage",
+                                          router: "/ExtraService",
                                         ),
                                       );
                                       Navigator.pushAndRemoveUntil(context, route, (route) => false);
@@ -213,7 +213,7 @@ class _ExtraServicePageState extends State<ExtraServicePage> {
                                         MaterialPageRoute route = MaterialPageRoute(
                                           builder: (context) => ImageServicePage(
                                             categorieName: categorieModel.categorieNameLA.toString(),
-                                            router: "/ExtraServicePage",
+                                            router: "/ExtraService",
                                           ),
                                         );
                                         Navigator.pushAndRemoveUntil(context, route, (route) => false);

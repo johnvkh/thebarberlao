@@ -109,7 +109,7 @@ class _MaleServicePageState extends State<MaleServicePage> {
                                             MaterialPageRoute route = MaterialPageRoute(
                                               builder: (context) => ImageServicePage(
                                                 categorieName: categorieModel.categorieNameLA.toString(),
-                                                router: "/MaleServicePage",
+                                                router: "/MaleService",
                                               ),
                                             );
                                             Navigator.pushAndRemoveUntil(context, route, (route) => false);
@@ -217,7 +217,7 @@ class _MaleServicePageState extends State<MaleServicePage> {
                                                     MaterialPageRoute route = MaterialPageRoute(
                                                       builder: (context) => ImageServicePage(
                                                         categorieName: categorieModel.categorieNameLA.toString(),
-                                                        router: "/MaleServicePage",
+                                                        router: "/MaleService",
                                                       ),
                                                     );
                                                     Navigator.pushAndRemoveUntil(context, route, (route) => false);

@@ -35,6 +35,7 @@ class _ImageServicePageState extends State<ImageServicePage> {
   bool isNotfound = false;
   String languageCode = "";
   Locale? _locale;
+  String router="";
 
   @override
   void initState() {
@@ -44,7 +45,11 @@ class _ImageServicePageState extends State<ImageServicePage> {
   }
 
   Future loadImageService() async {
-    print("====${widget.categorieName}");
+
+    setState(() {
+      router = widget.router;
+      print("router:${router}");
+    });
     try {
       listImageService = await ImageServiceController().getImageServerByType(
         categorieName: widget.categorieName,
@@ -90,7 +95,7 @@ class _ImageServicePageState extends State<ImageServicePage> {
                           ? Padding(
                               padding: const EdgeInsets.all(10.0),
                               child: Container(
-                                color: Color.fromRGBO(255, 248, 246, 1),
+                                color: const Color.fromRGBO(255, 248, 246, 1),
                                 child: Padding(
                                   padding: const EdgeInsets.all(10.0),
                                   child: Column(
@@ -102,7 +107,7 @@ class _ImageServicePageState extends State<ImageServicePage> {
                                         FontWeight.bold,
                                         TextAlign.start,
                                       ),
-                                      SizedBox(height: 10),
+                                      const SizedBox(height: 10),
                                       ResponsiveStaggeredGridList(
                                         desiredItemWidth: size.width * 0.4,
                                         children: List.generate(
@@ -132,11 +137,11 @@ class _ImageServicePageState extends State<ImageServicePage> {
                                                     width: size.width * 0.4,
                                                     height: size.height * 0.23,
                                                     decoration: BoxDecoration(
-                                                      color: Color.fromRGBO(240, 243, 245, 1),
+                                                      color: const Color.fromRGBO(240, 243, 245, 1),
                                                       border: Border.all(
-                                                        color: Color.fromRGBO(44, 44, 44, 1),
+                                                        color: const Color.fromRGBO(44, 44, 44, 1),
                                                       ),
-                                                      borderRadius: BorderRadius.all(
+                                                      borderRadius: const BorderRadius.all(
                                                         Radius.circular(2),
                                                       ),
                                                     ),
@@ -161,7 +166,7 @@ class _ImageServicePageState extends State<ImageServicePage> {
                                 ),
                               ),
                             )
-                          : Container(
+                          : SizedBox(
                               width: size.width * 0.6,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -193,19 +198,19 @@ class _ImageServicePageState extends State<ImageServicePage> {
                           loadProcessBar == true
                               ? Container(
                                   width: size.width * 0.6,
-                                  color: Color.fromRGBO(255, 248, 246, 1),
+                                  color: const Color.fromRGBO(255, 248, 246, 1),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding: const EdgeInsets.all(5.0),
                                     child: Column(
                                       children: [
                                         TextWidget(
-                                          getTranslated(context, 'SERVICE_MAN')!,
+                                          getTranslated(context, 'IMAGE')!,
                                           Colors.black87,
                                           20,
                                           FontWeight.bold,
                                           TextAlign.start,
                                         ),
-                                        SizedBox(height: 10),
+                                        const SizedBox(height: 10),
                                         ResponsiveStaggeredGridList(
                                           desiredItemWidth: size.width * 0.18,
                                           children: List.generate(
@@ -216,28 +221,25 @@ class _ImageServicePageState extends State<ImageServicePage> {
                                                 cursor: SystemMouseCursors.click,
                                                 child: GestureDetector(
                                                   onTap: () {},
-                                                  child: Padding(
-                                                    padding: const EdgeInsets.only(bottom: 10),
-                                                    child: Container(
-                                                      width: size.width * 0.18,
-                                                      height: size.height * 0.31,
-                                                      decoration: BoxDecoration(
-                                                        color: Color.fromRGBO(240, 243, 245, 1),
-                                                        border: Border.all(
-                                                          color: Color.fromRGBO(44, 44, 44, 1),
-                                                        ),
-                                                        borderRadius: BorderRadius.all(
-                                                          Radius.circular(8),
-                                                        ),
+                                                  child: Container(
+                                                    width: size.width * 0.15,
+                                                    height: size.height * 0.31,
+                                                    decoration: BoxDecoration(
+                                                      color: const Color.fromRGBO(240, 243, 245, 1),
+                                                      border: Border.all(
+                                                        color: const Color.fromRGBO(44, 44, 44, 1),
                                                       ),
-                                                      child: ClipRRect(
-                                                        borderRadius: BorderRadius.circular(8.0),
-                                                        child: Image.network(
-                                                          imageServiceModel.imageUrl.toString(),
-                                                          fit: BoxFit.cover,
-                                                          width: size.width * 0.18,
-                                                          height: size.height * 0.21,
-                                                        ),
+                                                      borderRadius: const BorderRadius.all(
+                                                        Radius.circular(1),
+                                                      ),
+                                                    ),
+                                                    child: ClipRRect(
+                                                      borderRadius: BorderRadius.circular(1.0),
+                                                      child: Image.network(
+                                                        imageServiceModel.imageUrl.toString(),
+                                                        fit: BoxFit.cover,
+                                                        width: size.width * 0.15,
+                                                        height: size.height * 0.21,
                                                       ),
                                                     ),
                                                   ),

@@ -9,17 +9,20 @@
   "BRANCH_LIST": "Branch List The Barber Lao",
   "//C": "",
   "CONTACT": "Contact",
-
+  "//I": "",
   "IMAGE": "List of Image",
 
+  "//M": "",
+  "MORE_DETAIL": "Pleace Click To Image For Get More Detail",
+  "//P": "",
+  "PRICE_LIST": "Price List And Special Offers",
   "//S": "",
   "SERVICE_TBL": "Services of The Barber Lao",
   "SERVICE_MAN": "Male Service",
   "SERVICE_WOMAN": "Female Service",
   "SLOGAN": "The Barber Lao gives you more than the word 'haircut'",
 
-  "//P": "",
-  "PRICE_LIST": "Price List And Special Offers",
+
   "//U": "",
   "UNIT": "LAK"
 }
