@@ -1,7 +1,5 @@
-// ignore_for_file: file_names
-
+// ignore_for_file: file_names, unused_field
 import 'package:flutter/material.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:thebarberlao/src/ComponentsUtils/ChooseLanguageWidget.dart';
 
 class HeaderImage extends StatefulWidget {

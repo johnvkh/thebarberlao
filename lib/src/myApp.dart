@@ -8,7 +8,6 @@ import 'Localization/LanguageConstants.dart';
 import 'Screen/ExtraService/ExtraServicePage.dart';
 import 'Screen/FemaleService/FemaleServicePage.dart';
 import 'Screen/Homepage/HomePage.dart';
-import 'Screen/ImageManage/ImageServicePage.dart';
 import 'Screen/MaleService/MaleServicePage.dart';
 import 'Utility/Utils.dart';
 

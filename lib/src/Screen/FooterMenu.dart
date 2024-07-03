@@ -20,8 +20,6 @@ class _FooterMenuState extends State<FooterMenu> {
   Widget build(BuildContext context) {
     var deviceType = getDeviceType(MediaQuery.of(context).size);
     var size = MediaQuery.of(context).size;
-    double fontSize = 15;
-
     getLocale().then((locale) {
       setState(() {
         _locale = locale;

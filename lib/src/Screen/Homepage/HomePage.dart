@@ -1,9 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:thebarberlao/src/ComponentsUtils/IconButtonWidget.dart';
 import 'package:thebarberlao/src/Screen/Footer.dart';
 import 'package:thebarberlao/src/Screen/FooterMenu.dart';
 import 'package:thebarberlao/src/Screen/Homepage/BannerSliderWidget.dart';

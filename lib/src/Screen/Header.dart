@@ -1,7 +1,5 @@
-// ignore_for_file: file_names
-
+// ignore_for_file: file_names, unused_field
 import 'package:flutter/material.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import 'package:thebarberlao/src/ComponentsUtils/ChooseLanguageWidget.dart';
 
 class Header extends StatefulWidget {
@@ -58,8 +56,7 @@ class _HeaderState extends State<Header> {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: IconButton(
                       onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, '/home', (route) => false);
+                        Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
                       },
                       icon: const Icon(
                         Icons.arrow_back_sharp,

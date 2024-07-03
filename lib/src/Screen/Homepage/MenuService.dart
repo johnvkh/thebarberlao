@@ -2,7 +2,6 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:responsive_builder/responsive_builder.dart';
 import '../../ComponentsUtils/DialogPopupWidget.dart';
 import '../../Controller/PriceServiceController.dart';
 import '../../Localization/LanguageConstants.dart';
@@ -17,28 +16,6 @@ class MenuService extends StatefulWidget {
 }
 
 class _MenuServiceState extends State<MenuService> {
-  // List<PriceServiceModel> listService = [
-  //   PriceServiceModel(serviceName: "ຕັດ", price: "80,000 ກີບ"),
-  //   PriceServiceModel(serviceName: "ຕັດ-ສະ-ຈັດຊົງ", price: "100,000 ກີບ"),
-  //   PriceServiceModel(serviceName: "ສະຈັດຊົງ", price: "50,000 ກີບ"),
-  //   PriceServiceModel(serviceName: "ຕັດຜົມເດັກນ້ອຍ", price: "50,000 ກີບ"),
-  //   PriceServiceModel(serviceName: "ຕັດ-ສະ-ຈັດຊົງເດັກນ້ອຍ", price: "70,000 ກີບ"),
-  //   PriceServiceModel(serviceName: "ຕັດພິເສດໄລ່ເຟດ", price: "90,000 +"),
-  //   PriceServiceModel(serviceName: "ຕັດສະຈັດຊົງໂກນໜວດ", price: "130,000 ກີບ"),
-  //   PriceServiceModel(serviceName: "ໂກນໜວດຜ້າເຢັນ", price: "30,000 ກີບ"),
-  //   PriceServiceModel(serviceName: "ໂກນໜວດຜ້າຮ້ອນ-hotshave", price: "50,000 ກີບ"),
-  //   PriceServiceModel(serviceName: "ດັດຜົມວໍລຸ່ມ", price: "350,000 ກີບ"),
-  //   PriceServiceModel(serviceName: "ດັດຟອຍ", price: "450,000 ກີບ"),
-  //   PriceServiceModel(serviceName: "ຍືດຜົມທຳມະດາ", price: "350,000 ກີບ"),
-  //   PriceServiceModel(serviceName: "ຍືດຜົມວໍລຸ່ມ", price: "450,000 ກີບ"),
-  //   PriceServiceModel(serviceName: "ຍ້ອມຜົມດຳ", price: "160,000 ກີບ"),
-  //   PriceServiceModel(serviceName: "ຍ້ອມສີແຟຊັ່ນ", price: "500,000 +"),
-  //   PriceServiceModel(serviceName: "ສະປາລ້າງສານເຄມີ", price: "80,000 ກີບ"),
-  //   PriceServiceModel(serviceName: "ສະປານາໂນ", price: "50,000 ກີບ"),
-  //   PriceServiceModel(serviceName: "ນວດໜ້າ+ນວດຕາ", price: "170,000 ກີບ"),
-  //   PriceServiceModel(serviceName: "ວິຕາມີນຜົມ", price: "30,000 ກີບ"),
-  // ];
-
   PriceServiceModel priceServiceModel = PriceServiceModel();
   List<PriceServiceModel> listPriceService = [];
   bool loadProcessBar = false;

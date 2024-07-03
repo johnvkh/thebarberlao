@@ -5,12 +5,10 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 import 'package:thebarberlao/src/Screen/ImageManage/ImageServicePage.dart';
 import 'package:thebarberlao/src/Utility/WidgetUtility.dart';
-
 import '../../ComponentsUtils/DialogPopupWidget.dart';
 import '../../Controller/CategorieController.dart';
 import '../../Localization/LanguageConstants.dart';
 import '../../Model/CategorieModel.dart';
-import '../../Model/ImageServiceModel.dart';
 import '../Footer.dart';
 import '../FooterMenu.dart';
 import '../Header.dart';
@@ -276,7 +274,7 @@ class _MaleServicePageState extends State<MaleServicePage> {
                                     ),
                                   ),
                                 )
-                              : Container(
+                              : SizedBox(
                                   width: size.width * 0.6,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,

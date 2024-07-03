@@ -8,6 +8,7 @@ class CategorieModel {
   String? price;
   String? urlImage;
   String? status;
+  String? sort;
 
   CategorieModel({
     this.categorieId,
@@ -17,6 +18,7 @@ class CategorieModel {
     this.price,
     this.urlImage,
     this.status,
+    this.sort,
   });
 
   Map<String, dynamic> getJson() {
@@ -28,6 +30,7 @@ class CategorieModel {
       'price':price,
       'urlImage': urlImage,
       'status': status,
+      'sort': sort,
     };
   }
 
@@ -40,6 +43,7 @@ class CategorieModel {
       price:json["price"],
       urlImage: json["urlImage"],
       status: json["status"],
+      sort: json["sort"],
     );
   }
 }

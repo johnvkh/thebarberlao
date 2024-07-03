@@ -1,15 +1,11 @@
-// ignore_for_file: file_names
-
+// ignore_for_file: file_names, unused_field
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 import 'package:thebarberlao/src/Controller/ImageServiceController.dart';
 import 'package:thebarberlao/src/Utility/WidgetUtility.dart';
-
 import '../../ComponentsUtils/DialogPopupWidget.dart';
-import '../../Controller/CategorieController.dart';
 import '../../Localization/LanguageConstants.dart';
-import '../../Model/CategorieModel.dart';
 import '../../Model/ImageServiceModel.dart';
 import '../Footer.dart';
 import '../FooterMenu.dart';
@@ -48,7 +44,6 @@ class _ImageServicePageState extends State<ImageServicePage> {
 
     setState(() {
       router = widget.router;
-      print("router:${router}");
     });
     try {
       listImageService = await ImageServiceController().getImageServerByType(
@@ -252,7 +247,7 @@ class _ImageServicePageState extends State<ImageServicePage> {
                                     ),
                                   ),
                                 )
-                              : Container(
+                              : SizedBox(
                                   width: size.width * 0.6,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,

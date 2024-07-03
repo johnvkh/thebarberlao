@@ -80,7 +80,7 @@ class _FemaleServicePageState extends State<FemaleServicePage> {
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Container(
-                    color: Color.fromRGBO(255, 248, 246, 1),
+                    color: const Color.fromRGBO(255, 248, 246, 1),
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Column(
@@ -92,7 +92,7 @@ class _FemaleServicePageState extends State<FemaleServicePage> {
                             FontWeight.bold,
                             TextAlign.start,
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           ResponsiveStaggeredGridList(
                             desiredItemWidth: size.width * 0.4,
                             children: List.generate(
@@ -117,11 +117,11 @@ class _FemaleServicePageState extends State<FemaleServicePage> {
                                         width: size.width * 0.18,
                                         height: size.height * 0.34,
                                         decoration: BoxDecoration(
-                                          color: Color.fromRGBO(240, 243, 245, 1),
+                                          color: const Color.fromRGBO(240, 243, 245, 1),
                                           border: Border.all(
-                                            color: Color.fromRGBO(44, 44, 44, 1),
+                                            color: const Color.fromRGBO(44, 44, 44, 1),
                                           ),
-                                          borderRadius: BorderRadius.all(
+                                          borderRadius: const BorderRadius.all(
                                             Radius.circular(8),
                                           ),
                                         ),
@@ -188,7 +188,7 @@ class _FemaleServicePageState extends State<FemaleServicePage> {
                     loadProcessBar == true
                         ? Container(
                       width: size.width * 0.6,
-                      color: Color.fromRGBO(255, 248, 246, 1),
+                      color: const Color.fromRGBO(255, 248, 246, 1),
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Column(
@@ -200,7 +200,7 @@ class _FemaleServicePageState extends State<FemaleServicePage> {
                               FontWeight.bold,
                               TextAlign.start,
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             ResponsiveStaggeredGridList(
                               desiredItemWidth: size.width * 0.18,
                               children: List.generate(
@@ -225,11 +225,11 @@ class _FemaleServicePageState extends State<FemaleServicePage> {
                                           width: size.width * 0.18,
                                           height: size.height * 0.34,
                                           decoration: BoxDecoration(
-                                            color: Color.fromRGBO(240, 243, 245, 1),
+                                            color: const Color.fromRGBO(240, 243, 245, 1),
                                             border: Border.all(
-                                              color: Color.fromRGBO(44, 44, 44, 1),
+                                              color: const Color.fromRGBO(44, 44, 44, 1),
                                             ),
-                                            borderRadius: BorderRadius.all(
+                                            borderRadius: const BorderRadius.all(
                                               Radius.circular(8),
                                             ),
                                           ),
@@ -273,7 +273,7 @@ class _FemaleServicePageState extends State<FemaleServicePage> {
                         ),
                       ),
                     )
-                        : Container(
+                        : SizedBox(
                       width: size.width * 0.6,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

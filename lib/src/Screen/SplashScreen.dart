@@ -1,7 +1,5 @@
 // ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
-import 'package:thebarberlao/src/Screen/Homepage/HomePage.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,8 +15,6 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 3), (() {
       Navigator.pushNamedAndRemoveUntil(
           context, '/home', (route) => false);
-      // Navigator.pushReplacement(
-      //     context, MaterialPageRoute(builder: (context) => const HomePage()));
     }));
   }
 

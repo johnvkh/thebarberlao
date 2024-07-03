@@ -382,15 +382,13 @@ Widget ShowDialog(BuildContext context) {
 }
 
 Widget LoadDialog(BuildContext context) {
-  return Container(
-    child: CircleAvatar(
-      backgroundColor: Colors.white,
-      radius: 40,
-      child: Image.asset(
-        "assets/images/loading.gif",
-        width: 50,
-        height: 50,
-      ),
+  return CircleAvatar(
+    backgroundColor: Colors.white,
+    radius: 40,
+    child: Image.asset(
+      "assets/images/loading.gif",
+      width: 50,
+      height: 50,
     ),
   );
 }
