@@ -114,8 +114,8 @@ class _FemaleServicePageState extends State<FemaleServicePage> {
                                     child: Padding(
                                       padding: const EdgeInsets.only(bottom: 10),
                                       child: Container(
-                                        width: size.width * 0.18,
-                                        height: size.height * 0.34,
+                                        width: size.width * 0.4,
+                                        height: size.height * 0.25,
                                         decoration: BoxDecoration(
                                           color: Color.fromRGBO(240, 243, 245, 1),
                                           border: Border.all(
@@ -132,8 +132,8 @@ class _FemaleServicePageState extends State<FemaleServicePage> {
                                               child: Image.network(
                                                 categorieModel.urlImage.toString(),
                                                 fit: BoxFit.cover,
-                                                width: size.width * 0.18,
-                                                height: size.height * 0.25,
+                                                width: size.width * 0.4,
+                                                height: size.height * 0.15,
                                               ),
                                             ),
                                             const SizedBox(height: 5),

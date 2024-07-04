@@ -15,7 +15,7 @@ class CategorieController {
   Future<List<CategorieModel>> getCategorieByType({required String serviceType}) async {
     List<CategorieModel> listCategorie = [];
     QuerySnapshot<Map<String, dynamic>> snapshot =
-    await firebaseFirestore.collection("Categories").where("serviceType",isEqualTo: serviceType).orderBy("sort", descending: true).get();
+    await firebaseFirestore.collection("Categories").where("serviceType",isEqualTo: serviceType).get();
     for (int i = 0; i < snapshot.docs.length; i++) {
       DocumentSnapshot documentSnapshot = snapshot.docs[i];
       CategorieModel productModel = CategorieModel.getModelFromJson(
