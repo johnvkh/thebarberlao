@@ -113,8 +113,8 @@ class _ExtraServicePageState extends State<ExtraServicePage> {
                                     child: Padding(
                                       padding: const EdgeInsets.only(bottom: 10),
                                       child: Container(
-                                        width: size.width * 0.18,
-                                        height: size.height * 0.34,
+                                        width: size.width * 0.4,
+                                        height: size.height * 0.25,
                                         decoration: BoxDecoration(
                                           color: const Color.fromRGBO(240, 243, 245, 1),
                                           border: Border.all(
@@ -131,8 +131,8 @@ class _ExtraServicePageState extends State<ExtraServicePage> {
                                               child: Image.network(
                                                 categorieModel.urlImage.toString(),
                                                 fit: BoxFit.cover,
-                                                width: size.width * 0.18,
-                                                height: size.height * 0.25,
+                                                width: size.width * 0.4,
+                                                height: size.height * 0.15,
                                               ),
                                             ),
                                             const SizedBox(height: 5),

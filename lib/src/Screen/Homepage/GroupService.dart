@@ -33,18 +33,24 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
     "assets/images/barber/3.jpeg",
     "assets/images/barber/5.jpeg",
   ];
+  Locale? _locale;
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var deviceType = getDeviceType(MediaQuery.of(context).size);
+    getLocale().then((locale) {
+      setState(() {
+        _locale = locale;
+      });
+    });
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         DeviceScreenType.mobile == deviceType
             ? Container(
-          color: const Color.fromRGBO(255, 248, 246, 1),
-              child: PreferredSize(
+                color: const Color.fromRGBO(255, 248, 246, 1),
+                child: PreferredSize(
                   preferredSize: const Size.fromHeight(50.0),
                   child: ClipRRect(
                     borderRadius: const BorderRadius.all(
@@ -72,10 +78,7 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                                 ),
                               ],
                               controller: _tabController,
-                              labelStyle: const TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.normal
-                              ),
+                              labelStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.normal),
                               indicatorSize: TabBarIndicatorSize.tab,
                               dividerColor: Colors.transparent,
                               indicator: const BoxDecoration(
@@ -93,7 +96,7 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                     ),
                   ),
                 ),
-            )
+              )
             : Row(
                 children: [
                   SizedBox(width: size.width * 0.2),
@@ -128,11 +131,8 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                                     ),
                                   ],
                                   controller: _tabController,
-                                  labelStyle: const TextStyle(
-                                    fontFamily: "roboto",
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold
-                                  ),
+                                  labelStyle:
+                                      const TextStyle(fontFamily: "roboto", fontSize: 14, fontWeight: FontWeight.bold),
                                   indicatorSize: TabBarIndicatorSize.tab,
                                   dividerColor: Colors.transparent,
                                   indicator: const BoxDecoration(
@@ -158,7 +158,7 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
         DeviceScreenType.mobile == deviceType
             ? Container(
                 width: size.width,
-                height: size.height * 0.453,
+                height: size.height * 0.3,
                 color: const Color.fromRGBO(255, 248, 246, 1),
                 // height: 341,
                 child: TabBarView(
@@ -173,29 +173,21 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                           horizontal: 5,
                           vertical: 5,
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                "assets/images/ManService.jpeg",
-                                fit: BoxFit.cover,
-                                width: size.width * 0.9,
-                                height: size.height * 0.35,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                              child: TextWidget(
-                                getTranslated(context, 'MORE_DETAIL')!,
-                                Colors.black,
-                                13,
-                                FontWeight.bold,
-                                TextAlign.center,
-                              ),
-                            ),
-                          ],
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: _locale?.languageCode.toString() == "lo"
+                              ? Image.asset(
+                                  "assets/images/MaleServicelao.png",
+                                  fit: BoxFit.fill,
+                                  // width: size.width * 0.9,
+                                  height: size.height * 0.35,
+                                )
+                              : Image.asset(
+                                  "assets/images/MaleServiceEN.png",
+                                  fit: BoxFit.fill,
+                                  // width: size.width * 0.9,
+                                  height: size.height * 0.35,
+                                ),
                         ),
                       ),
                     ),
@@ -205,32 +197,21 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                       },
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: Image.asset(
-                                "assets/images/FemaleService.jpg",
-                                fit: BoxFit.cover,
-                                width: size.width * 0.9,
-                                height: size.height * 0.35,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 5,
-                                vertical: 5,
-                              ),
-                              child: TextWidget(
-                                getTranslated(context, 'MORE_DETAIL')!,
-                                Colors.black,
-                                13,
-                                FontWeight.bold,
-                                TextAlign.center,
-                              ),
-                            ),
-                          ],
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: _locale?.languageCode.toString() == "lo"
+                              ? Image.asset(
+                                  "assets/images/FemaleServiceLA.png",
+                                  fit: BoxFit.fill,
+                                  // width: size.width * 0.9,
+                                  height: size.height * 0.35,
+                                )
+                              : Image.asset(
+                                  "assets/images/FemaleServiceEN.png",
+                                  fit: BoxFit.fill,
+                                  // width: size.width * 0.9,
+                                  height: size.height * 0.35,
+                                ),
                         ),
                       ),
                     ),
@@ -238,14 +219,14 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                       onTap: () {
                         Navigator.pushNamedAndRemoveUntil(context, '/ExtraService', (route) => false);
                       },
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 10,
-                            ),
-                            child: ResponsiveStaggeredGridList(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 10,
+                        ),
+                        child: Stack(
+                          children: [
+                            ResponsiveStaggeredGridList(
                               desiredItemWidth: size.width * 0.45,
                               children: List.generate(
                                 listExtraService.length,
@@ -256,27 +237,31 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                                       listExtraService[index],
                                       fit: BoxFit.cover,
                                       width: size.width * 0.5,
-                                      height: size.height * 0.18,
+                                      height: size.height * 0.14,
                                     ),
                                   );
                                 },
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 5,
-                              vertical: 5,
+                            Positioned(
+                              bottom: 0.0,
+                              right: 0.0,
+                              left: 0.0,
+                              top: 10,
+                              child: Center(
+                                child: _locale?.languageCode.toString() == "lo"
+                                    ? Image.asset(
+                                        "assets/images/ClickHereLao.png",
+                                        width: size.width * 0.9,
+                                      )
+                                    : Image.asset(
+                                        "assets/images/ClickHereEN.png",
+                                        width: size.width * 0.9,
+                                      ),
+                              ),
                             ),
-                            child: TextWidget(
-                              getTranslated(context, 'MORE_DETAIL')!,
-                              Colors.black,
-                              13,
-                              FontWeight.bold,
-                              TextAlign.center,
-                            ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ],
@@ -302,29 +287,21 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                               horizontal: 5,
                               vertical: 5,
                             ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.asset(
-                                    "assets/images/ManService.jpeg",
-                                    fit: BoxFit.cover,
-                                    width: size.width * 0.9,
-                                    height: size.height * 0.5,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                                  child: TextWidget(
-                                    getTranslated(context, 'MORE_DETAIL')!,
-                                    Colors.black,
-                                    13,
-                                    FontWeight.bold,
-                                    TextAlign.center,
-                                  ),
-                                ),
-                              ],
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: _locale?.languageCode.toString() == "lo"
+                                  ? Image.asset(
+                                      "assets/images/MaleServiceLao.png",
+                                      fit: BoxFit.cover,
+                                      width: size.width * 0.9,
+                                      height: size.height * 0.5,
+                                    )
+                                  : Image.asset(
+                                      "assets/images/MaleServiceEN.png",
+                                      fit: BoxFit.cover,
+                                      width: size.width * 0.9,
+                                      height: size.height * 0.5,
+                                    ),
                             ),
                           ),
                         ),
@@ -334,32 +311,21 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                           },
                           child: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                  child: Image.asset(
-                                    "assets/images/FemaleService.jpg",
-                                    fit: BoxFit.cover,
-                                    width: size.width * 0.9,
-                                    height: size.height * 0.5,
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 5,
-                                    vertical: 5,
-                                  ),
-                                  child: TextWidget(
-                                    getTranslated(context, 'MORE_DETAIL')!,
-                                    Colors.black,
-                                    13,
-                                    FontWeight.bold,
-                                    TextAlign.center,
-                                  ),
-                                ),
-                              ],
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: _locale?.languageCode.toString() == "lo"
+                                  ? Image.asset(
+                                      "assets/images/FemaleServiceLA.png",
+                                      fit: BoxFit.cover,
+                                      width: size.width * 0.9,
+                                      height: size.height * 0.5,
+                                    )
+                                  : Image.asset(
+                                      "assets/images/FemaleServiceEN.png",
+                                      fit: BoxFit.cover,
+                                      width: size.width * 0.9,
+                                      height: size.height * 0.5,
+                                    ),
                             ),
                           ),
                         ),
@@ -367,45 +333,49 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                           onTap: () {
                             Navigator.pushNamedAndRemoveUntil(context, '/ExtraService', (route) => false);
                           },
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 10,
-                                  vertical: 10,
-                                ),
-                                child: ResponsiveStaggeredGridList(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 10,
+                            ),
+                            child: Stack(
+                              children: [
+                                ResponsiveStaggeredGridList(
                                   desiredItemWidth: size.width * 0.29,
                                   children: List.generate(
                                     listExtraService.length,
-                                    (index) {
+                                        (index) {
                                       return ClipRRect(
                                         borderRadius: BorderRadius.circular(8.0),
                                         child: Image.asset(
                                           listExtraService[index],
                                           fit: BoxFit.cover,
                                           width: size.width * 0.29,
-                                          height: size.height * 0.245,
+                                          height: size.height * 0.26,
                                         ),
                                       );
                                     },
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 5,
-                                  vertical: 5,
+                                Positioned(
+                                  bottom: 0.0,
+                                  right: 0.0,
+                                  left: 0.0,
+                                  top: 10,
+                                  child: Center(
+                                    child: _locale?.languageCode.toString() == "lo"
+                                        ? Image.asset(
+                                      "assets/images/ClickHereLao.png",
+                                      width: size.width * 0.5,
+                                    )
+                                        : Image.asset(
+                                      "assets/images/ClickHereEN.png",
+                                      width: size.width * 0.5,
+                                    ),
+                                  ),
                                 ),
-                                child: TextWidget(
-                                  getTranslated(context, 'MORE_DETAIL')!,
-                                  Colors.black,
-                                  13,
-                                  FontWeight.bold,
-                                  TextAlign.center,
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ],
