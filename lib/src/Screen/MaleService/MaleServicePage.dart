@@ -116,34 +116,41 @@ class _MaleServicePageState extends State<MaleServicePage> {
                                             padding: const EdgeInsets.only(bottom: 10),
                                             child: Container(
                                               width: size.width * 0.4,
-                                              height: size.height * 0.25,
+                                              height: 220,
                                               decoration: BoxDecoration(
                                                 color: const Color.fromRGBO(240, 243, 245, 1),
                                                 border: Border.all(
                                                   color: const Color.fromRGBO(44, 44, 44, 1),
                                                 ),
                                                 borderRadius: const BorderRadius.all(
-                                                  Radius.circular(8),
+                                                  Radius.circular(5),
                                                 ),
                                               ),
                                               child: Column(
                                                 children: [
                                                   ClipRRect(
-                                                    borderRadius: BorderRadius.circular(8.0),
+                                                    borderRadius: BorderRadius.circular(5.0),
                                                     child: Image.network(
                                                       categorieModel.urlImage.toString(),
                                                       fit: BoxFit.cover,
                                                       width: size.width * 0.4,
-                                                      height: size.height * 0.15,
+                                                      height: 160,
                                                     ),
                                                   ),
-                                                  const SizedBox(height: 2),
-                                                  TextWidget(
-                                                    _locale?.languageCode.toString() == "lo" ? categorieModel.categorieNameLA.toString() : categorieModel.categorieNameEN.toString(),
-                                                    Colors.black,
-                                                    14,
-                                                    FontWeight.normal,
-                                                    TextAlign.center,
+                                                  const SizedBox(height: 5),
+                                                  Text(
+                                                    _locale?.languageCode.toString() == "lo"
+                                                        ? categorieModel.categorieNameLA.toString()
+                                                        : categorieModel.categorieNameEN.toString(),
+                                                    style: const TextStyle(
+                                                      fontSize: 14,
+                                                      color: Colors.black,
+                                                      fontWeight: FontWeight.normal,
+                                                      fontFamily: 'roboto',
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                    maxLines: 1,
+                                                    overflow: TextOverflow.ellipsis,
                                                   ),
                                                   const SizedBox(height: 2),
                                                   TextWidget(
@@ -224,25 +231,27 @@ class _MaleServicePageState extends State<MaleServicePage> {
                                                     padding: const EdgeInsets.only(bottom: 10),
                                                     child: Container(
                                                       width: size.width * 0.18,
-                                                      height: size.height * 0.34,
+                                                      //height: size.height * 0.34,
+                                                      height: 260,
                                                       decoration: BoxDecoration(
                                                         color: const Color.fromRGBO(240, 243, 245, 1),
                                                         border: Border.all(
                                                           color: const Color.fromRGBO(44, 44, 44, 1),
                                                         ),
                                                         borderRadius: const BorderRadius.all(
-                                                          Radius.circular(8),
+                                                          Radius.circular(5),
                                                         ),
                                                       ),
                                                       child: Column(
                                                         children: [
                                                           ClipRRect(
-                                                            borderRadius: BorderRadius.circular(8.0),
+                                                            borderRadius: BorderRadius.circular(5.0),
                                                             child: Image.network(
                                                               categorieModel.urlImage.toString(),
                                                               fit: BoxFit.cover,
                                                               width: size.width * 0.18,
-                                                              height: size.height * 0.25,
+                                                              //height: size.height * 0.25,
+                                                              height: 200,
                                                             ),
                                                           ),
                                                           const SizedBox(height: 5),

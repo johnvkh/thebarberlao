@@ -19,9 +19,13 @@ class Assets {
   static const String imagesAppointment = 'assets/images/appointment.jpg';
   static const String imagesBackground = 'assets/images/background.jpg';
   static const String imagesBg222 = 'assets/images/bg222.jpg';
+  static const String imagesClickHereEN = 'assets/images/ClickHereEN.png';
+  static const String imagesClickHereLao = 'assets/images/ClickHereLao.png';
   static const String imagesDo = 'assets/images/do.jpg';
   static const String imagesEnglish = 'assets/images/english.png';
   static const String imagesFemaleService = 'assets/images/FemaleService.jpg';
+  static const String imagesFemaleServiceEN = 'assets/images/FemaleServiceEN.png';
+  static const String imagesFemaleServiceLA = 'assets/images/FemaleServiceLA.png';
   static const String imagesFlaticonScissors = 'assets/images/flaticon-scissors.png';
   static const String imagesGentlemen = 'assets/images/gentlemen.png';
   static const String imagesHair = 'assets/images/hair.png';
@@ -37,6 +41,8 @@ class Assets {
   static const String imagesLit = 'assets/images/lit.jpg';
   static const String imagesLoading = 'assets/images/loading.gif';
   static const String imagesLoadingbot = 'assets/images/loadingbot.gif';
+  static const String imagesMaleServiceEN = 'assets/images/MaleServiceEN.png';
+  static const String imagesMaleServiceLao = 'assets/images/MaleServiceLao.png';
   static const String imagesManService = 'assets/images/ManService.jpeg';
   static const String imagesMick = 'assets/images/mick.jpg';
   static const String imagesMissBee = 'assets/images/miss-bee.jpg';
@@ -50,6 +56,7 @@ class Assets {
   static const String imagesPhoto = 'assets/images/photo.png';
   static const String imagesPorng = 'assets/images/porng.jpg';
   static const String imagesRightArrow = 'assets/images/right_arrow.png';
+  static const String imagesSalon = 'assets/images/salon.mp4';
   static const String imagesSlider1 = 'assets/images/slider1.png';
   static const String imagesSlider2 = 'assets/images/slider2.png';
   static const String imagesSlider3 = 'assets/images/slider3.png';
@@ -67,7 +74,12 @@ class Assets {
   static const String maleServiceColorHair = 'assets/images/MaleService/colorHair.jpeg';
   static const String maleServiceCut = 'assets/images/MaleService/Cut.jpg';
   static const String maleServiceCutStyling = 'assets/images/MaleService/CutStyling.jpg';
+  static const String maleServiceCutWashChildren = 'assets/images/MaleService/cut_wash_children.jpg';
+  static const String maleServiceCutWashSetChildren = 'assets/images/MaleService/cut_wash_set_children.jpg';
+  static const String maleServiceCutWashSetShave = 'assets/images/MaleService/cut_wash_set_shave.jpg';
+  static const String maleServiceHotShave = 'assets/images/MaleService/hot_shave.jpg';
   static const String maleServiceShave  = 'assets/images/MaleService/Shave .jpg';
+  static const String maleServiceSpecialCutChaseFade = 'assets/images/MaleService/special_cut_chase_fade.jpg';
   static const String maleServiceWash = 'assets/images/MaleService/wash.jpg';
 
 }

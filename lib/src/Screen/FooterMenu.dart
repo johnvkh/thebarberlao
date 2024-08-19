@@ -59,7 +59,7 @@ class _FooterMenuState extends State<FooterMenu> {
                   // ),
                   TextWidget(
                     //getTranslated(context, 'ADDRESS_VALUE')!,
-                    _locale?.languageCode.toString() == "lo"?"ສາຂາດົງໂດກ":"Dongdok Branch",
+                    _locale?.languageCode.toString() == "lo"?"ສາຂາ ດົງໂດກ":"Dongdok Branch",
                     Colors.black,
                     16,
                     FontWeight.normal,
@@ -67,7 +67,7 @@ class _FooterMenuState extends State<FooterMenu> {
                   ),
                   TextWidget(
                     //getTranslated(context, 'ADDRESS_VALUE')!,
-                    _locale?.languageCode.toString() == "lo"?"ສາຂາສະພານທອງ":"Saphanthong Branch",
+                    _locale?.languageCode.toString() == "lo"?"ສາຂາ ສະພານທອງ":"Saphanthong Branch",
                     Colors.black,
                     16,
                     FontWeight.normal,
@@ -75,7 +75,7 @@ class _FooterMenuState extends State<FooterMenu> {
                   ),
                   TextWidget(
                     //getTranslated(context, 'ADDRESS_VALUE')!,
-                    _locale?.languageCode.toString() == "lo"?"ສາຂາແຄມຂອງ":"Mekhong branch",
+                    _locale?.languageCode.toString() == "lo"?"ສາຂາ ແຄມຂອງ":"Mekhong branch",
                     Colors.black,
                     16,
                     FontWeight.normal,

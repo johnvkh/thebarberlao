@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 import '../../Localization/LanguageConstants.dart';
-import '../../Utility/WidgetUtility.dart';
 
 class GroupService extends StatefulWidget {
   const GroupService({super.key});
@@ -177,7 +176,7 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
                           borderRadius: BorderRadius.circular(8.0),
                           child: _locale?.languageCode.toString() == "lo"
                               ? Image.asset(
-                                  "assets/images/MaleServicelao.png",
+                                  "assets/images/MaleServiceLao.png",
                                   fit: BoxFit.fill,
                                   // width: size.width * 0.9,
                                   height: size.height * 0.35,
