@@ -88,8 +88,10 @@ class _LocationWidgetState extends State<LocationWidget> {
                   ),
                   SizedBox(
                     width: size.width,
-                    height: size.height * 0.45,
+                    // height: size.height * 0.45,
                     child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
                       itemCount: listBranch.length,
                       itemBuilder: (context, index) {
                         BranchModel branchModel = listBranch[index];

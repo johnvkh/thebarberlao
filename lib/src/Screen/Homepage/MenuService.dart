@@ -95,6 +95,8 @@ class _MenuServiceState extends State<MenuService> {
                     child: SizedBox(
                       height: 460,
                       child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: listPriceService.length,
                         itemBuilder: (context, index) {
                           PriceServiceModel priceServiceModel =
