@@ -11,66 +11,70 @@ class Footer extends StatelessWidget {
   Widget build(BuildContext context) {
     var deviceType = getDeviceType(MediaQuery.of(context).size);
     var size = MediaQuery.of(context).size;
-    return DeviceScreenType.mobile == deviceType
-        ? Container(
-            width: size.width,
-            height: 80,
-            color: const Color.fromRGBO(44, 44, 44, 1),
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: [
-                    TextWidget(
-                      "© The Barber Lao. Powered by ULaoDev",
-                      Colors.grey,
-                      16,
-                      FontWeight.normal,
-                      TextAlign.center,
-                    ),
-                    const SizedBox(height: 5),
-                    TextWidget(
-                      "All Rights Reserved 2024",
-                      Colors.grey,
-                      16,
-                      FontWeight.normal,
-                      TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
-            ))
-        : Row(
+    return Container(
+      width: size.width,
+      color: const Color(0xFF2C2C2C), // ดำเข้ม
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        child: deviceType == DeviceScreenType.mobile
+            ? _buildMobileFooter()
+            : _buildDesktopFooter(size),
+      ),
+    );
+  }
+
+  /// 📱 Mobile
+  Widget _buildMobileFooter() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const Divider(color: Colors.grey),
+        const SizedBox(height: 8),
+        TextWidget(
+          "© The Barber Lao. Powered by ULaoDev",
+          Colors.white70,
+          14,
+          FontWeight.w500,
+          TextAlign.center,
+        ),
+        const SizedBox(height: 5),
+        TextWidget(
+          "All Rights Reserved 2025",
+          Colors.grey,
+          12,
+          FontWeight.normal,
+          TextAlign.center,
+        ),
+      ],
+    );
+  }
+
+  /// 💻 Desktop
+  Widget _buildDesktopFooter(Size size) {
+    return Column(
+      children: [
+        const Divider(color: Colors.grey),
+        const SizedBox(height: 10),
+        Row(
           children: [
-            SizedBox(width: size.width * 0.2),
-            Container(
-              color:  const Color.fromRGBO(44, 44, 44, 1),
-              width: size.width * 0.6,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  children: [
-                    TextWidget(
-                      "© The Barber Lao. Powered by ULaoDev",
-                      Colors.grey,
-                      16,
-                      FontWeight.normal,
-                      TextAlign.center,
-                    ),
-                    const Expanded(child: SizedBox()),
-                    TextWidget(
-                      "All Rights Reserved 2024",
-                      Colors.grey,
-                      16,
-                      FontWeight.normal,
-                      TextAlign.center,
-                    ),
-                  ],
-                ),
-              ),
+            TextWidget(
+              "© The Barber Lao. Powered by ULaoDev",
+              Colors.white70,
+              14,
+              FontWeight.w500,
+              TextAlign.start,
             ),
-            SizedBox(width: size.width * 0.2),
+            const Spacer(),
+            TextWidget(
+              "All Rights Reserved 2025",
+              Colors.grey,
+              12,
+              FontWeight.normal,
+              TextAlign.end,
+            ),
           ],
-        );
+        ),
+      ],
+    );
   }
 }

@@ -20,5 +20,4 @@ class BarberController {
     }
     return listBarber;
   }
-
 }

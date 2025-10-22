@@ -20,7 +20,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
+    if (!mounted) return;
     setState(() {
       selectedIndex = widget.selectedIndex;
     });

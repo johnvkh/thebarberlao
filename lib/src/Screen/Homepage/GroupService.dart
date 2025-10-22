@@ -1,7 +1,5 @@
-// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:responsive_grid/responsive_grid.dart';
 import '../../Localization/LanguageConstants.dart';
 
 class GroupService extends StatefulWidget {
@@ -11,8 +9,18 @@ class GroupService extends StatefulWidget {
   State<GroupService> createState() => _GroupServiceState();
 }
 
-class _GroupServiceState extends State<GroupService> with SingleTickerProviderStateMixin {
+class _GroupServiceState extends State<GroupService>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
+
+  List<String> listExtraService = [
+    "assets/images/barber/1.jpeg",
+    "assets/images/barber/2.jpeg",
+    "assets/images/barber/3.jpeg",
+    "assets/images/barber/5.jpeg",
+  ];
+
+  Locale? _locale;
 
   @override
   void initState() {
@@ -22,368 +30,175 @@ class _GroupServiceState extends State<GroupService> with SingleTickerProviderSt
 
   @override
   void dispose() {
-    super.dispose();
     _tabController.dispose();
+    super.dispose();
   }
-
-  List<String> listExtraService = [
-    "assets/images/barber/1.jpeg",
-    "assets/images/barber/2.jpeg",
-    "assets/images/barber/3.jpeg",
-    "assets/images/barber/5.jpeg",
-  ];
-  Locale? _locale;
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    var deviceType = getDeviceType(MediaQuery.of(context).size);
-    getLocale().then((locale) {
-      setState(() {
-        _locale = locale;
-      });
-    });
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        DeviceScreenType.mobile == deviceType
-            ? Container(
-                color: const Color.fromRGBO(255, 248, 246, 1),
-                child: PreferredSize(
-                  preferredSize: const Size.fromHeight(50.0),
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                    child: Container(
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(Radius.circular(5)),
-                        color: Colors.green.shade50,
-                      ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: TabBar(
-                              tabs: [
-                                Tab(
-                                  text: getTranslated(context, 'SERVICE_MAN')!,
-                                ),
-                                Tab(
-                                  text: getTranslated(context, 'SERVICE_WOMAN')!,
-                                ),
-                                Tab(
-                                  text: getTranslated(context, 'ADDITIONAL_SERVICE')!,
-                                ),
-                              ],
-                              controller: _tabController,
-                              labelStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.normal),
-                              indicatorSize: TabBarIndicatorSize.tab,
-                              dividerColor: Colors.transparent,
-                              indicator: const BoxDecoration(
-                                color: Color.fromRGBO(44, 44, 44, 1),
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(5),
-                                ),
-                              ),
-                              labelColor: Colors.white,
-                              unselectedLabelColor: Colors.black87,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+    var deviceType = getDeviceType(size);
+    return Container(
+      color: const Color(0xffFFF8F6), // พื้นหลังอ่อน
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      child: Column(
+        children: [
+          Text(
+            getTranslated(context, "OUR_SERVICES") ?? "Our Services",
+            style: const TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              color: Colors.black87,
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.grey.shade200,
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: TabBar(
+              controller: _tabController,
+              tabs: [
+                Tab(text: getTranslated(context, 'SERVICE_MAN') ?? "Men"),
+                Tab(text: getTranslated(context, 'SERVICE_WOMAN') ?? "Women"),
+                Tab(text: getTranslated(context, 'ADDITIONAL_SERVICE') ?? "Extra"),
+              ],
+              labelStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              indicator: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              labelColor: Colors.white,
+              unselectedLabelColor: Colors.black87,
+              indicatorSize: TabBarIndicatorSize.tab,
+            ),
+          ),
+          SizedBox(
+            height: deviceType == DeviceScreenType.mobile
+                ? size.height * 0.3
+                : size.height * 0.6,
+            child: TabBarView(
+              controller: _tabController,
+              children: [
+                _buildServiceCard(
+                  context,
+                  image: _locale?.languageCode == "lo"
+                      ? "assets/images/MaleServiceLao.png"
+                      : "assets/images/MaleServiceEN.png",
+                  route: "/MaleService",
+                ),
+                _buildServiceCard(
+                  context,
+                  image: _locale?.languageCode == "lo"
+                      ? "assets/images/FemaleServiceLA.png"
+                      : "assets/images/FemaleServiceEN.png",
+                  route: "/FemaleService",
+                ),
+                // _buildServiceCard(
+                //   context,
+                //   image: _locale?.languageCode == "lo"
+                //       ? "assets/images/FemaleServiceLA.png"
+                //       : "assets/images/FemaleServiceEN.png",
+                //   route: "/ExtraService",
+                // ),
+                  //ExtraService
+                _buildExtraService(context, size),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildServiceCard(BuildContext context,
+      {required String image, required String route}) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamedAndRemoveUntil(context, route, (route) => false);
+      },
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        elevation: 4,
+        clipBehavior: Clip.hardEdge,
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(image, fit: BoxFit.cover),
+            ),
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Colors.black.withOpacity(0.4), Colors.transparent],
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
                   ),
                 ),
-              )
-            : Row(
-                children: [
-                  SizedBox(width: size.width * 0.2),
-                  Container(
-                    width: size.width * 0.6,
-                    color: const Color.fromRGBO(255, 248, 246, 1),
-                    child: PreferredSize(
-                      preferredSize: const Size.fromHeight(50.0),
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        child: Container(
-                          height: 40,
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(Radius.circular(5)),
-                            color: Colors.green.shade50,
-                          ),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: TabBar(
-                                  tabs: [
-                                    Tab(
-                                      text: getTranslated(context, 'SERVICE_MAN')!,
-                                    ),
-                                    Tab(
-                                      text: getTranslated(context, 'SERVICE_WOMAN')!,
-                                    ),
-                                    Tab(
-                                      text: getTranslated(context, 'ADDITIONAL_SERVICE')!,
-                                    ),
-                                  ],
-                                  controller: _tabController,
-                                  labelStyle:
-                                      const TextStyle(fontFamily: "roboto", fontSize: 14, fontWeight: FontWeight.bold),
-                                  indicatorSize: TabBarIndicatorSize.tab,
-                                  dividerColor: Colors.transparent,
-                                  indicator: const BoxDecoration(
-                                    color: Color.fromRGBO(44, 44, 44, 1),
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(5),
-                                    ),
-                                  ),
-                                  labelColor: Colors.white,
-                                  unselectedLabelColor: Colors.black87,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: size.width * 0.2),
-                ],
               ),
-        // ignore: sized_box_for_whitespace
-        DeviceScreenType.mobile == deviceType
-            ? Container(
-                width: size.width,
-                height: size.height * 0.3,
-                color: const Color.fromRGBO(255, 248, 246, 1),
-                // height: 341,
-                child: TabBarView(
-                  controller: _tabController,
+            ),
+            const Positioned(
+              bottom: 15,
+              left: 15,
+              child: Icon(Icons.arrow_forward, color: Colors.white, size: 28),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Extra service แสดงเป็น Grid 2x2
+  Widget _buildExtraService(BuildContext context, Size size) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamedAndRemoveUntil(
+            context, "/ExtraService", (route) => false);
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SizedBox(
+          height: 400, // 👈 กำหนดความสูงให้ grid ชัดเจน
+          child: GridView.builder(
+            physics: const NeverScrollableScrollPhysics(), // ไม่ให้ scroll ในตัวเอง
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2, // 2 คอลัมน์
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              childAspectRatio: (size.width) / 650,
+              // 👉 คำนวณ: ความกว้างของการ์ด / ความสูงที่ต้องการ (200)
+            ),
+            itemCount: listExtraService.length.clamp(0, 4), // 👈 แสดงสูงสุด 4 รูป
+            itemBuilder: (context, index) {
+              return Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                elevation: 4,
+                clipBehavior: Clip.hardEdge,
+                child: Stack(
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamedAndRemoveUntil(context, '/MaleService', (route) => false);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 5,
-                          vertical: 5,
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: _locale?.languageCode.toString() == "lo"
-                              ? Image.asset(
-                                  "assets/images/MaleServiceLao.png",
-                                  fit: BoxFit.fill,
-                                  // width: size.width * 0.9,
-                                  height: size.height * 0.35,
-                                )
-                              : Image.asset(
-                                  "assets/images/MaleServiceEN.png",
-                                  fit: BoxFit.fill,
-                                  // width: size.width * 0.9,
-                                  height: size.height * 0.35,
-                                ),
-                        ),
+                    Positioned.fill(
+                      child: Image.asset(
+                        listExtraService[index],
+                        fit: BoxFit.cover,
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamedAndRemoveUntil(context, '/FemaleService', (route) => false);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: _locale?.languageCode.toString() == "lo"
-                              ? Image.asset(
-                                  "assets/images/FemaleServiceLA.png",
-                                  fit: BoxFit.fill,
-                                  // width: size.width * 0.9,
-                                  height: size.height * 0.35,
-                                )
-                              : Image.asset(
-                                  "assets/images/FemaleServiceEN.png",
-                                  fit: BoxFit.fill,
-                                  // width: size.width * 0.9,
-                                  height: size.height * 0.35,
-                                ),
-                        ),
-                      ),
+                    Container(
+                      color: Colors.black.withOpacity(0.25),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamedAndRemoveUntil(context, '/ExtraService', (route) => false);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 10,
-                        ),
-                        child: Stack(
-                          children: [
-                            ResponsiveStaggeredGridList(
-                              desiredItemWidth: size.width * 0.45,
-                              children: List.generate(
-                                listExtraService.length,
-                                (index) {
-                                  return ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Image.asset(
-                                      listExtraService[index],
-                                      fit: BoxFit.cover,
-                                      width: size.width * 0.5,
-                                      height: size.height * 0.14,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 0.0,
-                              right: 0.0,
-                              left: 0.0,
-                              top: 10,
-                              child: Center(
-                                child: _locale?.languageCode.toString() == "lo"
-                                    ? Image.asset(
-                                        "assets/images/ClickHereLao.png",
-                                        width: size.width * 0.9,
-                                      )
-                                    : Image.asset(
-                                        "assets/images/ClickHereEN.png",
-                                        width: size.width * 0.9,
-                                      ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                    const Positioned(
+                      bottom: 10,
+                      right: 10,
+                      child: Icon(Icons.add, color: Colors.white, size: 24),
                     ),
                   ],
                 ),
-              )
-            : Row(
-                children: [
-                  SizedBox(width: size.width * 0.2),
-                  Container(
-                    color: const Color.fromRGBO(255, 248, 246, 1),
-                    width: size.width * 0.6,
-                    height: size.height * 0.6,
-                    // height: 341,
-                    child: TabBarView(
-                      controller: _tabController,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamedAndRemoveUntil(context, '/MaleService', (route) => false);
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 5,
-                              vertical: 5,
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: _locale?.languageCode.toString() == "lo"
-                                  ? Image.asset(
-                                      "assets/images/MaleServiceLao.png",
-                                      fit: BoxFit.cover,
-                                      width: size.width * 0.9,
-                                      height: size.height * 0.5,
-                                    )
-                                  : Image.asset(
-                                      "assets/images/MaleServiceEN.png",
-                                      fit: BoxFit.cover,
-                                      width: size.width * 0.9,
-                                      height: size.height * 0.5,
-                                    ),
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamedAndRemoveUntil(context, '/FemaleService', (route) => false);
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: _locale?.languageCode.toString() == "lo"
-                                  ? Image.asset(
-                                      "assets/images/FemaleServiceLA.png",
-                                      fit: BoxFit.cover,
-                                      width: size.width * 0.9,
-                                      height: size.height * 0.5,
-                                    )
-                                  : Image.asset(
-                                      "assets/images/FemaleServiceEN.png",
-                                      fit: BoxFit.cover,
-                                      width: size.width * 0.9,
-                                      height: size.height * 0.5,
-                                    ),
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamedAndRemoveUntil(context, '/ExtraService', (route) => false);
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 10,
-                            ),
-                            child: Stack(
-                              children: [
-                                ResponsiveStaggeredGridList(
-                                  desiredItemWidth: size.width * 0.29,
-                                  children: List.generate(
-                                    listExtraService.length,
-                                        (index) {
-                                      return ClipRRect(
-                                        borderRadius: BorderRadius.circular(8.0),
-                                        child: Image.asset(
-                                          listExtraService[index],
-                                          fit: BoxFit.cover,
-                                          width: size.width * 0.29,
-                                          height: size.height * 0.26,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: 0.0,
-                                  right: 0.0,
-                                  left: 0.0,
-                                  top: 10,
-                                  child: Center(
-                                    child: _locale?.languageCode.toString() == "lo"
-                                        ? Image.asset(
-                                      "assets/images/ClickHereLao.png",
-                                      width: size.width * 0.5,
-                                    )
-                                        : Image.asset(
-                                      "assets/images/ClickHereEN.png",
-                                      width: size.width * 0.5,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(width: size.width * 0.2),
-                ],
-              ),
-      ],
+              );
+            },
+          ),
+        ),
+      ),
     );
   }
 }

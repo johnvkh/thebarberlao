@@ -26,23 +26,28 @@ class _MenuServiceState extends State<MenuService> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    if (!mounted) return;
     loadPriceServerInfo();
   }
 
   Future loadPriceServerInfo() async {
     try {
       listPriceService = await PriceServiceController().getAllPriceService();
+      if (!mounted) return;
       if (listPriceService.isNotEmpty) {
+        if (!mounted) return;
         setState(() {
           listPriceService;
           loadProcessBar = true;
         });
       } else {
+        if (!mounted) return;
         setState(() {
           loadProcessBar = true;
         });
       }
     } catch (error) {
+      if (!mounted) return;
       setState(() {
         loadProcessBar = true;
         isNotfound = true;
@@ -57,6 +62,7 @@ class _MenuServiceState extends State<MenuService> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     getLocale().then((locale) {
+      if (!mounted) return;
       setState(() {
         _locale = locale;
       });
