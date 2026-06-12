@@ -1,378 +1,49 @@
 // ignore_for_file: non_constant_identifier_names, file_names
 import 'package:flutter/material.dart';
+import '../Localization/LanguageConstants.dart';
 import '../Utility/WidgetUtility.dart';
-import 'DefaultButtonWidget.dart';
 
-Future DialogSucessfull(
-  BuildContext context,
-  String title,
-  String message,
-  VoidCallback btnOkOnPress,
-) async {
-  showDialog(
-    context: context,
-    builder: (context) {
-      return Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          constraints: const BoxConstraints(
-            maxHeight: double.infinity,
-          ),
-          width: 380,
-          height: 300,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Image.asset("assets/icons/success.gif", scale: 1.6),
-              ),
-              TextWidget(
-                title,
-                Colors.black,
-                20,
-                FontWeight.bold,
-                TextAlign.center,
-              ),
-              TextWidget(
-                message,
-                Colors.black,
-                18,
-                FontWeight.normal,
-                TextAlign.center,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 120),
-                      child: DefaultButtonWidget(
-                        press: btnOkOnPress,
-                        textValue: "Continue",
-                        color: Colors.blue,
-                        width: double.infinity,
-                        height: 40,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      );
-    },
+// ─── Loading Widgets ─────────────────────────────────────────────────────────
+
+Widget LoadDialog(BuildContext context) {
+  return const Center(
+    child: SizedBox(
+      width: 40,
+      height: 40,
+      child: CircularProgressIndicator(
+        strokeWidth: 2.5,
+        color: Color(0xFF1A1A2E),
+      ),
+    ),
   );
-}
-
-Future DialogConfirm(
-  BuildContext context,
-  String title,
-  String message,
-  VoidCallback btnOkOnPress,
-) async {
-  showDialog(
-    context: context,
-    builder: (context) {
-      return Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          constraints: const BoxConstraints(
-            maxHeight: double.infinity,
-          ),
-          width: 380,
-          height: 300,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Image.asset("assets/icons/warning.gif", scale: 1.6),
-              ),
-              TextWidget(
-                title,
-                Colors.black,
-                20,
-                FontWeight.bold,
-                TextAlign.center,
-              ),
-              TextWidget(
-                message,
-                Colors.black,
-                18,
-                FontWeight.normal,
-                TextAlign.center,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: DefaultButtonWidget(
-                      press: btnOkOnPress,
-                      textValue: "Continue",
-                      color: Colors.blue,
-                      width: 100,
-                      height: 40,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: DefaultButtonWidget(
-                      press: () {
-                        Navigator.pop(context);
-                      },
-                      textValue: "Cancel",
-                      color: Colors.red,
-                      width: 100,
-                      height: 40,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      );
-    },
-  );
-}
-
-Future DialogFail(
-  BuildContext context,
-  String title,
-  String message,
-) async {
-  showDialog(
-    context: context,
-    builder: (context) {
-      return Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          constraints: const BoxConstraints(
-            maxHeight: double.infinity,
-          ),
-          width: 380,
-          height: 300,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Image.asset("assets/icons/error1.gif", scale: 1.6),
-              ),
-              TextWidget(
-                title,
-                Colors.black,
-                20,
-                FontWeight.bold,
-                TextAlign.center,
-              ),
-              TextWidget(
-                message,
-                Colors.black,
-                18,
-                FontWeight.normal,
-                TextAlign.center,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 120),
-                      child: DefaultButtonWidget(
-                        press: () {
-                          Navigator.pop(context);
-                        },
-                        textValue: "Continue",
-                        color: Colors.blue,
-                        width: double.infinity,
-                        height: 40,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      );
-    },
-  );
-}
-
-Future DialogFailConfirm(
-  BuildContext context,
-  String title,
-  String message,
-  VoidCallback btnOkOnPress,
-) async {
-  showDialog(
-    context: context,
-    builder: (context) {
-      return Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          constraints: const BoxConstraints(
-            maxHeight: double.infinity,
-          ),
-          width: 380,
-          height: 300,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Image.asset("assets/icons/error1.gif", scale: 1.6),
-              ),
-              TextWidget(
-                title,
-                Colors.black,
-                20,
-                FontWeight.bold,
-                TextAlign.center,
-              ),
-              TextWidget(
-                message,
-                Colors.black,
-                18,
-                FontWeight.normal,
-                TextAlign.center,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: DefaultButtonWidget(
-                      press: btnOkOnPress,
-                      textValue: "Continue",
-                      color: Colors.blue,
-                      width: 100,
-                      height: 40,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: DefaultButtonWidget(
-                      press: () {
-                        Navigator.pop(context);
-                      },
-                      textValue: "Cancel",
-                      color: Colors.red,
-                      width: 100,
-                      height: 40,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      );
-    },
-  );
-}
-
-class DialogBuilder {
-  DialogBuilder(this.context);
-
-  final BuildContext context;
-
-  void showLoadingIndicator() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return Dialog(
-          backgroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(100),
-          ),
-          elevation: 10,
-          child: SizedBox(
-            width: 80,
-            child: Row(
-              children: [
-                CircleAvatar(
-                  backgroundColor: Colors.white,
-                  radius: 40,
-                  child: Image.asset(
-                    "assets/images/loading.gif",
-                    width: 50,
-                    height: 50,
-                  ),
-                ),
-                const SizedBox(width: 15),
-                const Text(
-                  "ກຳລັງປະມວນຜົນ",
-                  style: TextStyle(
-                    fontFamily: "roboto",
-                    fontSize: 18,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
-  void hideOpenDialog() {
-    Navigator.of(context).pop();
-  }
 }
 
 Widget ShowDialog(BuildContext context) {
+  final label = getTranslated(context, 'PROCESSING') ?? 'ກຳລັງປະມວນຜົນ...';
   return Dialog(
     backgroundColor: Colors.white,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(100),
-    ),
-    elevation: 10,
-    child: SizedBox(
-      width: 80,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+    elevation: 8,
+    child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          CircleAvatar(
-            backgroundColor: Colors.white,
-            radius: 40,
-            child: Image.asset(
-              "assets/images/loading.gif",
-              width: 50,
-              height: 50,
+          const SizedBox(
+            width: 22,
+            height: 22,
+            child: CircularProgressIndicator(
+              strokeWidth: 2.5,
+              color: Color(0xFF1A1A2E),
             ),
           ),
-          const SizedBox(width: 15),
-          const Text(
-            "ກຳລັງປະມວນຜົນ",
-            style: TextStyle(
-              fontFamily: "roboto",
-              fontSize: 18,
+          const SizedBox(width: 16),
+          Text(
+            label,
+            style: const TextStyle(
+              fontSize: 15,
+              color: Color(0xFF1A1A2E),
+              fontWeight: FontWeight.w500,
             ),
           ),
         ],
@@ -381,14 +52,216 @@ Widget ShowDialog(BuildContext context) {
   );
 }
 
-Widget LoadDialog(BuildContext context) {
-  return CircleAvatar(
-    backgroundColor: Colors.white,
-    radius: 40,
-    child: Image.asset(
-      "assets/images/loading.gif",
-      width: 50,
-      height: 50,
+class DialogBuilder {
+  DialogBuilder(this.context);
+  final BuildContext context;
+
+  void showLoadingIndicator() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => ShowDialog(context),
+    );
+  }
+
+  void hideOpenDialog() {
+    Navigator.of(context).pop();
+  }
+}
+
+// ─── Dialog Helpers ──────────────────────────────────────────────────────────
+
+Future DialogSucessfull(
+    BuildContext context,
+    String title,
+    String message,
+    VoidCallback btnOkOnPress,
+    ) async {
+  final continueLabel = getTranslated(context, 'CONTINUE') ?? 'Continue';
+  showDialog(
+    context: context,
+    builder: (_) => _AppDialog(
+      iconWidget: const Icon(Icons.check_circle_rounded,
+          color: Color(0xFF4CAF50), size: 56),
+      title: title,
+      message: message,
+      actions: [
+        _DialogButton(
+            label: continueLabel,
+            color: Colors.blue,
+            onPressed: btnOkOnPress),
+      ],
     ),
   );
+}
+
+Future DialogConfirm(
+    BuildContext context,
+    String title,
+    String message,
+    VoidCallback btnOkOnPress,
+    ) async {
+  final continueLabel = getTranslated(context, 'CONTINUE') ?? 'Continue';
+  final cancelLabel = getTranslated(context, 'CANCEL') ?? 'Cancel';
+  showDialog(
+    context: context,
+    builder: (_) => _AppDialog(
+      iconWidget: const Icon(Icons.warning_amber_rounded,
+          color: Color(0xFFFFC107), size: 56),
+      title: title,
+      message: message,
+      actions: [
+        _DialogButton(
+            label: continueLabel,
+            color: Colors.blue,
+            onPressed: btnOkOnPress),
+        _DialogButton(
+            label: cancelLabel,
+            color: Colors.red,
+            onPressed: () => Navigator.pop(context)),
+      ],
+    ),
+  );
+}
+
+Future DialogFail(
+    BuildContext context,
+    String title,
+    String message,
+    ) async {
+  final continueLabel = getTranslated(context, 'CONTINUE') ?? 'Continue';
+  showDialog(
+    context: context,
+    builder: (_) => _AppDialog(
+      iconWidget: const Icon(Icons.cancel_rounded,
+          color: Color(0xFFF44336), size: 56),
+      title: title,
+      message: message,
+      actions: [
+        _DialogButton(
+            label: continueLabel,
+            color: Colors.blue,
+            onPressed: () => Navigator.pop(context)),
+      ],
+    ),
+  );
+}
+
+Future DialogFailConfirm(
+    BuildContext context,
+    String title,
+    String message,
+    VoidCallback btnOkOnPress,
+    ) async {
+  final continueLabel = getTranslated(context, 'CONTINUE') ?? 'Continue';
+  final cancelLabel = getTranslated(context, 'CANCEL') ?? 'Cancel';
+  showDialog(
+    context: context,
+    builder: (_) => _AppDialog(
+      iconWidget: const Icon(Icons.cancel_rounded,
+          color: Color(0xFFF44336), size: 56),
+      title: title,
+      message: message,
+      actions: [
+        _DialogButton(
+            label: continueLabel,
+            color: Colors.blue,
+            onPressed: btnOkOnPress),
+        _DialogButton(
+            label: cancelLabel,
+            color: Colors.red,
+            onPressed: () => Navigator.pop(context)),
+      ],
+    ),
+  );
+}
+
+// ─── Reusable Dialog ─────────────────────────────────────────────────────────
+
+class _AppDialog extends StatelessWidget {
+  final Widget iconWidget;
+  final String title;
+  final String message;
+  final List<Widget> actions;
+
+  const _AppDialog({
+    required this.iconWidget,
+    required this.title,
+    required this.message,
+    required this.actions,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      backgroundColor: Colors.white,
+      child: Container(
+        width: 340,
+        padding:
+        const EdgeInsets.symmetric(horizontal: 24, vertical: 28),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            iconWidget,
+            const SizedBox(height: 16),
+            Text(title,
+                style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFF1A1A2E)),
+                textAlign: TextAlign.center),
+            const SizedBox(height: 8),
+            Text(message,
+                style: const TextStyle(
+                    fontSize: 14,
+                    color: Color(0xFF666666),
+                    height: 1.5),
+                textAlign: TextAlign.center),
+            const SizedBox(height: 24),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: actions
+                  .map((a) => Padding(
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 6),
+                  child: a))
+                  .toList(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _DialogButton extends StatelessWidget {
+  final String label;
+  final Color color;
+  final VoidCallback onPressed;
+
+  const _DialogButton({
+    required this.label,
+    required this.color,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: color,
+        foregroundColor: Colors.white,
+        elevation: 0,
+        padding:
+        const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8)),
+      ),
+      child: Text(label,
+          style: const TextStyle(
+              fontSize: 13, fontWeight: FontWeight.w600)),
+    );
+  }
 }

@@ -17,102 +17,121 @@ class Header extends StatefulWidget {
 }
 
 class _HeaderState extends State<Header> {
-  Color? _backgroundColor;
-  Color? _backgroundColorSearch;
-  Color? _colorIcon;
-  double? _opacity;
-  double? _offset;
-  final _opacityMax = 0.01;
+  static const _darkColor = Color(0xFF1A1A2E);
+  bool _isScrolled = false;
 
   @override
   void initState() {
-    // TODO: implement initState
-    _backgroundColor = Colors.transparent;
-    _backgroundColorSearch = Colors.white;
-    _colorIcon = Colors.white;
-    _opacity = 0.0;
-    _offset = 0.0;
-    widget.scrollController.addListener(_onScroll);
     super.initState();
+    widget.scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    widget.scrollController.removeListener(_onScroll);
+    super.dispose();
+  }
+
+  void _onScroll() {
+    final scrolled = widget.scrollController.offset > 10;
+    if (scrolled != _isScrolled) {
+      setState(() => _isScrolled = scrolled);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    return Container(
-      color: _backgroundColor,
-      child: SafeArea(
-        bottom: false,
-        child: Container(
-          width: size.width,
-          height: 50,
-          color: const Color.fromRGBO(44, 44, 44, 1),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.easeOut,
+      width: double.infinity,
+      height: 56,
+      decoration: BoxDecoration(
+        color: _darkColor,
+        boxShadow: _isScrolled
+            ? [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.25),
+            blurRadius: 12,
+            offset: const Offset(0, 3),
+          ),
+        ]
+            : [],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Row(
+          children: [
+            // ─── Back Button (ສະແດງຄັ້ງດຽວ) ──────────────────────
+            if (widget.isShow)
+              IconButton(
+                onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                  context, '/home', (_) => false,
+                ),
+                icon: const Icon(
+                  Icons.arrow_back_ios_new_rounded,
+                  color: Colors.white,
+                  size: 18,
+                ),
+                tooltip: "Back",
+                padding: EdgeInsets.zero,        // ✅ ລຶບ padding ຊ້ຳ
+                constraints: const BoxConstraints(),
+                splashRadius: 20,
+              ),
+
+            if (widget.isShow) const SizedBox(width: 4),
+
+            // ─── Logo + Brand ─────────────────────────────────────
+            Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                if (widget.isShow == true)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back_sharp,
-                        color: Colors.white,
-                      ),
-                    ),
+                Container(
+                  width: 30,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(7),
                   ),
+                  padding: const EdgeInsets.all(3),
+                  child: Image.asset(
+                    "assets/images/LOGO01.png",
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                const SizedBox(width: 10),
                 const Text(
                   "THE BAR-BER LAO",
                   style: TextStyle(
-                    fontSize: 25,
+                    fontSize: 18,
                     color: Colors.white,
-                    fontWeight: FontWeight.normal,
+                    fontWeight: FontWeight.w800,
                     fontFamily: 'Anton',
+                    letterSpacing: 1.5,
                   ),
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
-                const Expanded(child: SizedBox()),
-                const ChooseLanguageWidget(color: Colors.white),
               ],
             ),
-          ),
+
+            const Spacer(),
+
+            // ─── Gold dot ─────────────────────────────────────────
+            Container(
+              width: 5,
+              height: 5,
+              margin: const EdgeInsets.only(right: 12),
+              decoration: const BoxDecoration(
+                color: Color(0xFFD4A85A),
+                shape: BoxShape.circle,
+              ),
+            ),
+
+            // ─── Language ─────────────────────────────────────────
+            const ChooseLanguageWidget(color: Colors.white),
+          ],
         ),
       ),
     );
-  }
-
-  void _onScroll() {
-    final scrollOffset = widget.scrollController.offset;
-    if (scrollOffset >= _offset! && scrollOffset > 5) {
-      _opacity = double.parse((_opacity! + _opacityMax).toStringAsFixed(2));
-      if (_opacity! >= 1.0) {
-        _opacity = 1.0;
-      }
-      //up
-    } else if (scrollOffset < 100) {
-      _opacity = double.parse((_opacity! - _opacityMax).toStringAsFixed(2));
-      if (_opacity! <= 1.0) {
-        _opacity = 0.0;
-      }
-      //down
-    }
-    setState(() {
-      if (scrollOffset <= 0) {
-        _backgroundColorSearch = Colors.white;
-        _colorIcon = Colors.white;
-        _opacity = 0.0;
-        _offset = 0.0;
-      } else {
-        _backgroundColorSearch = Colors.grey[200];
-        _colorIcon = Colors.deepOrange;
-        _opacity = 1;
-      }
-      _backgroundColor = Colors.white.withOpacity(_opacity!);
-    });
   }
 }

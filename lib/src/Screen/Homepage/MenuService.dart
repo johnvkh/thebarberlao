@@ -16,130 +16,260 @@ class MenuService extends StatefulWidget {
 }
 
 class _MenuServiceState extends State<MenuService> {
-  PriceServiceModel priceServiceModel = PriceServiceModel();
   List<PriceServiceModel> listPriceService = [];
   bool loadProcessBar = false;
   bool isNotfound = false;
-  String languageCode = "";
   Locale? _locale;
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    if (!mounted) return;
+    getLocale().then((locale) {
+      if (!mounted) return;
+      setState(() => _locale = locale);
+    });
     loadPriceServerInfo();
   }
 
-  Future loadPriceServerInfo() async {
+  Future<void> loadPriceServerInfo() async {
     try {
-      listPriceService = await PriceServiceController().getAllPriceService();
+      final data = await PriceServiceController().getAllPriceService();
       if (!mounted) return;
-      if (listPriceService.isNotEmpty) {
-        if (!mounted) return;
-        setState(() {
-          listPriceService;
-          loadProcessBar = true;
-        });
-      } else {
-        if (!mounted) return;
-        setState(() {
-          loadProcessBar = true;
-        });
-      }
+      setState(() {
+        listPriceService = data;
+        loadProcessBar = true;
+        isNotfound = data.isEmpty;
+      });
     } catch (error) {
       if (!mounted) return;
+      if (kDebugMode) print("Error loadPriceServerInfo: $error");
       setState(() {
         loadProcessBar = true;
         isNotfound = true;
       });
-      if (kDebugMode) {
-        print("Error loadSliderInfo:${error.toString()} ");
-      }
     }
   }
 
+  bool get _isLao => _locale?.languageCode == "lo";
+
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    getLocale().then((locale) {
-      if (!mounted) return;
-      setState(() {
-        _locale = locale;
-      });
-    });
-    return loadProcessBar
-        ? Container(
-            width: size.width,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/bg222.jpg"),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextWidget(
-                          getTranslated(context, 'PRICE_LIST')!,
-                          Colors.white,
-                          18,
-                          FontWeight.bold,
-                          TextAlign.center,
-                        ),
-                      ],
-                    ),
+    if (!loadProcessBar) return LoadDialog(context);
+
+    final title = getTranslated(context, 'PRICE_LIST') ?? 'Price List';
+
+    return Container(
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage("assets/images/bg222.jpg"),
+          fit: BoxFit.cover,
+        ),
+      ),
+      child: Container(
+        // ✅ Dark overlay ໃຫ້ text ອ່ານງ່າຍ
+        color: Colors.black.withOpacity(0.55),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // ─── Header ───────────────────────────────────────────
+            Row(
+              children: [
+                Container(
+                  width: 3,
+                  height: 22,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFD4A85A),
+                    borderRadius: BorderRadius.circular(2),
                   ),
-                  const SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: SizedBox(
-                      height: 460,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: listPriceService.length,
-                        itemBuilder: (context, index) {
-                          PriceServiceModel priceServiceModel =
-                              listPriceService[index];
-                          return Row(
-                            children: [
-                              TextWidget(
-                                _locale?.languageCode.toString() == "lo"
-                                    ? priceServiceModel.priceServiceNameLA
-                                        .toString()
-                                    : priceServiceModel.priceServiceNameEN
-                                        .toString(),
-                                Colors.white,
-                                15,
-                                FontWeight.bold,
-                                TextAlign.center,
-                              ),
-                              const Spacer(),
-                              TextWidget(
-                                _locale?.languageCode.toString() == "lo"
-                                    ? priceServiceModel.priceLA.toString()
-                                    : priceServiceModel.priceEN.toString(),
-                                Colors.white,
-                                15,
-                                FontWeight.bold,
-                                TextAlign.center,
-                              ),
-                            ],
-                          );
-                        },
+                ),
+                const SizedBox(width: 10),
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w800,
+                    color: Colors.white,
+                    letterSpacing: 0.3,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                // item count badge
+                if (listPriceService.isNotEmpty)
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8, vertical: 3),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFD4A85A),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Text(
+                      "${listPriceService.length}",
+                      style: const TextStyle(
+                        color: Color(0xFF1A1A2E),
+                        fontSize: 11,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),
-                ],
+              ],
+            ),
+            const SizedBox(height: 20),
+
+            // ─── Divider ──────────────────────────────────────────
+            Container(
+              height: 1,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    const Color(0xFFD4A85A).withOpacity(0.6),
+                    Colors.transparent,
+                  ],
+                ),
               ),
             ),
-          )
-        : LoadDialog(context);
+            const SizedBox(height: 16),
+
+            // ─── Empty state ──────────────────────────────────────
+            if (isNotfound)
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  child: Text(
+                    getTranslated(context, 'NOT_FOUND') ?? 'No data found',
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.5),
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+              )
+
+            // ─── Price List ───────────────────────────────────────
+            else
+              ListView.separated(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: listPriceService.length,
+                separatorBuilder: (_, __) => Container(
+                  height: 1,
+                  margin: const EdgeInsets.symmetric(vertical: 2),
+                  color: Colors.white.withOpacity(0.06),
+                ),
+                itemBuilder: (context, index) {
+                  final item = listPriceService[index];
+                  final name = _isLao
+                      ? (item.priceServiceNameLA ?? '')
+                      : (item.priceServiceNameEN ?? '');
+                  final price = _isLao
+                      ? (item.priceLA ?? '')
+                      : (item.priceEN ?? '');
+                  final isEven = index % 2 == 0;
+
+                  return _PriceRow(
+                    index: index + 1,
+                    name: name,
+                    price: price,
+                    isEven: isEven,
+                  );
+                },
+              ),
+
+            const SizedBox(height: 8),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ─── Price Row ────────────────────────────────────────────────────────────────
+
+class _PriceRow extends StatelessWidget {
+  final int index;
+  final String name;
+  final String price;
+  final bool isEven;
+
+  const _PriceRow({
+    required this.index,
+    required this.name,
+    required this.price,
+    required this.isEven,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      decoration: BoxDecoration(
+        color: isEven
+            ? Colors.white.withOpacity(0.05)
+            : Colors.transparent,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        children: [
+          // ✅ Index number
+          Container(
+            width: 22,
+            height: 22,
+            decoration: BoxDecoration(
+              color: const Color(0xFFD4A85A).withOpacity(0.15),
+              borderRadius: BorderRadius.circular(6),
+            ),
+            child: Center(
+              child: Text(
+                "$index",
+                style: const TextStyle(
+                  color: Color(0xFFD4A85A),
+                  fontSize: 10,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 12),
+
+          // Service name
+          Expanded(
+            child: Text(
+              name,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                height: 1.4,
+              ),
+            ),
+          ),
+
+          const SizedBox(width: 12),
+
+          // ✅ Price badge
+          Container(
+            padding: const EdgeInsets.symmetric(
+                horizontal: 10, vertical: 4),
+            decoration: BoxDecoration(
+              color: const Color(0xFFD4A85A).withOpacity(0.15),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: const Color(0xFFD4A85A).withOpacity(0.4),
+                width: 1,
+              ),
+            ),
+            child: Text(
+              price,
+              style: const TextStyle(
+                color: Color(0xFFD4A85A),
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

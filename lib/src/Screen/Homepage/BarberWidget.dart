@@ -2,6 +2,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import '../../ComponentsUtils/DialogPopupWidget.dart';
 import '../../Controller/BarberController.dart';
@@ -26,215 +27,322 @@ class _BarberWidgetState extends State<BarberWidget> {
     loadBarberInfo();
   }
 
-  Future loadBarberInfo() async {
+  Future<void> loadBarberInfo() async {
     try {
-      if (kDebugMode) {
-        print("----- loadBarberInfo -----");
-      }
-      listBarber = await BarberController().getAllBarber();
+      if (kDebugMode) print("----- loadBarberInfo -----");
+      final data = await BarberController().getAllBarber();
+      if (!mounted) return;
       setState(() {
+        listBarber = data;
         loadProcessBar = true;
       });
     } catch (error) {
-      setState(() {
-        loadProcessBar = true;
-      });
+      if (!mounted) return;
+      if (kDebugMode) print("Error loadBarberInfo: $error");
+      setState(() => loadProcessBar = true);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    var deviceType = getDeviceType(MediaQuery.of(context).size);
-    var size = MediaQuery.of(context).size;
+    if (!loadProcessBar) return LoadDialog(context);
 
-    return loadProcessBar
-        ? Container(
-      decoration: BoxDecoration(
-        color: const Color.fromRGBO(255, 248, 246, 1),
-        borderRadius: BorderRadius.circular(8),
+    final deviceType = getDeviceType(MediaQuery.of(context).size);
+    final size = MediaQuery.of(context).size;
+    final isMobile = deviceType == DeviceScreenType.mobile
+        || deviceType == DeviceScreenType.tablet;
+    final title = getTranslated(context, 'BARBER_LIST') ?? 'Barber List';
+    final bookLabel = getTranslated(context, 'BOOK_NOW') ?? 'Book Now';
+
+    return Container(
+      color: const Color(0xFFF8F4F2),
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 16 : 40,
+        vertical: 28,
       ),
-      padding: const EdgeInsets.all(16),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TextWidget(
-            getTranslated(context, 'BARBER_LIST')!,
-            Colors.black,
-            22,
-            FontWeight.bold,
-            TextAlign.center,
+          // ─── Section Header ─────────────────────────────────────
+          Row(
+            children: [
+              Container(
+                width: 3,
+                height: 22,
+                decoration: BoxDecoration(
+                  color: const Color(0xFF1A1A2E),
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w800,
+                  color: Color(0xFF1A1A2E),
+                  letterSpacing: 0.3,
+                ),
+              ),
+              const SizedBox(width: 10),
+              // ✅ barber count badge
+              Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 8, vertical: 3),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF1A1A2E),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(
+                  "${listBarber.length}",
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 20),
 
-          /// 📱 Mobile (Swipe Horizontal)
-          if (deviceType == DeviceScreenType.mobile|| deviceType == DeviceScreenType.tablet)
+          // ─── Cards ──────────────────────────────────────────────
+          if (isMobile)
             SizedBox(
-              height: size.height * 0.65,
+              height: size.height * 0.52,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
+                addAutomaticKeepAlives: false,
                 itemCount: listBarber.length,
-                separatorBuilder: (_, __) => const SizedBox(width: 12),
-                itemBuilder: (context, index) {
-                  final barber = listBarber[index];
-                  return _barberCard(
-                    size.width * 0.8,
-                    size.height * 0.6,
-                    barber,
-                  );
-                },
+                separatorBuilder: (_, __) => const SizedBox(width: 14),
+                itemBuilder: (_, i) => _BarberCard(
+                  barber: listBarber[i],
+                  width: size.width * 0.72,
+                  bookLabel: bookLabel,
+                ),
               ),
             )
           else
-          /// 💻 Desktop (Grid Layout)
-            SizedBox(
-              width: size.width * 0.8,
-              height: size.height * 0.9,
-              child: GridView.builder(
-                gridDelegate:
-                const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  mainAxisSpacing: 20,
-                  crossAxisSpacing: 20,
-                  childAspectRatio: 0.7,
-                ),
-                itemCount: listBarber.length,
-                itemBuilder: (context, index) {
-                  final barber = listBarber[index];
-                  return _barberCard(
-                    size.width * 0.25,
-                    size.height * 0.7,
-                    barber,
-                  );
-                },
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                childAspectRatio: 0.65,
+              ),
+              itemCount: listBarber.length,
+              itemBuilder: (_, i) => _BarberCard(
+                barber: listBarber[i],
+                width: double.infinity,
+                bookLabel: bookLabel,
               ),
             ),
         ],
       ),
-    )
-        : LoadDialog(context);
+    );
   }
+}
 
-  /// 🎨 Barber Card UI
-  /// 🎨 Barber Card UI
-  Widget _barberCard(double w, double h, BarberModel barber) {
-    return GestureDetector(
-      onTap: () {
-        // 👉 TODO: Navigate ไปหน้า Profile Barber
-      },
-      child: Card(
-        elevation: 6,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+// ─── Barber Card ─────────────────────────────────────────────────────────────
+
+class _BarberCard extends StatelessWidget {
+  final BarberModel barber;
+  final double width;
+  final String bookLabel;
+
+  const _BarberCard({
+    required this.barber,
+    required this.width,
+    required this.bookLabel,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.07),
+              blurRadius: 14,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
         clipBehavior: Clip.antiAlias,
-        child: Stack(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// 🖼️ รูป Barber
-            Image.network(
-              barber.imageURL ?? "",
-              width: w,
-              height: h,
-              fit: BoxFit.cover,
+            // ─── Photo ──────────────────────────────────────────
+            Expanded(
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  // Image
+                  Image.network(
+                    barber.imageURL ?? "",
+                    fit: BoxFit.cover,
+                    errorBuilder: (_, __, ___) => Container(
+                      color: const Color(0xFFEEEEEE),
+                      child: const Center(
+                        child: Icon(Icons.person_outline_rounded,
+                            size: 56, color: Color(0xFFBBBBBB)),
+                      ),
+                    ),
+                    loadingBuilder: (_, child, progress) => progress == null
+                        ? child
+                        : Container(
+                      color: const Color(0xFFF0F0F0),
+                      child: const Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          color: Color(0xFF1A1A2E),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  // ✅ Gradient bottom
+                  Positioned(
+                    bottom: 0, left: 0, right: 0,
+                    child: Container(
+                      height: 80,
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.black.withOpacity(0.6),
+                            Colors.transparent,
+                          ],
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  // ✅ Position badge — top left
+                  if (barber.position?.isNotEmpty == true)
+                    Positioned(
+                      top: 10,
+                      left: 10,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF1A1A2E).withOpacity(0.85),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(
+                          barber.position!,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ),
+
+                  // ✅ Scissors icon — top right
+                  Positioned(
+                    top: 10,
+                    right: 10,
+                    child: Container(
+                      width: 28,
+                      height: 28,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFD4A85A),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Center(
+                        child: FaIcon(
+                          FontAwesomeIcons.scissors,
+                          size: 12,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
 
-            /// 🌓 Gradient Overlay
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Colors.black87, Colors.transparent],
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                  ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    /// 👤 ชื่อช่าง
-                    Text(
-                      barber.barberName ?? "Unknown Barber",
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
+            // ─── Info ────────────────────────────────────────────
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 10, 12, 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Name
+                  Text(
+                    barber.barberName ?? "Unknown",
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w700,
+                      color: Color(0xFF1A1A2E),
                     ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
 
-                    /// 🪒 ตำแหน่ง / ความถนัด
-                    if (barber.position != null && barber.position!.isNotEmpty)
-                      Text(
-                        barber.position!,
-                        style: const TextStyle(
-                          color: Colors.white70,
-                          fontSize: 14,
-                        ),
-                      ),
-
-                    /// 📞 เบอร์โทร
-                    if (barber.phoneNumber != null &&
-                        barber.phoneNumber!.isNotEmpty)
-                      Padding(
-                        padding: const EdgeInsets.only(top: 4),
-                        child: Row(
-                          children: [
-                            const Icon(Icons.phone,
-                                size: 14, color: Colors.white70),
-                            const SizedBox(width: 6),
-                            Text(
-                              barber.phoneNumber!,
-                              style: const TextStyle(
-                                color: Colors.white70,
-                                fontSize: 13,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-
-                    const SizedBox(height: 8),
-                    /// 🔘 Book Button
-                    ElevatedButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (ctx) => AlertDialog(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            title: const Text("Coming Soon 🚀"),
-                            content: const Text(
-                              "This feature will be available in the next update.",
-                              style: TextStyle(fontSize: 14),
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Navigator.pop(ctx),
-                                child: const Text(
-                                  "OK",
-                                  style: TextStyle(color: Colors.deepOrange),
-                                ),
-                              ),
-                            ],
+                  // Phone
+                  if (barber.phoneNumber?.isNotEmpty == true) ...[
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        const Icon(Icons.phone_outlined,
+                            size: 11, color: Color(0xFFAAAAAA)),
+                        const SizedBox(width: 5),
+                        Text(
+                          barber.phoneNumber!,
+                          style: const TextStyle(
+                            fontSize: 11,
+                            color: Color(0xFF888888),
                           ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.deepOrange,
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 8),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6),
                         ),
-                      ),
-                      child: const Text(
-                        "Book Now",
-                        style: TextStyle(fontSize: 14),
-                      ),
+                      ],
                     ),
                   ],
-                ),
+
+                  const SizedBox(height: 10),
+
+                  // ─── Book Button ───────────────────────────────
+                  GestureDetector(
+                    onTap: () => _showComingSoon(context),
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(vertical: 9),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF1A1A2E),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            FontAwesomeIcons.calendarCheck,
+                            size: 11,
+                            color: Color(0xFFD4A85A),
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            bookLabel,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -243,4 +351,76 @@ class _BarberWidgetState extends State<BarberWidget> {
     );
   }
 
+  void _showComingSoon(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (_) => Dialog(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16)),
+        backgroundColor: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 56,
+                height: 56,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFD4A85A).withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: const Center(
+                  child: FaIcon(
+                    FontAwesomeIcons.rocket,
+                    color: Color(0xFFD4A85A),
+                    size: 24,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              const Text(
+                "Coming Soon",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF1A1A2E),
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                "Online booking will be available\nin the next update.",
+                style: TextStyle(
+                  fontSize: 13,
+                  color: Color(0xFF888888),
+                  height: 1.5,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 32, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF1A1A2E),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Text(
+                    "OK",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 13,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }

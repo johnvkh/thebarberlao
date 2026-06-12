@@ -1,12 +1,12 @@
-
 // ignore_for_file: file_names
 
-class SliderModel{
-  String? sliderId;
-  String? sliderURL;
-  String? sort;
+class SliderModel {
+  final String? sliderId;
+  final String? sliderURL;
+  final String? sort;
 
-  SliderModel({
+  // ✅ ເພີ່ມ const — ເພື່ອໃຫ້ BannerSlider ໃຊ້ static const list ໄດ້
+  const SliderModel({
     this.sliderId,
     this.sliderURL,
     this.sort,
@@ -16,7 +16,7 @@ class SliderModel{
     return {
       'sliderId': sliderId,
       'sliderURL': sliderURL,
-      'sort': sort,
+      'sort':      sort,
     };
   }
 
@@ -24,7 +24,7 @@ class SliderModel{
     return SliderModel(
       sliderId: json["sliderId"],
       sliderURL: json["sliderURL"],
-      sort: json["sort"],
+      sort:      json["sort"],
     );
   }
 }

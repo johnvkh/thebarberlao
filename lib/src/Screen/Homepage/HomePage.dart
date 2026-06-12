@@ -24,76 +24,81 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    _scrollController.dispose(); // อย่าลืมปิด
+    _scrollController.dispose();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: ResponsiveBuilder(
           builder: (context, sizing) {
-            if (sizing.deviceScreenType == DeviceScreenType.mobile) {
-              return _buildMobile();
-            } else {
-              return _buildDesktop(context);
-            }
+            return sizing.deviceScreenType == DeviceScreenType.mobile
+                ? _buildMobile()
+                : _buildDesktop();
           },
         ),
       ),
     );
   }
 
+  // ✅ ໃຊ້ const list ເກັບໄວ້ — ບໍ່ rebuild ທຸກຄັ້ງ
+  static const List<Widget> _sections = [
+    BannerSlider(),
+    VideoWidget(),
+    VideoSalonWidget(),
+    SliderPromotionWidget(),
+    GroupService(),
+    BarberWidget(),
+    MenuService(),
+    LocationWidget(),
+    FooterMenu(),
+    Footer(),
+  ];
+
   Widget _buildMobile() {
     return CustomScrollView(
+      // ✅ physics ທີ່ smooth ໃນ web
+      physics: const BouncingScrollPhysics(
+        parent: AlwaysScrollableScrollPhysics(),
+      ),
       slivers: [
         SliverAppBar(
           pinned: true,
           backgroundColor: Colors.white,
-          flexibleSpace: Header(isShow: true,scrollController: _scrollController,),
+          // ✅ toolbarHeight ກຳນົດຊັດ — ບໍ່ให้ AppBar resize
+          toolbarHeight: 64,
+          flexibleSpace: Header(
+            isShow: true,
+            scrollController: _scrollController,
+          ),
         ),
-        SliverList(
-          delegate: SliverChildListDelegate([
-            const BannerSlider(),
-            const VideoWidget(),
-            const VideoSalonWidget(),
-            const SliderPromotionWidget(),
-            const GroupService(),
-            const BarberWidget(),
-            const MenuService(),
-            const LocationWidget(),
-            const FooterMenu(),
-            const Footer(),
-          ]),
-        ),
+        // ✅ SliverList.list ດີກວ່າ SliverChildListDelegate
+        SliverList.list(children: _sections),
       ],
     );
   }
 
-  Widget _buildDesktop(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Header(isShow: true,scrollController: _scrollController),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 40, horizontal: 120),
-            child: Column(
-              children: [
-                BannerSlider(),
-                VideoWidget(),
-                VideoSalonWidget(),
-                SliderPromotionWidget(),
-                GroupService(),
-                BarberWidget(),
-                MenuService(),
-                LocationWidget(),
-                FooterMenu(),
-                Footer(),
-              ],
-            ),
+  Widget _buildDesktop() {
+    return CustomScrollView(
+      physics: const ClampingScrollPhysics(),
+      slivers: [
+        // ✅ Desktop ກໍໃຊ້ SliverAppBar — scroll ບໍ່ jarring
+        SliverAppBar(
+          pinned: true,
+          backgroundColor: Colors.white,
+          toolbarHeight: 64,
+          flexibleSpace: Header(
+            isShow: true,
+            scrollController: _scrollController,
           ),
-        ],
-      ),
+        ),
+        SliverPadding(
+          padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 120),
+          sliver: SliverList.list(children: _sections),
+        ),
+      ],
     );
   }
 }
